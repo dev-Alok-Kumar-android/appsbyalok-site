@@ -40,7 +40,25 @@
 }
 
 /* =========================================
-   2. GLOBAL RESET & BASE STYLES
+   2. VIEW TRANSITIONS (Animations)
+   ========================================= */
+/* Disable default cross-fade */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+/* Always keep the NEW view on top to cover the old one */
+::view-transition-new(root) {
+    z-index: 9999;
+}
+::view-transition-old(root) {
+    z-index: 1;
+}
+
+/* =========================================
+   3. GLOBAL RESET & BASE STYLES
    ========================================= */
 * {
     margin: 0;
@@ -58,7 +76,6 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -69,10 +86,11 @@ ul { list-style: none; }
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+    height: 100%; /* FIX: Fill the header height */
 }
 
 /* =========================================
-   3. NAVBAR & NAVIGATION
+   4. NAVBAR & NAVIGATION
    ========================================= */
 header {
     position: fixed;
@@ -88,7 +106,7 @@ header {
 }
 
 nav {
-    height: 100%;
+    height: 100%; /* FIX: Fill container height to allow vertical centering */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -96,7 +114,7 @@ nav {
 
 /* Logo styling */
 .logo {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 800;
     display: flex;
     align-items: center;
@@ -105,17 +123,30 @@ nav {
     letter-spacing: -0.5px;
 }
 
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    background-color: var(--text-accent);
+
+    /* Use a mask to colorize the SVG via background-color */
+    -webkit-mask: url('icon.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    mask: url('icon.svg') no-repeat center;
+    mask-size: contain;
+}
+
 .logo span { color: var(--text-accent); }
 
 /* Desktop Nav Links */
 .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 40px;
 }
 
 .nav-link {
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 1.05rem;
+    font-weight: 600;
     color: var(--text-secondary);
     position: relative;
     transition: color 0.2s ease;
@@ -159,6 +190,7 @@ nav {
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    overflow: hidden;
 }
 
 .theme-btn:hover {
@@ -176,7 +208,7 @@ nav {
 }
 
 /* =========================================
-   4. HERO SECTION
+   5. HERO SECTION
    ========================================= */
 #hero {
     min-height: 100vh;
@@ -267,7 +299,7 @@ p.hero-text {
 }
 
 /* =========================================
-   5. SECTION STYLES (Common)
+   6. SECTION STYLES (Common)
    ========================================= */
 section {
     padding: 100px 0;
@@ -291,7 +323,7 @@ section {
 }
 
 /* =========================================
-   6. SKILLS GRID
+   7. SKILLS GRID
    ========================================= */
 .grid-skills {
     display: grid;
@@ -332,15 +364,15 @@ section {
 }
 
 /* =========================================
-   7. APPS GRID (Published Work)
+   8. APPS & PROJECTS
    ========================================= */
-.grid-apps {
+.grid-apps, .grid-projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 32px;
 }
 
-.app-card {
+.app-card, .project-card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 20px;
@@ -350,7 +382,7 @@ section {
     transition: all 0.3s;
 }
 
-.app-card:hover {
+.app-card:hover, .project-card:hover {
     transform: translateY(-8px);
     border-color: var(--text-accent);
     box-shadow: var(--shadow-lg);
@@ -365,27 +397,36 @@ section {
     border-bottom: 1px solid var(--border-color);
 }
 
-.app-preview svg {
+.app-preview svg, .project-header svg {
     width: 50px;
     height: 50px;
     fill: var(--text-secondary);
     opacity: 0.6;
 }
 
-.app-body {
+.project-header {
+    height: 140px;
+    background: linear-gradient(135deg, var(--bg-card-hover) 0%, var(--bg-body) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.app-body, .project-body {
     padding: 24px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.app-title {
+.app-title, .project-title {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
-.app-tags {
+.app-tags, .project-tags {
     display: flex;
     gap: 8px;
     margin-bottom: 16px;
@@ -402,14 +443,14 @@ section {
     font-weight: 500;
 }
 
-.app-desc {
+.app-desc, .project-text {
     color: var(--text-secondary);
     font-size: 0.95rem;
     margin-bottom: 20px;
     flex-grow: 1;
 }
 
-.app-links {
+.app-links, .project-link {
     display: flex;
     gap: 16px;
     font-size: 0.9rem;
@@ -417,7 +458,7 @@ section {
     margin-top: auto;
 }
 
-.link-accent {
+.link-accent, .project-link {
     color: var(--text-accent);
     display: flex;
     align-items: center;
@@ -425,69 +466,7 @@ section {
 }
 
 .link-muted { color: var(--text-secondary); }
-.link-accent:hover { text-decoration: underline; }
-
-/* =========================================
-   8. PROJECTS GRID (Source Code)
-   ========================================= */
-.grid-projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 32px;
-}
-
-.project-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--text-accent);
-    box-shadow: var(--shadow-lg);
-}
-
-.project-header {
-    height: 140px;
-    background: linear-gradient(135deg, var(--bg-card-hover) 0%, var(--bg-body) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.project-header svg {
-    width: 48px;
-    height: 48px;
-    fill: var(--text-secondary);
-    opacity: 0.5;
-}
-
-.project-body {
-    padding: 24px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-link {
-    align-self: flex-start;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-accent);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: auto;
-    transition: gap 0.2s ease;
-}
-
-.project-link:hover { gap: 10px; }
+.link-accent:hover, .project-link:hover { text-decoration: underline; gap: 8px; }
 
 /* =========================================
    9. CONTACT & FOOTER
@@ -506,7 +485,6 @@ section {
     display: inline-block;
     word-break: break-all;
 }
-
 .email-link:hover { color: var(--text-accent); }
 
 .social-links {
@@ -541,14 +519,12 @@ section {
 .social-icon-box svg { width: 32px; height: 32px; fill: var(--text-primary); }
 
 .social-btn:hover { color: var(--text-primary); }
-
 .social-btn:hover .social-icon-box {
     transform: translateY(-8px);
     border-color: var(--text-accent);
     box-shadow: var(--shadow-md);
     background-color: var(--bg-card);
 }
-
 .social-btn:hover .social-icon-box svg { fill: var(--text-accent); }
 
 footer {
@@ -567,7 +543,6 @@ footer {
     margin-bottom: 16px;
     flex-wrap: wrap;
 }
-
 .footer-links a:hover { color: var(--text-primary); text-decoration: underline; }
 
 /* =========================================
@@ -581,7 +556,7 @@ footer {
         top: 72px;
         left: 0;
         width: 100%;
-        max-height: 0; /* Animated height */
+        max-height: 0;
         background-color: var(--bg-body);
         flex-direction: column;
         gap: 0;
@@ -591,30 +566,19 @@ footer {
         box-shadow: var(--shadow-lg);
     }
 
-    .nav-links.active {
-        max-height: 400px;
-    }
-
+    .nav-links.active { max-height: 400px; }
     .nav-link {
         padding: 16px 24px;
         border-bottom: 1px solid var(--border-color);
         width: 100%;
         display: block;
     }
-    
     .nav-link::after { display: none; }
-    
     .nav-link:hover {
         background-color: var(--bg-card-hover);
         color: var(--text-accent);
     }
-
-    .btn-group {
-        flex-direction: column;
-        width: 100%;
-    }
-
+    .btn-group { flex-direction: column; width: 100%; }
     .btn { width: 100%; }
-    
     section { padding: 60px 0; }
 }

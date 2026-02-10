@@ -1,12 +1,12 @@
 /* =========================================
-   THEME TOGGLE LOGIC
+   THEME TOGGLE LOGIC (Blink-Free)
    ========================================= */
 const themeBtn = document.getElementById('theme-toggle');
 const sunIcon = document.querySelector('.sun-icon');
 const moonIcon = document.querySelector('.moon-icon');
 const htmlElement = document.documentElement;
 
-// 1. Determine Initial Theme (Saved or System Pref)
+// 1. Determine Initial Theme
 const savedTheme = localStorage.getItem('theme');
 const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 const initialTheme = savedTheme || systemPref;
@@ -18,23 +18,66 @@ updateIcons(initialTheme);
 // 3. Icon Update Helper
 function updateIcons(theme) {
     if (theme === 'dark') {
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-    } else {
         sunIcon.style.display = 'none';
         moonIcon.style.display = 'block';
+    } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
     }
 }
 
-// 4. Click Handler
-themeBtn.addEventListener('click', () => {
+// 4. Click Handler with Animation
+themeBtn.addEventListener('click', (event) => {
     const currentTheme = htmlElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    htmlElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateIcons(newTheme);
+
+    // Check support
+    if (!document.startViewTransition) {
+        applyTheme(newTheme);
+        return;
+    }
+
+    // Get click coordinates (Center of circle)
+    const x = event.clientX;
+    const y = event.clientY;
+
+    // Calculate radius to fill screen
+    const endRadius = Math.hypot(
+        Math.max(x, innerWidth - x),
+        Math.max(y, innerHeight - y)
+    );
+
+    // Start transition
+    const transition = document.startViewTransition(() => {
+        applyTheme(newTheme);
+    });
+
+    // Run Animation: Always EXPAND the new theme
+    transition.ready.then(() => {
+        document.documentElement.animate(
+            {
+                clipPath: [
+                    `circle(0px at ${x}px ${y}px)`,
+                    `circle(${endRadius}px at ${x}px ${y}px)`
+                ]
+            },
+            {
+                duration: 500,
+                easing: 'ease-in',
+                // Always animate the NEW view entering
+                pseudoElement: '::view-transition-new(root)',
+            }
+        );
+    });
 });
+
+// Helper function
+function applyTheme(theme) {
+    htmlElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateIcons(theme);
+}
+
 
 /* =========================================
    MOBILE MENU LOGIC
@@ -47,7 +90,6 @@ menuBtn.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
-// Close menu when a link is clicked
 links.forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
@@ -64,6 +106,8 @@ let charIndex = 0;
 let isDeleting = false;
 
 function type() {
+    if (!typingText) return; 
+    
     const currentWord = words[wordIndex];
     
     if (isDeleting) {
@@ -76,13 +120,13 @@ function type() {
 
     if (!isDeleting && charIndex === currentWord.length) {
         isDeleting = true;
-        setTimeout(type, 2000); // Pause at end of word
+        setTimeout(type, 2000); 
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
-        setTimeout(type, 500); // Pause before next word
+        setTimeout(type, 500); 
     } else {
-        setTimeout(type, isDeleting ? 100 : 150); // Typing speed
+        setTimeout(type, isDeleting ? 100 : 150); 
     }
 }
 
