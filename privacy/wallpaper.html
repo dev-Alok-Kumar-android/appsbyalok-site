@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Dynamic Live Wallpaper</title>
+    <!-- Canonical URL for SEO -->
+    <link rel="canonical" href="https://appsbyalok.com/privacy/wallpaper">
+    <link rel="icon" href="/favicon.ico">
+    
+    <style>
+        /* Shared Styles specific to Policy Page */
+        :root {
+            --bg-body: #F8FAFC; --bg-card: #FFFFFF;
+            --text-primary: #0F172A; --text-secondary: #64748B;
+            --text-accent: #00BF63; --border-color: #E2E8F0;
+        }
+        [data-theme="dark"] {
+            --bg-body: #0B1120; --bg-card: #1E293B;
+            --text-primary: #F1F5F9; --text-secondary: #94A3B8;
+            --text-accent: #3DDC84; --border-color: #334155;
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg-body); color: var(--text-primary);
+            line-height: 1.7; transition: 0.3s;
+        }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+        
+        header { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; border-bottom:1px solid var(--border-color); padding-bottom:20px; }
+        .back-link { color:var(--text-secondary); text-decoration:none; display:flex; align-items:center; gap:8px; font-weight:600; }
+        .back-link:hover { color:var(--text-accent); }
+        
+        .theme-btn { background:none; border:1px solid var(--border-color); color:var(--text-secondary); width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+        
+        h1 { font-size:2.5rem; margin-bottom:10px; }
+        .last-updated { font-size:0.9rem; color:var(--text-secondary); display:block; margin-bottom:40px; }
+        
+        h2 { margin-top:40px; margin-bottom:16px; font-size:1.5rem; }
+        p, li { color:var(--text-secondary); margin-bottom:16px; }
+        ul { padding-left:20px; margin-bottom:16px; }
+        
+        .highlight { background: rgba(61,220,132,0.1); border:1px solid var(--text-accent); padding:20px; border-radius:12px; color:var(--text-primary); }
+        
+        footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--border-color); text-align:center; font-size:0.85rem; color:var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="back-link">
+                <svg style="width:20px; fill:currentColor;" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+                Back to Home
+            </a>
+            <button class="theme-btn" id="theme-toggle">
+                <svg class="sun-icon" style="width:20px; display:none; fill:currentColor;" viewBox="0 0 24 24"><path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z"/></svg>
+                <svg class="moon-icon" style="width:20px; fill:currentColor;" viewBox="0 0 24 24"><path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z"/></svg>
+            </button>
+        </header>
+
+        <h1>Privacy Policy</h1>
+        <span class="last-updated">App: Dynamic Live Wallpaper | Last updated: February 10, 2026</span>
+
+        <div class="highlight">
+            <strong>Summary:</strong> "Dynamic Live Wallpaper" is a completely offline application. We do not collect, store, or transmit any personal data.
+        </div>
+
+        <h2>1. Introduction</h2>
+        <p>Alok Kumar ("we," "our") developed the <strong>Dynamic Live Wallpaper</strong> app as a Free application. This service is provided at no cost and is intended for use as is.</p>
+
+        <h2>2. Data Collection</h2>
+        <p><strong>We do not collect any user data.</strong> The app operates entirely on your device and lacks the capability to transmit data to external servers.</p>
+
+        <h2>3. Permissions</h2>
+        <ul>
+            <li><strong>SET_WALLPAPER:</strong> Required to change the home/lock screen background.</li>
+            <li><strong>READ_EXTERNAL_STORAGE:</strong> Optional. Only used if you choose to set a custom image from your gallery.</li>
+        </ul>
+
+        <h2>4. Contact Us</h2>
+        <p>If you have questions about this Privacy Policy, please contact us:</p>
+        <p><strong>Email:</strong> dev.alokkumar.droid@gmail.com</p>
+        
+        <footer>&copy; 2026 Alok Kumar. All rights reserved. <br> <a href="../index.html">Home</a></footer>
+    </div>
+
+    <script>
+        // Theme Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        const htmlElement = document.documentElement;
+
+        const initialTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        htmlElement.setAttribute('data-theme', initialTheme);
+        updateIcons(initialTheme);
+
+        function updateIcons(theme) {
+            if (theme === 'dark') { sunIcon.style.display = 'block'; moonIcon.style.display = 'none'; }
+            else { sunIcon.style.display = 'none'; moonIcon.style.display = 'block'; }
+        }
+
+        themeBtn.addEventListener('click', () => {
+            const newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcons(newTheme);
+        });
+    </script>
+</body>
+</html>
