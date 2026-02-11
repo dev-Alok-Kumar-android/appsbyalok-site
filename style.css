@@ -124,12 +124,10 @@ nav {
 }
 
 .logo-icon {
-    width: 28px;
-    height: 28px;
+    width: 40px;
+    height: 40px;
     display: inline-block;
     background-color: var(--text-accent);
-
-    /* Use a mask to colorize the SVG via background-color */
     -webkit-mask: url('icon.svg') no-repeat center;
     -webkit-mask-size: contain;
     mask: url('icon.svg') no-repeat center;

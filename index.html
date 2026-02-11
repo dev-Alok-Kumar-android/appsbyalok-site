@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alok Kumar | Android Developer</title>
-    <meta name="description" content="Portfolio of Alok Kumar, an Android Developer specializing in Native Android, Kotlin, and Jetpack Compose. Solo developer of apps on Google Play Store.">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <meta name="description"
+        content="Portfolio of Alok Kumar, an Android Developer specializing in Native Android, Kotlin, and Jetpack Compose. Solo developer of apps on Google Play Store.">
+
+    <meta name="author" content="Alok Kumar">
+    <meta name="robots" content="index, follow">
     
+
     <!-- SEO & Canonical -->
     <link rel="canonical" href="https://appsbyalok.netlify.app/">
     <meta property="og:title" content="Alok Kumar | Android Developer">
-    <meta property="og:description" content="Android Developer specializing in Kotlin and Jetpack Compose. Check out my published apps and open source projects.">
+    <meta property="og:description"
+        content="Android Developer specializing in Kotlin and Jetpack Compose. Check out my published apps and open source projects.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://appsbyalok.netlify.app/">
-    
+    <meta property="og:image" content="https://appsbyalok.netlify.app/icon.png">
+    <meta property="og:site_name" content="AppsByAlok">
+
+
     <!-- Performance Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- NAVBAR -->
@@ -27,9 +40,9 @@
         <div class="container">
             <nav>
                 <!-- Logo -->
-                <a href="#" class="logo">
+                <a href="/" class="logo">
                     <span class="logo-icon"></span>
-                    AppsByAlok
+                    Apps<span>By</span>Alok
                 </a>
 
                 <!-- Nav Links -->
@@ -43,13 +56,22 @@
 
                 <!-- Controls -->
                 <div class="nav-controls">
-                    <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme">
-                        <svg class="sun-icon" style="width:20px; height:20px; fill:currentColor; display:none;" viewBox="0 0 24 24"><path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z" /></svg>
-                        <svg class="moon-icon" style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24"><path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z" /></svg>
+                    <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme" aria-pressed="false">
+                        <svg class="sun-icon" style="width:20px; height:20px; fill:currentColor; display:none;"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z" />
+                        </svg>
+                        <svg class="moon-icon" style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24">
+                            <path
+                                d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z" />
+                        </svg>
                     </button>
-                    
+
                     <button class="mobile-menu-btn" aria-label="Menu">
-                        <svg style="width:28px; height:28px; fill:currentColor;" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+                        <svg style="width:28px; height:28px; fill:currentColor;" viewBox="0 0 24 24">
+                            <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                        </svg>
                     </button>
                 </div>
             </nav>
@@ -62,13 +84,17 @@
         <div class="container hero-content">
             <span class="badge">Open to Work</span>
             <h1>Hi, I'm <span style="color:var(--text-accent)">Alok Kumar</span><br>Android Developer</h1>
-            <p class="hero-text">I craft high-performance native Android applications using <span class="typing-text" style="color:var(--text-accent); font-weight:600;"></span></p>
-            
+            <p class="hero-text">I craft high-performance native Android applications using <span class="typing-text"
+                    style="color:var(--text-accent); font-weight:600;"></span></p>
+
             <div class="btn-group">
                 <!-- Primary Action: View Published Apps -->
                 <a href="#apps" class="btn btn-primary">
                     View Published Apps
-                    <svg style="width:20px; margin-left:8px; fill:currentColor;" viewBox="0 0 24 24"><path d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z"/></svg>
+                    <svg style="width:20px; margin-left:8px; fill:currentColor;" viewBox="0 0 24 24">
+                        <path
+                            d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z" />
+                    </svg>
                 </a>
                 <!-- Secondary Action: View Code -->
                 <a href="#projects" class="btn btn-outline">
@@ -85,36 +111,50 @@
                 <h2 class="section-title">Technical Skills</h2>
                 <p class="section-desc">Tools I use to build robust mobile applications.</p>
             </div>
-            
+
             <div class="grid-skills">
                 <!-- Kotlin -->
                 <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L11,7.5L12.42,8.92L9.33,12L12.42,15.08L11,16.5Z"/></svg>
+                    <svg class="skill-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L11,7.5L12.42,8.92L9.33,12L12.42,15.08L11,16.5Z" />
+                    </svg>
                     <strong>Kotlin</strong>
                 </div>
                 <!-- Compose -->
                 <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24"><path d="M12,2L2,19H22L12,2M12,5.8L17.5,15.2H6.5L12,5.8Z"/></svg>
+                    <svg class="skill-icon" viewBox="0 0 24 24">
+                        <path d="M12,2L2,19H22L12,2M12,5.8L17.5,15.2H6.5L12,5.8Z" />
+                    </svg>
                     <strong>Compose</strong>
                 </div>
                 <!-- Java -->
                 <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24"><path d="M3,3H21V21H3V3M5,5V19H19V5H5Z" /></svg>
+                    <svg class="skill-icon" viewBox="0 0 24 24">
+                        <path d="M3,3H21V21H3V3M5,5V19H19V5H5Z" />
+                    </svg>
                     <strong>Java</strong>
                 </div>
                 <!-- Firebase -->
                 <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z"/></svg>
+                    <svg class="skill-icon" viewBox="0 0 24 24">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z" />
+                    </svg>
                     <strong>Firebase</strong>
                 </div>
                 <!-- Git -->
                 <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24"><path d="M2.6,10.59L8.38,4.8L10.07,6.5C9.83,7.35 10.22,8.28 11,8.73V14.27C10.4,14.61 10,15.26 10,16A2,2 0 0,0 12,18A2,2 0 0,0 14,16C14,15.26 13.6,14.61 13,14.27V9.41L15.07,11.5C15,11.65 15,11.82 15,12A2,2 0 0,0 17,14A2,2 0 0,0 19,12A2,2 0 0,0 17,10C16.82,10 16.65,10 16.5,10.07L13.93,7.5C14.27,6.9 14.27,6.1 13.93,5.5L13.93,5.5L13.93,5.5L16.5,2.92L21.08,7.5L2.6,10.59M12,15A1,1 0 0,1 13,16A1,1 0 0,1 12,17A1,1 0 0,1 11,16A1,1 0 0,1 12,15M17,11A1,1 0 0,1 18,12A1,1 0 0,1 17,13A1,1 0 0,1 16,12A1,1 0 0,1 17,11M12,6A1,1 0 0,1 13,7A1,1 0 0,1 12,8A1,1 0 0,1 11,7A1,1 0 0,1 12,6Z"/></svg>
+                    <svg class="skill-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M2.6,10.59L8.38,4.8L10.07,6.5C9.83,7.35 10.22,8.28 11,8.73V14.27C10.4,14.61 10,15.26 10,16A2,2 0 0,0 12,18A2,2 0 0,0 14,16C14,15.26 13.6,14.61 13,14.27V9.41L15.07,11.5C15,11.65 15,11.82 15,12A2,2 0 0,0 17,14A2,2 0 0,0 19,12A2,2 0 0,0 17,10C16.82,10 16.65,10 16.5,10.07L13.93,7.5C14.27,6.9 14.27,6.1 13.93,5.5L13.93,5.5L13.93,5.5L16.5,2.92L21.08,7.5L2.6,10.59M12,15A1,1 0 0,1 13,16A1,1 0 0,1 12,17A1,1 0 0,1 11,16A1,1 0 0,1 12,15M17,11A1,1 0 0,1 18,12A1,1 0 0,1 17,13A1,1 0 0,1 16,12A1,1 0 0,1 17,11M12,6A1,1 0 0,1 13,7A1,1 0 0,1 12,8A1,1 0 0,1 11,7A1,1 0 0,1 12,6Z" />
+                    </svg>
                     <strong>Git</strong>
                 </div>
                 <!-- MVVM -->
                 <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24"><path d="M12,16L7,11L8.41,9.59L12,13.17L15.59,9.59L17,11L12,16Z"/></svg>
+                    <svg class="skill-icon" viewBox="0 0 24 24">
+                        <path d="M12,16L7,11L8.41,9.59L12,13.17L15.59,9.59L17,11L12,16Z" />
+                    </svg>
                     <strong>MVVM</strong>
                 </div>
             </div>
@@ -134,7 +174,10 @@
                 <div class="app-card">
                     <div class="app-preview">
                         <!-- Gamepad Icon -->
-                        <svg viewBox="0 0 24 24"><path d="M17,1H7A2,2 0 0,0 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3A2,2 0 0,0 17,1M17,19H7V5H17V19M16,13H13V8H11V13H8L12,17L16,13Z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M17,1H7A2,2 0 0,0 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3A2,2 0 0,0 17,1M17,19H7V5H17V19M16,13H13V8H11V13H8L12,17L16,13Z" />
+                        </svg>
                     </div>
                     <div class="app-body">
                         <h3 class="app-title">Tic Tac Toe</h3>
@@ -142,12 +185,21 @@
                             <span class="tag">Compose</span>
                             <span class="tag">AI Logic</span>
                         </div>
-                        <p class="app-desc">A modern, clean take on the classic game with single-player and multiplayer modes. Features smooth animations and dark theme support.</p>
+                        <p class="app-desc">A modern, clean take on the classic game with various board sizes and 4 AI
+                            modes. Features smooth animations and dark theme support.</p>
                         <div class="app-links">
-                            <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank" class="link-accent">
-                                Play Store 
-                                <svg style="width:14px;" viewBox="0 0 24 24"><path d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z" fill="currentColor"/></svg>
+                            <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
+                                class="link-accent">
+                                Play Store
+                                <svg style="width:14px;" viewBox="0 0 24 24">
+                                    <path
+                                        d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z"
+                                        fill="currentColor" />
+                                </svg>
                             </a>
+                            <a href="https://github.com/dev-Alok-Kumar-android/Tic-Tac-Toe-Android" target="_blank"
+                                class="link-accent" style="margin-left: 12px;">GitHub </a>
+                            <a href="privacy/tictactoe.html" class="link-muted">Privacy Policy</a>
                         </div>
                     </div>
                 </div>
@@ -156,7 +208,10 @@
                 <div class="app-card">
                     <div class="app-preview">
                         <!-- Image Icon -->
-                        <svg viewBox="0 0 24 24"><path d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M8.5,13.5L11,16.5L14.5,12L19,18H5L8.5,13.5Z" /></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M8.5,13.5L11,16.5L14.5,12L19,18H5L8.5,13.5Z" />
+                        </svg>
                     </div>
                     <div class="app-body">
                         <h3 class="app-title">Dynamic Wallpaper</h3>
@@ -164,38 +219,57 @@
                             <span class="tag">Canvas</span>
                             <span class="tag">Offline</span>
                         </div>
-                        <p class="app-desc">An interactive live wallpaper engine that respects user privacy. Completely offline with no data collection.</p>
+                        <p class="app-desc">An interactive live wallpaper engine that handles complex animations and
+                            effects, various settings and highly customization. Completely offline with no data
+                            collection.</p>
                         <div class="app-links">
-                            <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank" class="link-accent">
-                                Play Store 
-                                <svg style="width:14px;" viewBox="0 0 24 24"><path d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z" fill="currentColor"/></svg>
+                            <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
+                                class="link-accent">
+                                Play Store
+                                <svg style="width:14px;" viewBox="0 0 24 24">
+                                    <path
+                                        d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z"
+                                        fill="currentColor" />
+                                </svg>
                             </a>
                             <a href="privacy/wallpaper.html" class="link-muted">Privacy Policy</a>
                         </div>
                     </div>
                 </div>
 
-                 <!-- App 3: Social Events (Placeholder) -->
-                 <div class="app-card">
+
+                <!-- App 3: Wallora (Coming Soon) -->
+                <div class="app-card">
                     <div class="app-preview">
-                        <svg viewBox="0 0 24 24"><path d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" /></svg>
+                        <!-- Wallpaper Icon -->
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M8.5,13.5L11,16.5L14.5,12L19,18H5L8.5,13.5Z" />
+                        </svg>
                     </div>
                     <div class="app-body">
-                        <h3 class="app-title">Event Finder</h3>
+                        <h3 class="app-title">Wallora</h3>
                         <div class="app-tags">
-                            <span class="tag">Firebase</span>
-                            <span class="tag">Maps SDK</span>
+                            <span class="tag">Wallpapers</span>
+                            <span class="tag">Offline</span>
+                            <span class="tag">Minimal</span>
                         </div>
-                        <p class="app-desc">Social app for organizing local meetups with real-time chat and geolocation features.</p>
+                        <p class="app-desc">
+                            A clean collection of minimal wallpapers featuring village-inspired time, date, and weather
+                            based visuals,
+                            along with simple static designs and solid color wallpapers.
+                        </p>
                         <div class="app-links">
-                            <a href="#" class="link-muted" style="cursor: default;">Coming Soon</a>
+                            <span class="link-muted" style="cursor:default;">Coming Soon on Play Store</span>
                         </div>
                     </div>
                 </div>
+
             </div>
-            
+
             <div style="display:flex; justify-content:center; margin-top:30px;">
-                <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank" class="btn btn-outline" style="gap:10px;">
+                <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
+                    class="btn btn-outline" style="gap:10px;">
                     See All on Play Store
                 </a>
             </div>
@@ -209,64 +283,104 @@
                 <h2 class="section-title">Open Source Projects</h2>
                 <p class="section-desc">Source code and technical experiments.</p>
             </div>
-            
+
             <div class="grid-projects">
-                <!-- Project 1 -->
+
+                <!-- Project 1 : Tic Tac Toe -->
                 <div class="project-card">
                     <div class="project-header">
-                        <svg viewBox="0 0 24 24"><path d="M12,18H6V14H12M21,14V12L20,7H4L3,12V14H4V20H14V14H18V20H20V14M20,4H4V6H20V4Z" /></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="5" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="2" />
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="16" y1="9" x2="21" y2="15" />
+                            <line x1="21" y1="9" x2="16" y2="15" />
+                        </svg>
                     </div>
+
                     <div class="project-body">
-                        <h3 class="app-title">E-Commerce App</h3>
+                        <h3 class="app-title">Tic Tac Toe Android</h3>
                         <div class="app-tags">
                             <span class="tag">Kotlin</span>
-                            <span class="tag">Retrofit</span>
+                            <span class="tag">Jetpack Compose</span>
+                            <span class="tag">AI</span>
                         </div>
-                        <p class="app-desc">A complete shopping app featuring secure checkout, order tracking, and dynamic product filtering.</p>
-                        <a href="https://github.com/dev-Alok-Kumar-android" target="_blank" class="project-link">
+                        <p class="app-desc">Modern Tic Tac Toe Android game featuring multiple AI difficulty modes,
+                            animations, and clean Compose-based UI architecture.</p>
+                        <a href="https://github.com/dev-Alok-Kumar-android/Tic-Tac-Toe-Android" target="_blank"
+                            class="project-link">
                             View Source
-                            <svg style="width:16px;" viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" fill="currentColor"/></svg>
                         </a>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 2 : Online Voting -->
                 <div class="project-card">
                     <div class="project-header">
-                        <svg viewBox="0 0 24 24"><path d="M6,2H18V8H18V8L14,12L18,16V16H18V22H6V16H6V16L10,12L6,8V8H6V2M16,16.5L12,12.5L8,16.5V20H16V16.5M12,11.5L16,7.5V4H8V7.5L12,11.5M11,6H13V7.5H11V6M11,16.5H13V18H11V16.5Z" /></svg>
-                    </div>
-                    <div class="project-body">
-                        <h3 class="app-title">Productivity Timer</h3>
-                        <div class="app-tags">
-                            <span class="tag">Compose</span>
-                            <span class="tag">Room DB</span>
-                        </div>
-                        <p class="app-desc">Pomodoro timer with background services, task management, and usage analytics.</p>
-                        <a href="https://github.com/dev-Alok-Kumar-android" target="_blank" class="project-link">
-                            View Source
-                            <svg style="width:16px;" viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" fill="currentColor"/></svg>
-                        </a>
-                    </div>
-                </div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <svg viewBox="0 0 24 24"><path d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" /></svg>
+                            <!-- Ballot box -->
+                            <rect x="4" y="10" width="16" height="10" rx="2" />
+                            <line x1="7" y1="13" x2="17" y2="13" />
+
+                            <!-- Bigger offset check (half outside) -->
+                            <polyline points="11 16 14.5 19.5 21 12" stroke="#00FF00" stroke-width="3" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                     </div>
+
+
+
                     <div class="project-body">
-                        <h3 class="app-title">Social Events</h3>
+                        <h3 class="app-title">Online Voting App</h3>
                         <div class="app-tags">
                             <span class="tag">Firebase</span>
-                            <span class="tag">Google Maps</span>
+                            <span class="tag">Realtime DB</span>
+                            <span class="tag">Authentication</span>
                         </div>
-                        <p class="app-desc">Real-time meetup organizer using Firebase Firestore and Google Maps SDK.</p>
-                        <a href="https://github.com/dev-Alok-Kumar-android" target="_blank" class="project-link">
+                        <p class="app-desc">Secure real-time online voting application with Firebase authentication,
+                            result tracking, and scalable backend architecture.</p>
+                        <a href="https://github.com/dev-Alok-Kumar-android/OnlineVotingApp" target="_blank"
+                            class="project-link">
                             View Source
-                            <svg style="width:16px;" viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" fill="currentColor"/></svg>
                         </a>
                     </div>
                 </div>
+
+                <!-- Project 3 : 3D Model Viewer -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12,2L2,7L12,12L22,7L12,2M2,17L12,22L22,17V9L12,14L2,9V17Z" />
+                        </svg>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="app-title">Compose 3D Model Viewer</h3>
+                        <div class="app-tags">
+                            <span class="tag">Jetpack Compose</span>
+                            <span class="tag">3D Rendering</span>
+                            <span class="tag">OpenGL</span>
+                        </div>
+                        <p class="app-desc">Android 3D model viewer built with Jetpack Compose supporting interactive
+                            rendering, rotation, and real-time visualization of models.</p>
+                        <a href="https://github.com/dev-Alok-Kumar-android/Compose3DModelViewer" target="_blank"
+                            class="project-link">
+                            View Source
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="display:flex; justify-content:center; margin-top:30px;">
+                <a href="https://github.com/dev-Alok-Kumar-android" target="_blank" class="btn btn-outline"
+                    style="gap:10px;">
+                    See All on Github
+                    <svg style="width:16px;" viewBox="0 0 24 24">
+                        <path
+                            d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
+                            fill="currentColor" />
+                    </svg>
+                </a>
             </div>
         </div>
     </section>
@@ -276,27 +390,37 @@
         <div class="container">
             <h2 class="section-title">Let's Connect</h2>
             <p class="section-desc">Have an idea? Let's build it together.</p>
-            
+
             <a href="mailto:dev.alokkumar.droid@gmail.com" class="email-link">dev.alokkumar.droid@gmail.com</a>
-            
+
             <div class="social-links">
                 <a href="https://github.com/dev-Alok-Kumar-android" target="_blank" class="social-btn">
                     <div class="social-icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+                        </svg>
                     </div>
                     GitHub
                 </a>
-                
+
                 <a href="https://www.linkedin.com/in/alok-kumar-5b4635331/" target="_blank" class="social-btn">
                     <div class="social-icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M21,21H17V13.81C17,12.1 16.19,11.23 14.78,11.23C13.24,11.23 12.28,12.28 12.28,13.81V21H8.29V8H12.28V9.76C12.84,8.9 13.93,7.63 15.93,7.63C18.78,7.63 21,9.45 21,13.31V21M3.8,6.11C2.55,6.11 1.55,5.1 1.55,3.85C1.55,2.6 2.55,1.59 3.8,1.59C5.05,1.59 6.05,2.6 6.05,3.85C6.05,5.1 5.05,6.11 3.8,6.11M1.84,21H5.75V8H1.84V21Z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M21,21H17V13.81C17,12.1 16.19,11.23 14.78,11.23C13.24,11.23 12.28,12.28 12.28,13.81V21H8.29V8H12.28V9.76C12.84,8.9 13.93,7.63 15.93,7.63C18.78,7.63 21,9.45 21,13.31V21M3.8,6.11C2.55,6.11 1.55,5.1 1.55,3.85C1.55,2.6 2.55,1.59 3.8,1.59C5.05,1.59 6.05,2.6 6.05,3.85C6.05,5.1 5.05,6.11 3.8,6.11M1.84,21H5.75V8H1.84V21Z" />
+                        </svg>
                     </div>
                     LinkedIn
                 </a>
-                
-                <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank" class="social-btn">
+
+                <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
+                    class="social-btn">
                     <div class="social-icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z" />
+                        </svg>
                     </div>
                     Play Store
                 </a>
@@ -319,4 +443,5 @@
     <!-- External JS -->
     <script src="script.js"></script>
 </body>
+
 </html>
