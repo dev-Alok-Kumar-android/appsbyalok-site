@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT License | AppsByAlok</title>
+    <meta name="robots" content="noindex">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"></span>
+                    Apps<span>By</span>Alok
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="privacy/index.html" class="nav-link">Privacy</a></li>
+                </ul>
+
+                <div class="nav-controls">
+                    <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme">
+                        <svg class="sun-icon" style="width:20px; display:none; fill:currentColor;" viewBox="0 0 24 24"><path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z"/></svg>
+                        <svg class="moon-icon" style="width:20px; fill:currentColor;" viewBox="0 0 24 24"><path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z"/></svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section style="padding-top: 120px;">
+        <div class="container" style="max-width: 800px;">
+            <div class="app-card" style="padding: 40px; cursor: default; transform: none;">
+                <h1 style="margin-bottom: 24px;">MIT License</h1>
+                
+                <pre id="license-content" style="font-family: monospace; white-space: pre-wrap; color: var(--text-secondary); line-height: 1.6; background: var(--bg-body); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); overflow-x: auto;">Loading license...</pre>
+                
+                <div style="margin-top: 30px;">
+                    <a href="index.html" class="btn btn-primary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Fetches the LICENSE file from the root and injects it into the pre tag
+        fetch('LICENSE')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(text => {
+                document.getElementById('license-content').textContent = text;
+            })
+            .catch(error => {
+                document.getElementById('license-content').innerHTML = 
+                    'Error loading license file.<br>Please check the file manually: <a href="LICENSE">View Raw File</a>';
+                console.error('Error fetching license:', error);
+            });
+    </script>
+</body>
+</html>
