@@ -131,3 +131,32 @@ function type() {
 }
 
 document.addEventListener('DOMContentLoaded', type);
+
+
+
+/* =========================================
+   SMART NAVIGATION (Clean URL & Smooth Scroll)
+   ========================================= */
+document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href) return;
+        
+        const currentPath = window.location.pathname;
+        const isHomePage = currentPath === '/' || currentPath.endsWith('index.html');
+
+        // Case 1: Agar Home ('/') click kiya aur hum ALREADY home page par hain
+        if (href === '/' && isHomePage) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.pushState(null, null, currentPath); // URL clean rakhega
+        }
+        
+        // Case 2: Agar kisi bhi page par 'Go To Top' click kiya
+        else if (href === '#') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.pushState(null, null, currentPath); // URL mein #hero add nahi hone dega
+        }
+    });
+});

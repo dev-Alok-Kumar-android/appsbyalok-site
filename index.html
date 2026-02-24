@@ -47,7 +47,7 @@
 
                 <!-- Nav Links -->
                 <ul class="nav-links">
-                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#" class="nav-link active">Home</a></li>
                     <li><a href="#apps" class="nav-link">Apps</a></li>
                     <li><a href="#projects" class="nav-link">Code</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -82,7 +82,6 @@
     <!-- HERO SECTION -->
     <section id="hero">
         <div class="container hero-content">
-            <span class="badge">Open to Work</span>
             <h1>Hi, I'm <span style="color:var(--text-accent)">Alok Kumar</span><br>Android Developer</h1>
             <p class="hero-text">I craft high-performance native Android applications using <span class="typing-text"
                     style="color:var(--text-accent); font-weight:600;"></span></p>
@@ -162,6 +161,7 @@
     </section>
 
     <!-- APPS SECTION (Published on Play Store) -->
+     <!-- App 1: Dynamic Live Wallpaper -->
     <section id="apps">
         <div class="container">
             <div class="section-header">
@@ -170,7 +170,44 @@
             </div>
 
             <div class="grid-apps">
-                <!-- App 1: Tic Tac Toe -->
+                                <div class="app-card">
+                    <div class="app-preview">
+                        <!-- Image Icon -->
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M8.5,13.5L11,16.5L14.5,12L19,18H5L8.5,13.5Z" />
+                        </svg>
+                    </div>
+                    <div class="app-body">
+                        <h3 class="app-title">Dynamic Wallpaper</h3>
+                        <div class="app-tags">
+                            <span class="tag">Wallpapers</span>
+                            <span class="tag">Customizable</span>
+                            <span class="tag">Canvas</span>
+                            <span class="tag">Offline</span>
+                            <span class="tag">Offline</span>
+                            <span class="tag">Minimal</span>
+                            <span class="tag">Battery Friendly</span>
+                        </div>
+                        <p class="app-desc">A clean collection of dynamic wallpapers featuring village-inspired time, date, and weather based visuals,
+                            along with simple static designs and solid color wallpapers.</p>
+                        <div class="app-links">
+                            <a href="projects/wallpaper.html"class="link-accent"><span class="link-accent">View Project Details &rarr;</span></a>
+                            <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
+                                class="link-accent">
+                                Play Store
+                                <svg style="width:14px;" viewBox="0 0 24 24">
+                                    <path
+                                        d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </a>
+                            <a href="privacy/wallpaper.html" class="link-muted">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 2: Tic Tac Toe -->
                 <div class="app-card">
                     <div class="app-preview">
                         <!-- Gamepad Icon -->
@@ -187,7 +224,7 @@
                         </div>
                         <p class="app-desc">A modern, clean take on the classic game with various board sizes and 4 AI
                             modes. Features smooth animations and dark theme support.</p>
-                        <div class="app-links">
+                        <!--<div class="app-links">
                             <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
                                 class="link-accent">
                                 Play Store
@@ -201,64 +238,7 @@
                                 class="link-accent" style="margin-left: 12px;">GitHub </a>
                             <a href="privacy/tictactoe.html" class="link-muted">Privacy Policy</a>
                         </div>
-                    </div>
-                </div>
-
-                <!-- App 2: Live Wallpaper -->
-                <div class="app-card">
-                    <div class="app-preview">
-                        <!-- Image Icon -->
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M8.5,13.5L11,16.5L14.5,12L19,18H5L8.5,13.5Z" />
-                        </svg>
-                    </div>
-                    <div class="app-body">
-                        <h3 class="app-title">Dynamic Wallpaper</h3>
-                        <div class="app-tags">
-                            <span class="tag">Canvas</span>
-                            <span class="tag">Offline</span>
-                        </div>
-                        <p class="app-desc">An interactive live wallpaper engine that handles complex animations and
-                            effects, various settings and highly customization. Completely offline with no data
-                            collection.</p>
-                        <div class="app-links">
-                            <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
-                                class="link-accent">
-                                Play Store
-                                <svg style="width:14px;" viewBox="0 0 24 24">
-                                    <path
-                                        d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </a>
-                            <a href="privacy/wallpaper.html" class="link-muted">Privacy Policy</a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- App 3: Wallora (Coming Soon) -->
-                <div class="app-card">
-                    <div class="app-preview">
-                        <!-- Wallpaper Icon -->
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M8.5,13.5L11,16.5L14.5,12L19,18H5L8.5,13.5Z" />
-                        </svg>
-                    </div>
-                    <div class="app-body">
-                        <h3 class="app-title">Wallora</h3>
-                        <div class="app-tags">
-                            <span class="tag">Wallpapers</span>
-                            <span class="tag">Offline</span>
-                            <span class="tag">Minimal</span>
-                        </div>
-                        <p class="app-desc">
-                            A clean collection of minimal wallpapers featuring village-inspired time, date, and weather
-                            based visuals,
-                            along with simple static designs and solid color wallpapers.
-                        </p>
+                        -->
                         <div class="app-links">
                             <span class="link-muted" style="cursor:default;">Coming Soon on Play Store</span>
                         </div>
@@ -431,7 +411,7 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="#hero">Home</a>
+                <a href="#">Back to Top</a>
                 <a href="#apps">Apps</a>
                 <a href="#projects">Code</a>
                 <a href="./privacy/index.html">Privacy Policy</a>

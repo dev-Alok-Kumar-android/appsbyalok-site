@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Motion Wallpaper | AppsByAlok</title>
+  <meta name="description"
+    content="Dynamic Motion Wallpaper with village animation, flowing lines and customizable static color mode. Optimized for smooth performance.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Dynamic Motion Wallpaper | AppsByAlok">
+  <meta property="og:description"
+    content="Smooth animated live wallpaper with village and line modes. Lightweight and optimized.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appsbyalok.netlify.app/projects/wallpaper.html">
+  <link rel="stylesheet" href="../style.css">
+  
+  <style>
+    /* =========================================
+       HERO CANVAS & EXTRA STYLES
+       ========================================= */
+    #hero {
+      position: relative;
+      overflow: hidden;
+      /* Canvas hero text ke peeche hoga */
+    }
+
+    #hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: auto; /* Touch aur mouse events ke liye */
+      /* Niche se fade karne ke liye mask (No abrupt cut) */
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1; /* Text hamesha canvas ke upar rahega */
+      /* Halka sa background blur text readability badhane ke liye */
+      background: radial-gradient(circle at center, var(--bg-body) 0%, transparent 70%);
+      padding: 40px;
+      border-radius: 20px;
+    }
+
+    /* Glow effect button ke liye */
+    .btn-glow {
+      box-shadow: 0 0 15px var(--text-accent);
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 10px rgba(61, 220, 132, 0.4); }
+      100% { box-shadow: 0 0 25px rgba(61, 220, 132, 0.8); }
+    }
+
+    /* Feature cards mein SVG icons ke liye */
+    .feature-icon-wrapper {
+      width: 60px;
+      height: 60px;
+      background: rgba(61, 220, 132, 0.1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-accent);
+      margin-bottom: 20px;
+      border: 1px solid rgba(61, 220, 132, 0.2);
+    }
+    
+    .feature-icon-wrapper svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">
+          <span class="logo-icon"></span>
+          Apps<span>By</span>Alok
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link">Home</a></li>
+          <li><a href="#features" class="nav-link">Khas Features</a></li>
+          <li><a href="#code" class="nav-link">Technologies</a></li>
+          <li><a href="#try-it" class="nav-link">Abhi Try Karein</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-controls">
+          <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme" aria-pressed="false">
+            <svg class="sun-icon" style="width:20px; height:20px; fill:currentColor; display:none;" viewBox="0 0 24 24">
+              <path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z" />
+            </svg>
+            <svg class="moon-icon" style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24">
+              <path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z" />
+            </svg>
+          </button>
+
+          <button class="mobile-menu-btn" aria-label="Menu">
+            <svg style="width:28px; height:28px; fill:currentColor;" viewBox="0 0 24 24">
+              <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO (PRO LEVEL ANIMATION KE SATH) ===== -->
+    <section id="hero">
+      <!-- Particle Background Canvas -->
+      <canvas id="hero-canvas"></canvas>
+
+      <div class="container hero-content">
+        <div class="badge">Android Live Wallpaper</div>
+
+        <h1>Dynamic Motion Wallpaper</h1>
+
+        <p class="hero-text">
+          Ekdum smooth animated backgrounds jisme peaceful village scene, flowing line mode, 
+          aur customizable solid colors hain — ise best performance aur kam battery usage ke liye banaya gaya hai.
+        </p>
+
+        <div class="btn-group">
+          <a href="https://play.google.com/store/apps/details?id=YOUR_PACKAGE" target="_blank"
+            class="btn btn-primary btn-glow">
+            Play Store Se Download Karein
+          </a>
+
+          <a href="../#projects" class="btn btn-outline">
+            Projects Par Wapas Jayein
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section id="features">
+      <div class="container">
+
+        <div class="section-header">
+          <h2 class="section-title">Khas Features</h2>
+          <p class="section-desc">
+            Lightweight, smooth aur visually modern design jo battery save karta hai.
+          </p>
+        </div>
+
+        <div class="grid-projects">
+
+          <!-- Feature Card 1 -->
+          <div class="project-card" style="padding: 24px;">
+            <div class="feature-icon-wrapper">
+              <!-- Landscape/Village SVG -->
+              <svg viewBox="0 0 24 24">
+                <path d="M5,16L3,5L8.5,10L12,4L15.5,10L21,5L19,16H5M19,19C19,20.1 18.1,21 17,21H7C5.9,21 5,20.1 5,19V18H19V19Z" />
+              </svg>
+            </div>
+            <h3 class="project-title" style="margin-top: 10px;">Village Scene</h3>
+            <div class="project-tags">
+              <span class="tag">Animated</span>
+              <span class="tag">Calm</span>
+            </div>
+            <p class="project-text">
+              Peaceful animated village background jisme ekdum smooth rendering aur natural motion flow milta hai.
+            </p>
+          </div>
+
+          <!-- Feature Card 2 -->
+          <div class="project-card" style="padding: 24px;">
+            <div class="feature-icon-wrapper">
+              <!-- Network/Lines SVG -->
+              <svg viewBox="0 0 24 24">
+                <path d="M16,11V3H8V6H5.24L2.24,9H5.24V15H8V18H10.76L13.76,15H10.76V9H8V6H16V11M21,11V15H18V18H15.24L12.24,15H15.24V9H18V6H20.76L23.76,9H20.76V11H21Z" />
+              </svg>
+            </div>
+            <h3 class="project-title" style="margin-top: 10px;">Line Flow Mode</h3>
+            <div class="project-tags">
+              <span class="tag">Dynamic</span>
+              <span class="tag">Customizable</span>
+            </div>
+            <p class="project-text">
+              Modern flowing line animation jo touch par react karta hai, bilkul hero section wale background jaisa.
+            </p>
+          </div>
+
+          <!-- Feature Card 3 -->
+          <div class="project-card" style="padding: 24px;">
+            <div class="feature-icon-wrapper">
+              <!-- Palette/Color SVG -->
+              <svg viewBox="0 0 24 24">
+                <path d="M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z" />
+              </svg>
+            </div>
+            <h3 class="project-title" style="margin-top: 10px;">Static Color Mode</h3>
+            <div class="project-tags">
+              <span class="tag">Minimal</span>
+              <span class="tag">Battery Friendly</span>
+            </div>
+            <p class="project-text">
+              Ultra minimal setups aur maximum battery saving ke liye solid background color ka option.
+            </p>
+          </div>
+
+          <!-- Feature Card 4 -->
+          <div class="project-card" style="padding: 24px;">
+            <div class="feature-icon-wrapper">
+              <!-- Performance/Speed SVG -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" />
+              </svg>
+            </div>
+            <h3 class="project-title" style="margin-top: 10px;">Optimized Rendering</h3>
+            <div class="project-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">Canvas API</span>
+            </div>
+            <p class="project-text">
+              Har frame ko carefully optimize kiya gaya hai, taaki CPU par load kam pade aur animation smooth chale.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===== TECH SECTION ===== -->
+    <section id="code">
+      <div class="container">
+
+        <div class="section-header">
+          <h2 class="section-title">Use Ki Gayi Technologies</h2>
+          <p class="section-desc">Modern Android development stack jispar ye app bani hai.</p>
+        </div>
+
+        <div class="grid-skills">
+          <div class="skill-card">
+            <svg class="skill-icon" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L11,7.5L12.42,8.92L9.33,12L12.42,15.08L11,16.5Z" />
+            </svg>
+            <strong>Kotlin</strong>
+          </div>
+
+          <div class="skill-card">
+            <svg class="skill-icon" viewBox="0 0 24 24">
+                <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M17,17H7V15H17V17M17,13H7V11H17V13M17,9H7V7H17V9Z" />
+            </svg>
+            <strong>Canvas API</strong>
+          </div>
+
+          <div class="skill-card">
+            <svg class="skill-icon" viewBox="0 0 24 24">
+                <path d="M12,3L2,12H5V20H19V12H22L12,3M12,7.7C14.1,7.7 15.8,9.4 15.8,11.5C15.8,14.5 12,18 12,18C12,18 8.2,14.5 8.2,11.5C8.2,9.4 9.9,7.7 12,7.7Z" />
+            </svg>
+            <strong>Custom Rendering</strong>
+          </div>
+
+          <div class="skill-card">
+            <svg class="skill-icon" viewBox="0 0 24 24">
+                <path d="M11.5,22C11.64,22 11.77,21.96 11.88,21.89L19.5,17.5C19.81,17.32 20,16.97 20,16.61V7.39C20,7.03 19.81,6.68 19.5,6.5L11.88,2.11C11.64,1.97 11.36,1.97 11.12,2.11L3.5,6.5C3.19,6.68 3,7.03 3,7.39V16.61C3,16.97 3.19,17.32 3.5,17.5L11.12,21.89C11.23,21.96 11.36,22 11.5,22M12,4L17.5,7.18L12,10.36L6.5,7.18L12,4M5,15.71V8.33L10.5,11.5V18.88L5,15.71M13.5,18.88V11.5L19,8.33V15.71L13.5,18.88Z" />
+            </svg>
+            <strong>Performance Focus</strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===== FINAL CTA ===== -->
+    <section id="try-it">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Abhi Try Karein</h2>
+          <p class="section-desc">
+            Apne phone ko dijiye ek smooth, dynamic look bina heavy battery drain ke.
+          </p>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="https://play.google.com/store/apps/details?id=YOUR_PACKAGE" target="_blank" class="btn btn-primary">
+            App Install Karein
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#hero">Go To Top</a>
+        <a href="#features">Khas Features</a>
+        <a href="#code">Technologies</a>
+        <a href="/privacy/wallpaper.html">Privacy Policy</a>
+      </div>
+      <p>&copy; 2026 Alok Kumar. Built with pure HTML, CSS & JS.</p>
+    </div>
+  </footer>
+
+  <!-- ===== MAIN SCRIPT ===== -->
+  <script src="../script.js"></script>
+
+  <!-- ===== CANVAS ANIMATION SCRIPT (PRO LEVEL) ===== -->
+  <script>
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particlesArray;
+    let animationFrameId; // Battery save ke liye reference id
+    let isAnimating = true;
+
+    // Canvas size adjust karna hero section ke height/width ke according
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      // Hero section ki jo current height hai wahi canvas ki height hogi
+      canvas.height = document.getElementById('hero').offsetHeight; 
+    }
+
+    // Mouse interaction event object
+    let mouse = {
+      x: null,
+      y: null,
+      radius: 120 // Jitna bada radius, utni door tak lines repel hongi
+    }
+
+    // Mouse move event capture karna
+    window.addEventListener('mousemove', function(event) {
+      // Screen scroll offset handle karna canvas ke liye
+      let rect = canvas.getBoundingClientRect();
+      mouse.x = event.clientX - rect.left;
+      mouse.y = event.clientY - rect.top;
+    });
+
+    // Touch events for mobile screens
+    window.addEventListener('touchmove', function(event) {
+      let rect = canvas.getBoundingClientRect();
+      mouse.x = event.touches[0].clientX - rect.left;
+      mouse.y = event.touches[0].clientY - rect.top;
+    });
+
+    // Jab mouse canvas se bahar jaye to reset karna
+    window.addEventListener('mouseout', function() {
+      mouse.x = undefined;
+      mouse.y = undefined;
+    });
+    window.addEventListener('touchend', function() {
+      mouse.x = undefined;
+      mouse.y = undefined;
+    });
+
+    // Particle Object banayein (Har ek dot ek particle hai)
+    class Particle {
+      constructor(x, y, directionX, directionY, size, color) {
+        this.x = x;
+        this.y = y;
+        this.directionX = directionX;
+        this.directionY = directionY;
+        this.size = size;
+        this.color = color;
+        this.baseX = this.x;
+        this.baseY = this.y;
+      }
+
+      // Particle ko screen par draw karna
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+
+      // Har frame me particle ki position update karna aur mouse se interact karana
+      update() {
+        // Agar particle screen ke kinare (edges) par pahuche, to direction reverse kar do
+        if (this.x > canvas.width || this.x < 0) {
+          this.directionX = -this.directionX;
+        }
+        if (this.y > canvas.height || this.y < 0) {
+          this.directionY = -this.directionY;
+        }
+
+        // Mouse collision check aur repel effect (Push away)
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius) {
+          // Calculation for smooth repulsion
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const force = (mouse.radius - distance) / mouse.radius;
+          const directionX = forceDirectionX * force * 5;
+          const directionY = forceDirectionY * force * 5;
+
+          // Particle ko door bhejna
+          this.x -= directionX;
+          this.y -= directionY;
+        } else {
+          // Agar mouse paas nahi hai, to normally apna path follow karega (Auto Animation)
+          // Yeh ensure karega ki animation hamesha chalta rahe bina ruke
+          this.x -= this.directionX;
+          this.y -= this.directionY;
+        }
+
+        this.draw();
+      }
+    }
+
+    // Particle Array initialize karna
+    function init() {
+      particlesArray = [];
+      let numberOfParticles = (canvas.height * canvas.width) / 9000;
+      
+      // Screen size ke hisaab se density adjust
+      if(window.innerWidth < 768) {
+          numberOfParticles = (canvas.height * canvas.width) / 12000;
+      }
+
+      // CPU aur Battery save karne ke liye max particles limit (Big Screens ke liye)
+      if (numberOfParticles > 150) {
+        numberOfParticles = 150;
+      }
+
+      // Accent color use kar rahe hain thodi transparency ke sath
+      const particleColor = 'rgba(61, 220, 132, 0.7)';
+
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = (Math.random() * 2) + 1;
+        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+        // Speed
+        let directionX = (Math.random() * 1.5) - 0.75;
+        let directionY = (Math.random() * 1.5) - 0.75;
+
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, particleColor));
+      }
+    }
+
+    // Jo particles ek dusre ke paas aate hain, unke beech line draw karna (Web/Flow effect)
+    function connect() {
+      let opacityValue = 1;
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+            + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+          
+          if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+            opacityValue = 1 - (distance / 20000);
+            ctx.strokeStyle = `rgba(61, 220, 132, ${opacityValue})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // Animation Loop (Lagatar chalne wala function)
+    function animate() {
+      if (!isAnimating) return; // Agar section screen par nahi hai, to idle rahega
+      animationFrameId = requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+      }
+      connect(); // Lines draw karega
+    }
+
+    // Resize hone par canvas adjust aur re-init karna
+    window.addEventListener('resize', function() {
+      resizeCanvas();
+      init();
+    });
+
+    // Battery Saver: Intersection Observer (Jab hero section dikhe tabhi animate karo)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!isAnimating) {
+            isAnimating = true;
+            animate(); // Hero screen par aate hi animation chalu
+          }
+        } else {
+          isAnimating = false;
+          cancelAnimationFrame(animationFrameId); // Hero hide hone par animation stop (Battery Save)
+        }
+      });
+    }, { threshold: 0 }); 
+
+    observer.observe(document.getElementById('hero'));
+
+    // Start setup
+    resizeCanvas();
+    init();
+    animate();
+
+  </script>
+</body>
+
+</html>

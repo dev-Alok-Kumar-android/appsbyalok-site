@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe Android | AppsByAlok</title>
+  <meta name="description"
+    content="Modern Tic Tac Toe Android game built with Jetpack Compose. Features AI opponent, custom board sizes, and clean UI architecture.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Tic Tac Toe Android | AppsByAlok">
+  <meta property="og:description"
+    content="Open-source Tic Tac Toe game with smart AI and smooth animations. Built using Kotlin and Jetpack Compose.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appsbyalok.netlify.app/projects/tictactoe.html">
+  <!-- CSS file link (projects folder se ek level upar) -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <!-- Yeh navbar baki pages jaisa hi hai -->
+  <header>
+    <div class="container">
+      <nav>
+        <!-- Logo -->
+        <a href="/" class="logo">
+          <span class="logo-icon"></span>
+          Apps<span>By</span>Alok
+        </a>
+
+        <!-- Nav Links -->
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link active">Home</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#code" class="nav-link">Code Used</a></li>
+          <li><a href="#try-it" class="nav-link">Source Code</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Controls -->
+        <div class="nav-controls">
+          <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme" aria-pressed="false">
+            <svg class="sun-icon" style="width:20px; height:20px; fill:currentColor; display:none;" viewBox="0 0 24 24">
+              <path
+                d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z" />
+            </svg>
+            <svg class="moon-icon" style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24">
+              <path
+                d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z" />
+            </svg>
+          </button>
+
+          <button class="mobile-menu-btn" aria-label="Menu">
+            <svg style="width:28px; height:28px; fill:currentColor;" viewBox="0 0 24 24">
+              <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO SECTION ===== -->
+    <!-- Project ki main details yahan hain -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="badge">Open Source Project</div>
+
+          <h1>Tic Tac Toe</h1>
+
+          <p class="hero-text">
+            A modern, clean take on the classic game. Features multiple AI difficulty modes, 
+            smooth animations, and a clean Compose-based UI architecture.
+          </p>
+
+          <div class="btn-group">
+            <a href="https://github.com/dev-Alok-Kumar-android/Tic-Tac-Toe-Android" target="_blank"
+              class="btn btn-primary">
+              View Source on GitHub
+            </a>
+
+            <a href="../#projects" class="btn btn-outline">
+              Back to Projects
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section id="features">
+      <div class="container">
+
+        <div class="section-header">
+          <h2 class="section-title">Key Features</h2>
+          <p class="section-desc">
+            Designed with modern Android development standards.
+          </p>
+        </div>
+
+        <div class="grid-projects">
+
+          <!-- Feature Card 1 -->
+          <div class="project-card">
+            <div class="project-header">
+                <!-- Brain / AI Icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3h-1v1a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-1H3a3 3 0 0 1-3-3V10a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4h4z"></path>
+                </svg>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">AI Opponent</h3>
+              <div class="project-tags">
+                <span class="tag">Minimax Algorithm</span>
+                <span class="tag">4 Difficulties</span>
+              </div>
+              <p class="project-text">
+                Play against a smart AI. Features 4 different difficulty modes, from easy to an unbeatable logic engine.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature Card 2 -->
+          <div class="project-card">
+            <div class="project-header">
+                <!-- Grid Icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="3" y1="15" x2="21" y2="15"></line>
+                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                    <line x1="15" y1="3" x2="15" y2="21"></line>
+                </svg>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Dynamic Boards</h3>
+              <div class="project-tags">
+                <span class="tag">Flexible UI</span>
+                <span class="tag">Responsive</span>
+              </div>
+              <p class="project-text">
+                Not just 3x3! The game logic and UI are built to support various board sizes seamlessly.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature Card 3 -->
+          <div class="project-card">
+            <div class="project-header">
+                <!-- UI Icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path>
+                </svg>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Modern Compose UI</h3>
+              <div class="project-tags">
+                <span class="tag">Jetpack Compose</span>
+                <span class="tag">Dark Mode</span>
+              </div>
+              <p class="project-text">
+                Beautiful, smooth animations and full dark theme support, built entirely with declarative UI.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature Card 4 -->
+          <div class="project-card">
+            <div class="project-header">
+                <!-- Offline Icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="2" y1="2" x2="22" y2="22"></line>
+                    <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+                    <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+                    <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+                    <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                    <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Local Multiplayer</h3>
+              <div class="project-tags">
+                <span class="tag">Pass & Play</span>
+                <span class="tag">Offline</span>
+              </div>
+              <p class="project-text">
+                Play locally with your friends. The game requires zero internet connection and stores no user data.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===== TECH SECTION ===== -->
+    <!-- Android skills and tech stack display -->
+    <section id="code">
+      <div class="container">
+
+        <div class="section-header">
+          <h2 class="section-title">Built With</h2>
+          <p class="section-desc">Technologies powering this application</p>
+        </div>
+
+        <div class="grid-skills">
+
+          <div class="skill-card">
+            <span>Kotlin</span>
+          </div>
+
+          <div class="skill-card">
+            <span>Jetpack Compose</span>
+          </div>
+
+          <div class="skill-card">
+            <span>MVVM Architecture</span>
+          </div>
+
+          <div class="skill-card">
+            <span>Minimax Algorithm</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===== FINAL CTA ===== -->
+    <section id="try-it">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Explore The Code</h2>
+          <p class="section-desc">
+            Check out the source code, fork the repository, or download the latest APK from GitHub Releases.
+          </p>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="https://github.com/dev-Alok-Kumar-android/Tic-Tac-Toe-Android" target="_blank" class="btn btn-primary">
+            <svg style="width:20px; margin-right:8px; fill:currentColor; display:inline-block; vertical-align:middle;" viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">Go To Top</a>
+        <a href="#features">Features</a>
+        <a href="#code">Code</a>
+        <a href="/privacy/tictactoe.html">Privacy Policy</a>
+      </div>
+      <p>&copy; 2026 Alok Kumar. Built with pure HTML, CSS & JS.</p>
+    </div>
+  </footer>
+
+  <!-- Script file link (projects folder se ek level upar) -->
+  <script src="../script.js"></script>
+</body>
+
+</html>
