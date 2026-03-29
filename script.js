@@ -64,7 +64,6 @@ themeBtn.addEventListener('click', (event) => {
             {
                 duration: 500,
                 easing: 'ease-in',
-                // Always animate the NEW view entering
                 pseudoElement: '::view-transition-new(root)',
             }
         );
@@ -100,7 +99,7 @@ links.forEach(link => {
    TYPING EFFECT
    ========================================= */
 const typingText = document.querySelector('.typing-text');
-const words = ["Jetpack Compose.", "Kotlin.", "Modern Android."];
+const words = ["Jetpack Compose.", "Kotlin.", "Modern Android.", "System Design.", "UX Design."];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -132,8 +131,6 @@ function type() {
 
 document.addEventListener('DOMContentLoaded', type);
 
-
-
 /* =========================================
    SMART NAVIGATION (Clean URL & Smooth Scroll)
    ========================================= */
@@ -142,21 +139,27 @@ document.querySelectorAll('a').forEach(link => {
         const href = this.getAttribute('href');
         if (!href) return;
         
+        // If it's a link to another page (like projects/wallpaper.html), let it behave normally
+        if (href.includes('/') && !href.startsWith('#') && href !== '/') {
+            return; 
+        }
+
         const currentPath = window.location.pathname;
         const isHomePage = currentPath === '/' || currentPath.endsWith('index.html');
 
-        // Case 1: Agar Home ('/') click kiya aur hum ALREADY home page par hain
+        // Navigating to Home '/'
         if (href === '/' && isHomePage) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.pushState(null, null, currentPath); // URL clean rakhega
+            history.pushState(null, null, currentPath); 
         }
         
-        // Case 2: Agar kisi bhi page par 'Go To Top' click kiya
+        // Navigating to Top '#'
         else if (href === '#') {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.pushState(null, null, currentPath); // URL mein #hero add nahi hone dega
+            history.pushState(null, null, currentPath); 
         }
     });
 });
+
