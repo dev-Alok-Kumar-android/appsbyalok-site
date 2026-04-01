@@ -112,42 +112,51 @@
 
             <div class="about-grid">
                 <!-- Profile Image -->
-                               <div class="about-image">
+                <div class="about-image" data-animate="zoom">
                     <img src="assets/images/profile/alok.jpg" alt="Alok Kumar - Android Developer" loading="lazy"
-                        onerror="this.src='https://via.placeholder.com/400x400/1E293B/3DDC84?text=Alok+Kumar';">
+                        onerror="this.src='https://placehold.co/400x400/1E293B/3DDC84?text=Alok';">
                 </div>
 
-                <script>
-                    const aboutImage = document.querySelector('.about-image');
-
-                    let rafId = null;
-
-                    aboutImage.addEventListener('mousemove', (e) => {
-                        if (rafId) return;
-
-                        rafId = requestAnimationFrame(() => {
-                            const rect = aboutImage.getBoundingClientRect();
-
-                            const x = ((e.clientX - rect.left) / rect.width) * 100;
-                            const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-                            aboutImage.style.setProperty('--x', x + '%');
-                            aboutImage.style.setProperty('--y', y + '%');
-
-                            rafId = null;
-                        });
-                    });
-                </script>
-                
                 <!-- About Details -->
-                <div class="about-text">
-                    <h3>Hello! 👋</h3>
-                    <p>I am an independent Android Developer passionate about creating smooth, reliable, and user-centric mobile applications. As a self-taught engineer, I enjoy managing the complete lifecycle of app development—from conceptualization and UX design to writing robust Kotlin architecture and publishing on the Google Play Store.</p>
-                    <p>While my core expertise lies in Jetpack Compose and native Android, my curiosity doesn't stop there. I constantly explore other exciting domains of software engineering. Whether it's experimenting with Godot for game development, studying modern web frameworks, or diving deep into AI and backend systems, I'm always eager to learn and grow.</p>
-                    <p>My ultimate goal is to build software that not only functions flawlessly but also delivers a meaningful and engaging experience to the user.</p>
-                    
+                <div class="about-text" data-animate>
+                    <h3>Hi, I'm Alok 👋</h3>
+
+                    <p>
+                        I am an independent Android Developer passionate about creating smooth, reliable, and
+                        user-centric mobile applications.
+                        As a self-taught engineer, I enjoy managing the complete lifecycle of app development—from
+                        conceptualization and UX design
+                        to writing robust Kotlin architecture and publishing on the Google Play Store.
+                    </p>
+
+                    <p>
+                        While my core expertise lies in Jetpack Compose and native Android, my curiosity doesn't stop
+                        there.
+                    </p>
+                
+                    <p>
+                        I constantly explore other domains of software engineering—from game development with Godot to
+                        modern web frameworks,
+                        backend systems, and AI.
+                    </p>
+
+                    <p>
+                        My ultimate goal is to build software that not only functions flawlessly but also delivers a
+                        meaningful and engaging experience to users.
+                    </p>
+
+                    <div class="about-highlights">
+                        <div>📱 Android Developer</div>
+                        <div>⚡ Jetpack Compose</div>
+                        <div>🧠 Self-Taught</div>
+                        <div>🎮 Game Dev</div>
+                        <div>🌐 Web + Backend</div>
+                    </div>
+
                     <div style="margin-top: 30px;">
-                        <a href="#contact" class="btn btn-outline" style="padding: 10px 24px;">Let's Connect</a>
+                        <a href="#contact" class="btn btn-outline" style="padding: 10px 24px;">
+                            Let's Connect
+                        </a>
                     </div>
                 </div>
             </div>
@@ -165,7 +174,8 @@
             <div class="grid-skills">
                 <div class="skill-card">
                     <svg class="skill-icon" viewBox="0 0 24 24">
-                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L11,7.5L12.42,8.92L9.33,12L12.42,15.08L11,16.5Z" />
+                        <path
+                            d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L11,7.5L12.42,8.92L9.33,12L12.42,15.08L11,16.5Z" />
                     </svg>
                     <strong>Kotlin</strong>
                 </div>
@@ -189,7 +199,8 @@
                 </div>
                 <div class="skill-card">
                     <svg class="skill-icon" viewBox="0 0 24 24">
-                        <path d="M2.6,10.59L8.38,4.8L10.07,6.5C9.83,7.35 10.22,8.28 11,8.73V14.27C10.4,14.61 10,15.26 10,16A2,2 0 0,0 12,18A2,2 0 0,0 14,16C14,15.26 13.6,14.61 13,14.27V9.41L15.07,11.5C15,11.65 15,11.82 15,12A2,2 0 0,0 17,14A2,2 0 0,0 19,12A2,2 0 0,0 17,10C16.82,10 16.65,10 16.5,10.07L13.93,7.5C14.27,6.9 14.27,6.1 13.93,5.5L13.93,5.5L13.93,5.5L16.5,2.92L21.08,7.5L2.6,10.59M12,15A1,1 0 0,1 13,16A1,1 0 0,1 12,17A1,1 0 0,1 11,16A1,1 0 0,1 12,15M17,11A1,1 0 0,1 18,12A1,1 0 0,1 17,13A1,1 0 0,1 16,12A1,1 0 0,1 17,11M12,6A1,1 0 0,1 13,7A1,1 0 0,1 12,8A1,1 0 0,1 11,7A1,1 0 0,1 12,6Z" />
+                        <path
+                            d="M2.6,10.59L8.38,4.8L10.07,6.5C9.83,7.35 10.22,8.28 11,8.73V14.27C10.4,14.61 10,15.26 10,16A2,2 0 0,0 12,18A2,2 0 0,0 14,16C14,15.26 13.6,14.61 13,14.27V9.41L15.07,11.5C15,11.65 15,11.82 15,12A2,2 0 0,0 17,14A2,2 0 0,0 19,12A2,2 0 0,0 17,10C16.82,10 16.65,10 16.5,10.07L13.93,7.5C14.27,6.9 14.27,6.1 13.93,5.5L13.93,5.5L13.93,5.5L16.5,2.92L21.08,7.5L2.6,10.59M12,15A1,1 0 0,1 13,16A1,1 0 0,1 12,17A1,1 0 0,1 11,16A1,1 0 0,1 12,15M17,11A1,1 0 0,1 18,12A1,1 0 0,1 17,13A1,1 0 0,1 16,12A1,1 0 0,1 17,11M12,6A1,1 0 0,1 13,7A1,1 0 0,1 12,8A1,1 0 0,1 11,7A1,1 0 0,1 12,6Z" />
                     </svg>
                     <strong>Git</strong>
                 </div>
@@ -216,7 +227,8 @@
                 <a href="projects/wallpaper.html" class="project-card">
                     <div class="project-header">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M8.5,13.5L11,16.5L14.5,12L19,18H5L8.5,13.5Z" />
+                            <path
+                                d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M8.5,13.5L11,16.5L14.5,12L19,18H5L8.5,13.5Z" />
                         </svg>
                     </div>
                     <div class="project-body">
@@ -227,7 +239,8 @@
                             <span class="tag">Canvas</span>
                             <span class="tag">Offline</span>
                         </div>
-                        <p class="project-desc">A clean collection of dynamic wallpapers featuring village-inspired time, date, and weather based visuals, along with solid color themes.</p>
+                        <p class="project-desc">A clean collection of dynamic wallpapers featuring village-inspired
+                            time, date, and weather based visuals, along with solid color themes.</p>
                         <span class="project-link">View App Details &rarr;</span>
                     </div>
                 </a>
@@ -249,7 +262,8 @@
                             <span class="tag">Jetpack Compose</span>
                             <span class="tag">AI Logic</span>
                         </div>
-                        <p class="project-desc">Modern Tic Tac Toe Android game featuring multiple AI difficulty modes, smooth animations, and clean Compose-based UI architecture.</p>
+                        <p class="project-desc">Modern Tic Tac Toe Android game featuring multiple AI difficulty modes,
+                            smooth animations, and clean Compose-based UI architecture.</p>
                         <span class="project-link">View Project Details &rarr;</span>
                     </div>
                 </a>
@@ -260,7 +274,8 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="4" y="10" width="16" height="10" rx="2" />
                             <line x1="7" y1="13" x2="17" y2="13" />
-                            <polyline points="11 16 14.5 19.5 21 12" stroke="#00BF63" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            <polyline points="11 16 14.5 19.5 21 12" stroke="#00BF63" stroke-width="3" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
                     <div class="project-body">
@@ -270,7 +285,8 @@
                             <span class="tag">Realtime DB</span>
                             <span class="tag">Auth</span>
                         </div>
-                        <p class="project-desc">Secure real-time online voting application with Firebase authentication, result tracking, and scalable backend architecture.</p>
+                        <p class="project-desc">Secure real-time online voting application with Firebase authentication,
+                            result tracking, and scalable backend architecture.</p>
                         <span class="project-link">View Project Details &rarr;</span>
                     </div>
                 </a>
@@ -289,7 +305,8 @@
                             <span class="tag">3D Rendering</span>
                             <span class="tag">OpenGL</span>
                         </div>
-                        <p class="project-desc">Android 3D model viewer built with Jetpack Compose supporting interactive rendering, rotation, and real-time visualization of models.</p>
+                        <p class="project-desc">Android 3D model viewer built with Jetpack Compose supporting
+                            interactive rendering, rotation, and real-time visualization of models.</p>
                         <span class="project-link">View Project Details &rarr;</span>
                     </div>
                 </a>
@@ -300,13 +317,17 @@
                 <a href="/projects/index.html" class="btn btn-primary" style="gap:10px;">
                     View All Projects &rarr;
                 </a>
-                <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="gap:10px;">
+                <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
+                    rel="noopener noreferrer" class="btn btn-outline" style="gap:10px;">
                     Play Store Page
                 </a>
-                <a href="https://github.com/dev-Alok-Kumar-android" target="_blank" class="btn btn-outline" style="gap:10px; display:flex; align-items:center;">
+                <a href="https://github.com/dev-Alok-Kumar-android" target="_blank" class="btn btn-outline"
+                    style="gap:10px; display:flex; align-items:center;">
                     GitHub Profile
                     <svg style="width:18px;" viewBox="0 0 24 24">
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" fill="currentColor" />
+                        <path
+                            d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
+                            fill="currentColor" />
                     </svg>
                 </a>
             </div>
@@ -325,7 +346,8 @@
                 <a href="https://github.com/dev-Alok-Kumar-android" target="_blank" class="social-btn">
                     <div class="social-icon-box">
                         <svg viewBox="0 0 24 24">
-                            <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+                            <path
+                                d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
                         </svg>
                     </div>
                     GitHub
@@ -333,15 +355,18 @@
                 <a href="https://www.linkedin.com/in/alok-kumar-5b4635331/" target="_blank" class="social-btn">
                     <div class="social-icon-box">
                         <svg viewBox="0 0 24 24">
-                            <path d="M21,21H17V13.81C17,12.1 16.19,11.23 14.78,11.23C13.24,11.23 12.28,12.28 12.28,13.81V21H8.29V8H12.28V9.76C12.84,8.9 13.93,7.63 15.93,7.63C18.78,7.63 21,9.45 21,13.31V21M3.8,6.11C2.55,6.11 1.55,5.1 1.55,3.85C1.55,2.6 2.55,1.59 3.8,1.59C5.05,1.59 6.05,2.6 6.05,3.85C6.05,5.1 5.05,6.11 3.8,6.11M1.84,21H5.75V8H1.84V21Z" />
+                            <path
+                                d="M21,21H17V13.81C17,12.1 16.19,11.23 14.78,11.23C13.24,11.23 12.28,12.28 12.28,13.81V21H8.29V8H12.28V9.76C12.84,8.9 13.93,7.63 15.93,7.63C18.78,7.63 21,9.45 21,13.31V21M3.8,6.11C2.55,6.11 1.55,5.1 1.55,3.85C1.55,2.6 2.55,1.59 3.8,1.59C5.05,1.59 6.05,2.6 6.05,3.85C6.05,5.1 5.05,6.11 3.8,6.11M1.84,21H5.75V8H1.84V21Z" />
                         </svg>
                     </div>
                     LinkedIn
                 </a>
-                <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank" class="social-btn">
+                <a href="https://play.google.com/store/apps/dev?id=7299055373581069643" target="_blank"
+                    class="social-btn">
                     <div class="social-icon-box">
                         <svg viewBox="0 0 24 24">
-                            <path d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z" />
+                            <path
+                                d="M5,3V21L12.75,13.25L5,5.5L5,3M18.16,13.94L13.78,12.22L18.16,10.5L21.45,12.22L18.16,13.94M13.28,12.72L5.5,20.5L17.66,14.22L13.28,12.72M13.28,11.72L17.66,10.22L5.5,3.94L13.28,11.72Z" />
                         </svg>
                     </div>
                     Play Store
@@ -366,5 +391,5 @@
     <!-- External JS -->
     <script src="script.js"></script>
 </body>
-</html>
 
+</html>

@@ -132,6 +132,31 @@ function type() {
 document.addEventListener('DOMContentLoaded', type);
 
 /* =========================================
+   ABOUT IMAGE GLOW EFFECT (Mouse Tracking)
+   ========================================= */
+const aboutImage = document.querySelector('.about-image');
+
+// Check if aboutImage exists on the current page before adding listener
+if (aboutImage) {
+    let rafId = null;
+
+    aboutImage.addEventListener('mousemove', (e) => {
+        if (rafId) return;
+
+        rafId = requestAnimationFrame(() => {
+            const rect = aboutImage.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+            aboutImage.style.setProperty('--x', x + '%');
+            aboutImage.style.setProperty('--y', y + '%');
+
+            rafId = null;
+        });
+    });
+}
+
+/* =========================================
    SMART NAVIGATION (Clean URL & Smooth Scroll)
    ========================================= */
 document.querySelectorAll('a').forEach(link => {
@@ -163,3 +188,18 @@ document.querySelectorAll('a').forEach(link => {
     });
 });
 
+const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            obs.unobserve(entry.target); // run once (performance 💯)
+        }
+    });
+}, {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px" // thoda early trigger
+});
+
+document.querySelectorAll('[data-animate]').forEach(el => {
+    observer.observe(el);
+});

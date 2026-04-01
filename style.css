@@ -316,7 +316,7 @@ section {
 }
 
 /* =========================================
-   7. ABOUT SECTION
+   7. ABOUT SECTION (Custom Mask Effect)
    ========================================= */
 .about-grid {
     display: grid;
@@ -325,51 +325,67 @@ section {
     align-items: center;
 }
 
+.about-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.about-text p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+    line-height: 1.7;
+}
+
+/* Image Container with Glow Hover */
 .about-image {
     position: relative;
-    overflow: hidden;
     border-radius: 24px;
+    max-width: 420px;
+    margin: 0 auto;
+    /* Wrapper handles transform so border + image move together */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-lg);
 }
 
 .about-image img {
     width: 100%;
-    max-width: 420px;
     border-radius: 24px;
     border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-lg);
     display: block;
-    margin: 0 auto;
     object-fit: cover;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.about-image:hover img {
+/* Hover effect on wrapper */
+.about-image:hover {
     transform: translateY(-6px);
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.2),
-        0 0 20px rgba(61, 220, 132, 0.15);
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.2),
+        0 0 20px rgba(61,220,132,0.15);
 }
 
+/* Glowing Border Effect using Mask */
 .about-image::after {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: 24px;
-    padding: 2px;
+    padding: 5px;
+    pointer-events: none;
 
-    /* 
-       --x and --y are CSS custom properties used to dynamically set the center of the radial gradient, updated via JavaScript to create interactive hover effects based on mouse position.
-    */
-    background: radial-gradient(120px circle at var(--x, 50%) var(--y, 50%),
-            var(--text-accent),
-            transparent 70%);
+    background: radial-gradient(
+        120px circle at var(--x, 50%) var(--y, 50%),
+        var(--text-accent),
+        transparent 300%
+    );
 
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-    mask:
-        linear-gradient(#fff 0 0) content-box,
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
 
@@ -384,21 +400,37 @@ section {
 @media (hover: none) {
     .about-image::after {
         opacity: 0.6;
+        padding: 10px;
         background: linear-gradient(135deg, transparent, var(--text-accent), transparent);
     }
 }
 
-.about-text h3 {
-    font-size: 1.8rem;
-    margin-bottom: 16px;
-    color: var(--text-primary);
+
+/* =========================
+   SCROLL ANIMATION SYSTEM
+   ========================= */
+
+/* default hidden state */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
 }
 
-.about-text p {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    margin-bottom: 18px;
-    line-height: 1.7;
+/* visible state */
+[data-animate].show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* image variation */
+[data-animate="zoom"] {
+    transform: scale(0.9);
+}
+
+[data-animate="zoom"].show {
+    transform: scale(1);
 }
 
 /* =========================================
