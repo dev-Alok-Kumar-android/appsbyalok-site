@@ -477,38 +477,31 @@
     const ctx = canvas.getContext('2d');
 
     let particlesArray;
-    let animationFrameId; // Battery optimization ke liye ID
-    let isAnimating = true;
 
-    // Canvas dimensions adjust karna
     function resizeCanvas() {
       canvas.width = window.innerWidth;
-      // Hero section height se canvas height match karna
+      // Use the hero section's height
       canvas.height = document.getElementById('hero').offsetHeight; 
     }
 
-    // Mouse interaction event object
     let mouse = {
-      x: null,
-      y: null,
-      radius: 120 // Touch repel ke liye radius
+      x: undefined,
+      y: undefined,
+      radius: 120
     }
 
-    // Mouse movement capture karna
     window.addEventListener('mousemove', function(event) {
       let rect = canvas.getBoundingClientRect();
       mouse.x = event.clientX - rect.left;
       mouse.y = event.clientY - rect.top;
     });
 
-    // Mobile ke liye touch events
     window.addEventListener('touchmove', function(event) {
       let rect = canvas.getBoundingClientRect();
       mouse.x = event.touches[0].clientX - rect.left;
       mouse.y = event.touches[0].clientY - rect.top;
     });
 
-    // Jab touch ya mouse canvas se bahar jaye to reset karna
     window.addEventListener('mouseout', function() {
       mouse.x = undefined;
       mouse.y = undefined;
@@ -518,7 +511,6 @@
       mouse.y = undefined;
     });
 
-    // Particle Object banayein
     class Particle {
       constructor(x, y, directionX, directionY, size, color) {
         this.x = x;
@@ -527,11 +519,8 @@
         this.directionY = directionY;
         this.size = size;
         this.color = color;
-        this.baseX = this.x;
-        this.baseY = this.y;
       }
 
-      // Canvas par draw karna
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
@@ -539,9 +528,7 @@
         ctx.fill();
       }
 
-      // Position update karna aur mouse se interact karana
       update() {
-        // Screen edge se wapas bhejna
         if (this.x > canvas.width || this.x < 0) {
           this.directionX = -this.directionX;
         }
@@ -549,24 +536,20 @@
           this.directionY = -this.directionY;
         }
 
-        // Mouse se collision check (push away effect)
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance > 0 && distance < mouse.radius) {
-          // Smooth repulsion calculate karna
+        if (mouse.x != undefined && distance < mouse.radius) {
           const forceDirectionX = dx / distance;
           const forceDirectionY = dy / distance;
           const force = (mouse.radius - distance) / mouse.radius;
           const directionX = forceDirectionX * force * 5;
           const directionY = forceDirectionY * force * 5;
 
-          // Particle ko push karna
           this.x -= directionX;
           this.y -= directionY;
         } else {
-          // Normal idle state movement
           this.x -= this.directionX;
           this.y -= this.directionY;
         }
@@ -575,28 +558,28 @@
       }
     }
 
-    // Particle Array initialize karein
     function init() {
       particlesArray = [];
-      let numberOfParticles = (canvas.height * canvas.width) / 9000;
+      // Adjust density here; higher number = fewer particles
+      let density = 10000;
+      if (window.innerWidth < 768) {
+          density = 15000;
+      }
       
-      // Mobile screen ke liye particles kam karna taaki smooth chale
-      if(window.innerWidth < 768) {
-          numberOfParticles = (canvas.height * canvas.width) / 12000;
+      let numberOfParticles = (canvas.height * canvas.width) / density;
+
+      // Cap the number of particles to prevent lag
+      if (numberOfParticles > 120) {
+        numberOfParticles = 120;
       }
 
-      // Max particle limit (Battery/CPU bachane ke liye)
-      if (numberOfParticles > 150) {
-        numberOfParticles = 150;
-      }
-
-      // Semi-transparent accent color
       const particleColor = 'rgba(61, 220, 132, 0.7)';
 
       for (let i = 0; i < numberOfParticles; i++) {
         let size = (Math.random() * 2) + 1;
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
+        // Ensure particles spawn within canvas bounds
+        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 1.5) - 0.75;
         let directionY = (Math.random() * 1.5) - 0.75;
 
@@ -604,7 +587,6 @@
       }
     }
 
-    // Pass aaye particles ke beech line draw karna (Web effect)
     function connect() {
       let opacityValue = 1;
       for (let a = 0; a < particlesArray.length; a++) {
@@ -625,40 +607,20 @@
       }
     }
 
-    // Animation Loop
     function animate() {
-      if (!isAnimating) return; // Agar screen par nahi dikh raha to idle rahega
-      animationFrameId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].update();
       }
-      connect(); // Lines draw karna
+      connect();
     }
 
-    // Window resize par re-initialize karna
     window.addEventListener('resize', function() {
       resizeCanvas();
       init();
     });
-
-    // Battery Saver Logic: Jab section screen par aaye tabhi animate karna
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (!isAnimating) {
-            isAnimating = true;
-            animate(); // Resume animation
-          }
-        } else {
-          isAnimating = false;
-          cancelAnimationFrame(animationFrameId); // Pause animation (Saves Battery)
-        }
-      });
-    }, { threshold: 0 }); 
-
-    observer.observe(document.getElementById('hero'));
 
     // Start Sequence
     resizeCanvas();
@@ -670,23 +632,20 @@
     const betaName = document.getElementById('beta-name');
     const betaEmail = document.getElementById('beta-email');
 
-    // Pre-filled message generate karna
     function generateMessage() {
       const name = betaName.value.trim() || "[Your Name]";
       const email = betaEmail.value.trim() || "[Your Email]";
       return `Hello Alok,\n\nMy name is ${name} and I would like to join the internal testing phase for the Dynamic Wallpaper app.\n\nMy Google Play Email ID is: ${email}\n\nPlease add me to the testing list.\n\nThank you!`;
     }
 
-    // Inline notification show karna
     function showInlineMessage(msg) {
       formMessage.textContent = msg;
       formMessage.style.display = 'block';
       setTimeout(() => {
         formMessage.style.display = 'none';
-      }, 5000); // 5 seconds ke baad auto-hide
+      }, 5000);
     }
 
-    // 1. Primary Form Submit (Email Client trigger karega)
     document.getElementById('beta-form').addEventListener('submit', function(e) {
       e.preventDefault(); 
       
@@ -699,14 +658,12 @@
       this.reset();
     });
 
-    // Check karna ki input fields bhari hui hain ya nahi
     function isFormComplete() {
       const name = betaName.value.trim();
       const email = betaEmail.value.trim();
       return name !== "" && email !== "";
     }
 
-    // 2. Telegram Integration Button
     document.getElementById('telegram-btn').addEventListener('click', function(e) {
       e.preventDefault();
       let text = "";
@@ -718,7 +675,6 @@
       showInlineMessage("Redirecting to Telegram...");
     });
 
-    // 3. Alternative Email Button Action
     document.getElementById('email-btn').addEventListener('click', function(e) {
       e.preventDefault();
       const subject = encodeURIComponent("Internal Testing Join Request - Dynamic Wallpaper");
