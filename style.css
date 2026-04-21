@@ -1,4 +1,3 @@
-
 /* =========================================
    1. CSS VARIABLES & THEME SETUP
    ========================================= */
@@ -224,6 +223,7 @@ nav {
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
     background-image: var(--hero-gradient);
 }
 
@@ -231,6 +231,24 @@ nav {
     text-align: center;
     max-width: 800px;
     padding-bottom: 60px;
+
+    position: relative;
+    z-index: 1;
+    background: radial-gradient(circle at center, var(--bg-body) 0%, transparent 70%);
+    padding: 40px;
+}
+
+#hero-canvas, #fluid-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: auto;
+    /* Niche se fade effect (smooth blend ke liye) */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
 }
 
 h1 {
@@ -360,9 +378,9 @@ section {
 /* Hover effect on wrapper */
 .about-image:hover {
     transform: translateY(-6px);
-    box-shadow: 
-        0 20px 40px rgba(0,0,0,0.2),
-        0 0 20px rgba(61,220,132,0.15);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(61, 220, 132, 0.15);
 }
 
 /* Glowing Border Effect using Mask */
@@ -374,18 +392,16 @@ section {
     padding: 5px;
     pointer-events: none;
 
-    background: radial-gradient(
-        120px circle at var(--x, 50%) var(--y, 50%),
-        var(--text-accent),
-        transparent 300%
-    );
+    background: radial-gradient(120px circle at var(--x, 50%) var(--y, 50%),
+            var(--text-accent),
+            transparent 300%);
 
-    -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-    mask: 
-        linear-gradient(#fff 0 0) content-box, 
+    mask:
+        linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
 
