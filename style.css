@@ -712,7 +712,138 @@ footer {
 }
 
 /* =========================================
-   11. MEDIA QUERIES
+   11. SHARED COMPONENTS (Features, Screenshots & Beta)
+   ========================================= */
+.btn-glow {
+    box-shadow: 0 0 15px var(--text-accent);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px color-mix(in srgb, var(--text-accent) 40%, transparent); }
+    100% { box-shadow: 0 0 25px color-mix(in srgb, var(--text-accent) 80%, transparent); }
+}
+
+.feature-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: color-mix(in srgb, var(--text-accent) 10%, transparent);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-accent);
+    margin-bottom: 20px;
+    border: 1px solid color-mix(in srgb, var(--text-accent) 20%, transparent);
+}
+
+.feature-icon-wrapper svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+.screenshot-gallery {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0 30px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-accent) var(--bg-card);
+    scroll-snap-type: x mandatory;
+}
+
+.screenshot-gallery img {
+    height: 400px;
+    width: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    object-fit: cover;
+    background: var(--bg-card);
+}
+
+/* Tech Grid */
+.tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 24px !important;
+    margin-top: 30px;
+}
+.tech-grid .skill-card {
+    padding: 20px;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+}
+.tech-grid .skill-icon {
+    margin-bottom: 15px;
+}
+.tech-grid .skill-card strong {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    display: block;
+}
+.tech-grid .skill-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Beta Form */
+.beta-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--bg-card);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+.form-input {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-body);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+}
+.form-input:focus {
+    outline: none;
+    border-color: var(--text-accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--text-accent) 20%, transparent);
+}
+.contact-alternatives {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.warning-box {
+    background: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+    padding: 16px 20px;
+    border-radius: 4px 8px 8px 4px;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+.warning-box strong { color: #e6a800; }
+.step-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; max-width: 700px; margin-left: auto; margin-right: auto; }
+.step-item { display: flex; align-items: flex-start; gap: 16px; background: var(--bg-card); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
+.step-number { background: var(--text-accent); color: #000; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; flex-shrink: 0; }
+.step-content h4 { margin: 0 0 8px 0; color: var(--text-primary); font-size: 1.2rem; }
+.step-content p { margin: 0 0 12px 0; color: var(--text-secondary); line-height: 1.5; }
+.step-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* =========================================
+   12. MEDIA QUERIES
    ========================================= */
 @media (max-width: 768px) {
     .mobile-menu-btn {
