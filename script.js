@@ -203,3 +203,45 @@ const observer = new IntersectionObserver((entries, obs) => {
 document.querySelectorAll('[data-animate]').forEach(el => {
     observer.observe(el);
 });
+
+/* =========================================
+   ACTIVE NAV LINK HIGHLIGHTER
+   ========================================= */
+function highlightActiveLink() {
+    const navLinks = document.querySelectorAll('.nav-links .nav-link');
+    const currentPath = window.location.pathname; // e.g., "/projects/tictactoe.html"
+
+    let bestMatch = null;
+    let matchLength = 0;
+
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+
+        // Remove any hardcoded active class
+        link.classList.remove('active');
+
+        // Check if the current path starts with the link's path
+        if (currentPath.startsWith(linkPath)) {
+            // The root path '/' will match every page, so we must treat it as a special case.
+            // It should only be the best match if the current page IS the root page.
+            if (linkPath === '/' && currentPath !== '/') {
+                return; // Skip if it's the root link but not the root page
+            }
+
+            if (linkPath.length > matchLength) {
+                matchLength = linkPath.length;
+                bestMatch = link;
+            }
+        }
+    });
+
+    if (bestMatch) {
+        bestMatch.classList.add('active');
+    } else if (currentPath === '/' || currentPath.endsWith('index.html')) {
+        // Fallback for home page if no other match is found
+        document.querySelector('.nav-links a[href="/"]').classList.add('active');
+    }
+}
+
+// Run after the DOM is loaded
+document.addEventListener('DOMContentLoaded', highlightActiveLink);
