@@ -176,7 +176,8 @@ document.querySelectorAll('a').forEach(link => {
         if (href === '/' && isHomePage) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.pushState(null, null, currentPath); 
+            history.pushState(null, null, '/');
+            highlightActiveLink();
         }
         
         // Navigating to Top '#'
@@ -184,6 +185,7 @@ document.querySelectorAll('a').forEach(link => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
             history.pushState(null, null, currentPath); 
+            highlightActiveLink();
         }
     });
 });
@@ -192,12 +194,12 @@ const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('show');
-            obs.unobserve(entry.target); // run once (performance 💯)
+            obs.unobserve(entry.target);
         }
     });
 }, {
     threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px" // thoda early trigger
+    rootMargin: "0px 0px -50px 0px"
 });
 
 document.querySelectorAll('[data-animate]').forEach(el => {
@@ -205,43 +207,79 @@ document.querySelectorAll('[data-animate]').forEach(el => {
 });
 
 /* =========================================
-   ACTIVE NAV LINK HIGHLIGHTER
+   ACTIVE NAV LINK HIGHLIGHTER (Path + Hash)
    ========================================= */
 function highlightActiveLink() {
     const navLinks = document.querySelectorAll('.nav-links .nav-link');
-    const currentPath = window.location.pathname; // e.g., "/projects/tictactoe.html"
+    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash;
 
-    let bestMatch = null;
-    let matchLength = 0;
+    navLinks.forEach(link => link.classList.remove('active'));
 
-    navLinks.forEach(link => {
-        const linkPath = new URL(link.href).pathname;
+    let matched = false;
 
-        // Remove any hardcoded active class
-        link.classList.remove('active');
-
-        // Check if the current path starts with the link's path
-        if (currentPath.startsWith(linkPath)) {
-            // The root path '/' will match every page, so we must treat it as a special case.
-            // It should only be the best match if the current page IS the root page.
-            if (linkPath === '/' && currentPath !== '/') {
-                return; // Skip if it's the root link but not the root page
+    if (currentHash) {
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentHash) {
+                link.classList.add('active');
+                matched = true;
             }
+        });
+    }
 
-            if (linkPath.length > matchLength) {
-                matchLength = linkPath.length;
-                bestMatch = link;
+    if (!matched) {
+        navLinks.forEach(link => {
+            const linkHref = link.getAttribute('href');
+            if (linkHref.startsWith('#')) return;
+
+            const linkUrl = new URL(link.href, window.location.origin);
+            const linkPath = linkUrl.pathname;
+
+            // Path match logic
+            if (currentPath === linkPath || (currentPath === '/' && linkPath.endsWith('index.html'))) {
+                link.classList.add('active');
             }
-        }
-    });
-
-    if (bestMatch) {
-        bestMatch.classList.add('active');
-    } else if (currentPath === '/' || currentPath.endsWith('index.html')) {
-        // Fallback for home page if no other match is found
-        document.querySelector('.nav-links a[href="/"]').classList.add('active');
+        });
     }
 }
 
-// Run after the DOM is loaded
+
+/* =========================================
+   SCROLL SPY (Active Nav on Manual Scroll)
+   ========================================= */
+function initScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionId = entry.target.getAttribute('id');
+                
+                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+                const homeLink = document.querySelector('.nav-links a[href="/"]');
+
+                if (sectionId === 'hero' && window.location.pathname === '/') {
+                    document.querySelectorAll('.nav-links .nav-link').forEach(l => l.classList.remove('active'));
+                    if (homeLink) homeLink.classList.add('active');
+                } 
+                else if (navLink) {
+                    document.querySelectorAll('.nav-links .nav-link').forEach(l => l.classList.remove('active'));
+                    navLink.classList.add('active');
+                }
+            }
+        });
+    }, {
+        rootMargin: "-30% 0px -60% 0px"
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// Listeners
 document.addEventListener('DOMContentLoaded', highlightActiveLink);
+window.addEventListener('hashchange', highlightActiveLink);
+document.addEventListener('DOMContentLoaded', initScrollSpy);
+
+window.addEventListener('popstate', highlightActiveLink);
