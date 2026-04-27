@@ -1,20 +1,58 @@
 /**
  * animations.js
  * Handles interactive background animations.
- * 1. Particles Network (id="hero-canvas")
  */
 
+// Global variable to keep track of the current animation frame
+let currentAnimFrame;
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Check and initialize whichever canvas is present on the page
-    initParticles();
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+
+    const animationType = canvas.getAttribute('data-animation');
+
+    if (animationType === 'snow') {
+        initSnowfall();
+    } else {
+        initParticles();
+    }
 });
+
+// --- NEW FUNCTION: To switch backgrounds dynamically ---
+window.changeBg = function(type) {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+
+    // 1. Stop the currently running animation
+    if (currentAnimFrame) {
+        cancelAnimationFrame(currentAnimFrame);
+    }
+    
+    // 2. Clear the canvas completely
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 3. Start the requested animation
+    if (type === 'snow') {
+        initSnowfall();
+    } else if (type === 'lines') {
+        initParticles();
+    } else if (type === 'clear') {
+        // Do nothing else, leaving the canvas cleared for "Background Studio" effect
+    }
+    // Future additions go here:
+    // else if (type === 'fluid') { initFluid(); }
+    // else if (type === 'hex') { initHex(); }
+}
+
 
 /* =========================================
    1. PARTICLES ANIMATION (Tech / Node Style)
    ========================================= */
 function initParticles() {
     const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return; // Agar canvas nahi hai to yahin ruk jao
+    if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
@@ -26,6 +64,8 @@ function initParticles() {
         canvas.height = heroSection ? heroSection.offsetHeight : window.innerHeight;
     }
 
+    // Use named functions for events if you plan to remove them later, 
+    // but for simple switching, keeping them is usually fine.
     window.addEventListener('mousemove', (event) => {
         let rect = canvas.getBoundingClientRect();
         mouse.x = event.clientX - rect.left;
@@ -102,10 +142,109 @@ function initParticles() {
     }
 
     function animate() {
-        requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < particlesArray.length; i++) particlesArray[i].update();
         connect();
+        // IMPORTANT: Save the frame ID so we can cancel it later
+        currentAnimFrame = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => { resizeCanvas(); init(); });
+    resizeCanvas(); init(); animate();
+}
+
+/* =========================================
+   2. SNOWFALL ANIMATION (Frost / Star Style)
+   ========================================= */
+function initSnowfall() {
+    const canvas = document.getElementById('hero-canvas'); 
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let snowflakes = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        const heroSection = canvas.parentElement;
+        canvas.height = heroSection ? heroSection.offsetHeight : window.innerHeight;
+    }
+
+    class Snowflake {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.layer = Math.random() * 3 + 1; 
+            this.size = (Math.random() * 2 + 1) * this.layer; 
+            this.speedY = (Math.random() * 0.5 + 0.3) * this.layer; 
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.opacity = (Math.random() * 0.4 + 0.2);
+            this.swingAmount = Math.random() * 0.02; 
+            this.swingStep = Math.random() * 1000;
+        }
+
+        update() {
+            this.swingStep += this.swingAmount;
+            this.y += this.speedY;
+            this.x += Math.sin(this.swingStep) * 0.5 + this.speedX;
+
+            if (this.y > canvas.height) {
+                this.y = -20;
+                this.x = Math.random() * canvas.width;
+            }
+        }
+
+        draw() {
+            ctx.save();
+            ctx.beginPath();
+            ctx.translate(this.x, this.y);
+            
+            const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
+            const r = isLightMode ? 14 : 255;
+            const g = isLightMode ? 165 : 255;
+            const b = isLightMode ? 233 : 255;
+
+            ctx.shadowBlur = this.layer * 2;
+            ctx.shadowColor = isLightMode ? `rgba(14, 165, 233, 0.5)` : 'white';
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${this.opacity})`;
+            ctx.lineWidth = this.layer * 0.5;
+
+            for (let i = 0; i < 6; i++) {
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, this.size);
+                
+                ctx.moveTo(0, this.size * 0.5);
+                ctx.lineTo(this.size * 0.3, this.size * 0.8);
+                ctx.moveTo(0, this.size * 0.5);
+                ctx.lineTo(-this.size * 0.3, this.size * 0.8);
+
+                ctx.rotate(Math.PI / 3);
+            }
+
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+
+    function init() {
+        snowflakes = [];
+        let count = window.innerWidth < 768 ? 40 : 100;
+        for (let i = 0; i < count; i++) {
+            snowflakes.push(new Snowflake());
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        snowflakes.forEach(flake => {
+            flake.update();
+            flake.draw();
+        });
+        // IMPORTANT: Save the frame ID so we can cancel it later
+        currentAnimFrame = requestAnimationFrame(animate);
     }
 
     window.addEventListener('resize', () => { resizeCanvas(); init(); });

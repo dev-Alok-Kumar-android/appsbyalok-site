@@ -13,6 +13,25 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://appsbyalok.netlify.app/projects/wallpaper.html">
   <link rel="stylesheet" href="../style.css">
+  
+  <style>
+    /* CSS to show it's clickable and give a small hover effect */
+    .interactive-card {
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .interactive-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    .preview-hint {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--text-accent);
+        margin-top: 12px;
+        font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
@@ -60,7 +79,8 @@
 
     <!-- ===== HERO SECTION ===== -->
     <section id="hero">
-      <canvas id="hero-canvas"></canvas>
+      <!-- NOTE: Default to snow on this page -->
+      <canvas id="hero-canvas" data-animation="snow"></canvas>
 
       <div class="container hero-content">
         <div class="badge">Android Live Wallpaper • Android 14+ Optimized</div>
@@ -95,14 +115,14 @@
           <h2 class="section-title">4 Unique Wallpapers In One App</h2>
           <p class="section-desc">
             Explore diverse animated environments, from minimal interactive lines to a massive living village, all in
-            one lightweight app.
+            one lightweight app. Click the cards below to preview the live background!
           </p>
         </div>
 
         <div class="grid-projects">
 
-          <!-- Feature Card 1: LineFlow -->
-          <div class="project-card" style="padding: 24px;">
+          <!-- Feature Card 1: LineFlow (Triggers 'lines' animation) -->
+          <div class="project-card interactive-card" style="padding: 24px;" onclick="window.changeBg('lines'); window.scrollTo({top: 0, behavior: 'smooth'});">
             <div class="feature-icon-wrapper">
               <!-- Wave/Line SVG -->
               <svg viewBox="0 0 24 24">
@@ -122,10 +142,11 @@
               A minimalist and elegant wallpaper featuring dynamic lines that instantly react and flow according to your
               touch gestures.
             </p>
+            <span class="preview-hint">► Click to Preview LineFlow</span>
           </div>
 
-          <!-- Feature Card 2: ParticleClock -->
-          <div class="project-card" style="padding: 24px;">
+          <!-- Feature Card 2: ParticleClock (Triggers 'lines' animation for now as it uses particles) -->
+          <div class="project-card interactive-card" style="padding: 24px;" onclick="window.changeBg('lines'); window.scrollTo({top: 0, behavior: 'smooth'});">
             <div class="feature-icon-wrapper">
               <!-- Clock/Particle SVG -->
               <svg viewBox="0 0 24 24">
@@ -144,10 +165,11 @@
               A mesmerizing clock display where glowing particles follow your fingertips, accompanied by beautifully
               animated butterflies.
             </p>
+             <span class="preview-hint">► Click to Preview Particles</span>
           </div>
 
-          <!-- Feature Card 3: MountainVillage (Biggest) -->
-          <div class="project-card" style="padding: 24px;">
+          <!-- Feature Card 3: MountainVillage (Triggers 'snow' animation) -->
+          <div class="project-card interactive-card" style="padding: 24px;" onclick="window.changeBg('snow'); window.scrollTo({top: 0, behavior: 'smooth'});">
             <div class="feature-icon-wrapper">
               <!-- Mountain/Village SVG -->
               <svg viewBox="0 0 24 24">
@@ -167,10 +189,11 @@
               3-layered parallax mountains, a flowing river, and a lively village with houses, schools, and moving
               characters.
             </p>
+            <span class="preview-hint">► Click to Preview Snow</span>
           </div>
 
-          <!-- Feature Card 4: Background Studio -->
-          <div class="project-card" style="padding: 24px;">
+          <!-- Feature Card 4: Background Studio (Triggers 'clear' animation to show a blank canvas) -->
+          <div class="project-card interactive-card" style="padding: 24px;" onclick="window.changeBg('clear'); window.scrollTo({top: 0, behavior: 'smooth'});">
             <div class="feature-icon-wrapper">
               <!-- Palette/Settings SVG -->
               <svg viewBox="0 0 24 24">
@@ -189,6 +212,7 @@
               effects. Save to a local gallery, share them, or set them as custom backgrounds for LineFlow and
               ParticleClock!
             </p>
+            <span class="preview-hint">► Click to Clear Canvas</span>
           </div>
 
         </div>
