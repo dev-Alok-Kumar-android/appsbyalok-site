@@ -1,14 +1,12 @@
 /**
  * animations.js
- * Handles multiple interactive background animations.
+ * Handles interactive background animations.
  * 1. Particles Network (id="hero-canvas")
- * 2. Premium Multi-Gradient Fluid (id="fluid-canvas")
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check and initialize whichever canvas is present on the page
     initParticles();
-    initFluid();
 });
 
 /* =========================================
@@ -108,152 +106,6 @@ function initParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < particlesArray.length; i++) particlesArray[i].update();
         connect();
-    }
-
-    window.addEventListener('resize', () => { resizeCanvas(); init(); });
-    resizeCanvas(); init(); animate();
-}
-
-
-/* =========================================
-   2. PREMIUM MULTI-GRADIENT FLUID ANIMATION
-   ========================================= */
-function initFluid() {
-    const canvas = document.getElementById('fluid-canvas');
-    if (!canvas) return; // Agar fluid canvas nahi hai to yahin ruk jao
-
-    const ctx = canvas.getContext('2d');
-    let blobs = [];
-    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    let isHovering = false;
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        const section = canvas.parentElement;
-        canvas.height = section ? section.offsetHeight : window.innerHeight;
-    }
-
-    // Smooth interaction tracking
-    window.addEventListener('mousemove', (event) => {
-        let rect = canvas.getBoundingClientRect();
-        mouse.x = event.clientX - rect.left;
-        mouse.y = event.clientY - rect.top;
-        isHovering = true;
-    });
-
-    window.addEventListener('mouseout', () => { isHovering = false; });
-
-    window.addEventListener('touchmove', (event) => {
-        let rect = canvas.getBoundingClientRect();
-        mouse.x = event.touches[0].clientX - rect.left;
-        mouse.y = event.touches[0].clientY - rect.top;
-        isHovering = true;
-    });
-    window.addEventListener('touchend', () => { isHovering = false; });
-
-    class PremiumBlob {
-        constructor(color, radius, originX, originY, speed) {
-            this.color = color;
-            this.radius = radius;
-            // Original anchor points
-            this.originX = originX;
-            this.originY = originY;
-            // Harmonic motion angles
-            this.angleX = Math.random() * Math.PI * 2;
-            this.angleY = Math.random() * Math.PI * 2;
-            this.speed = speed;
-            // Current position
-            this.x = originX;
-            this.y = originY;
-        }
-
-        update() {
-            // Increment angles for organic sine/cosine movement (Lissajous curves)
-            this.angleX += this.speed;
-            this.angleY += this.speed * 0.8; // Different speed for non-circular, organic path
-
-            // Calculate target position based on harmonic motion
-            let targetX = this.originX + Math.sin(this.angleX) * (canvas.width * 0.25);
-            let targetY = this.originY + Math.cos(this.angleY) * (canvas.height * 0.25);
-
-            // Subtle mouse repulsion effect (Premium touch)
-            if (isHovering) {
-                let dx = mouse.x - targetX;
-                let dy = mouse.y - targetY;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < canvas.width * 0.4) {
-                    targetX -= dx * 0.15;
-                    targetY -= dy * 0.15;
-                }
-            }
-
-            // Lerp (Linear Interpolation) for buttery smooth movement
-            this.x += (targetX - this.x) * 0.03;
-            this.y += (targetY - this.y) * 0.03;
-        }
-
-        draw() {
-            ctx.beginPath();
-            // Ultra-soft radial gradient
-            let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-            gradient.addColorStop(0, this.color);
-            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)'); // Fades completely into background
-
-            ctx.fillStyle = gradient;
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    function init() {
-        blobs = [];
-        // Much larger radii to create a "mesh" effect instead of individual balls
-        const baseRadius = Math.max(canvas.width, canvas.height) * 0.6; 
-
-        // Rich, vibrant color palette for a premium dark mode feel
-        const colors = [
-            'rgba(61, 220, 132, 0.45)', // Android Green
-            'rgba(16, 185, 129, 0.35)', // Emerald/Teal
-            'rgba(30, 64, 175, 0.35)',  // Deep Indigo/Blue (Adds contrast)
-            'rgba(61, 220, 132, 0.25)'  // Softer Android Green
-        ];
-
-        // Spread origins across the 4 corners/quadrants
-        const origins = [
-            { x: canvas.width * 0.2, y: canvas.height * 0.2 },
-            { x: canvas.width * 0.8, y: canvas.height * 0.8 },
-            { x: canvas.width * 0.8, y: canvas.height * 0.2 },
-            { x: canvas.width * 0.2, y: canvas.height * 0.8 }
-        ];
-
-        colors.forEach((color, i) => {
-            blobs.push(new PremiumBlob(
-                color, 
-                baseRadius + Math.random() * 200, 
-                origins[i].x, 
-                origins[i].y, 
-                0.003 + Math.random() * 0.002 // Very slow, ambient speed
-            ));
-        });
-    }
-
-    function animate() {
-        requestAnimationFrame(animate);
-        
-        // Clear frame completely
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // 'screen' or 'lighter' blend mode makes overlapping gradients look like glowing light
-        ctx.globalCompositeOperation = 'screen';
-
-        blobs.forEach(blob => {
-            blob.update();
-            blob.draw();
-        });
-
-        // Reset composite operation
-        ctx.globalCompositeOperation = 'source-over';
     }
 
     window.addEventListener('resize', () => { resizeCanvas(); init(); });
