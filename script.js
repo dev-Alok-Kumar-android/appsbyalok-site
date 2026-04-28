@@ -95,48 +95,140 @@ links.forEach(link => {
     });
 });
 
+
 /* =========================================
-   TYPING EFFECT
+   ADVANCED TYPEWRITER EFFECT (Smart Erase)
    ========================================= */
-const typingText = document.querySelector('.typing-text');
-const words = ["Jetpack Compose.", "Kotlin.", "Modern Android.", "System Design.", "UX Design."];
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+function initTypewriter(options) {
+    const {
+        target,
+        phrases = [],
+        typeSpeed = 65,
+        eraseSpeed = 35,
+        holdAfterType = 1500, // Thoda extra time padhne ke liye
+        holdAfterErase = 400
+    } = options;
 
-function type() {
-    if (!typingText) return; 
-    
-    const currentWord = words[wordIndex];
-    
-    if (isDeleting) {
-        typingText.textContent = currentWord.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typingText.textContent = currentWord.substring(0, charIndex + 1);
-        charIndex++;
+    const textEl = document.querySelector(target);
+    if (!textEl || !phrases.length) return;
+
+    // Reduced motion accessiblity check
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+        textEl.textContent = phrases[0];
+        return;
     }
 
-    if (!isDeleting && charIndex === currentWord.length) {
-        isDeleting = true;
-        setTimeout(type, 2000); 
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        setTimeout(type, 500); 
-    } else {
-        setTimeout(type, isDeleting ? 100 : 150); 
+    const STATE = {
+        TYPING: "typing",
+        HOLD_AFTER_TYPE: "hold_after_type",
+        DELETING: "deleting",
+        HOLD_AFTER_DELETE: "hold_after_delete"
+    };
+
+    let state = STATE.TYPING;
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let timeoutId = null;
+    let pauseRequested = false;
+
+    let current = phrases[phraseIndex];
+    let next = phrases[(phraseIndex + 1) % phrases.length];
+
+    textEl.textContent = "";
+
+    function clearTimer() {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+        }
     }
+
+    function schedule(fn, delay) {
+        clearTimer();
+        timeoutId = setTimeout(fn, delay);
+    }
+
+    // Finds common prefix so it doesn't delete the whole word if not needed
+    function commonPrefixLength(a, b) {
+        let i = 0;
+        while (i < a.length && i < b.length && a[i] === b[i]) i++;
+        return i;
+    }
+
+    function run() {
+        switch (state) {
+            case STATE.TYPING: {
+                textEl.textContent = current.slice(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === current.length) {
+                    state = STATE.HOLD_AFTER_TYPE;
+                    schedule(run, holdAfterType);
+                } else {
+                    schedule(run, typeSpeed);
+                }
+                break;
+            }
+
+            case STATE.HOLD_AFTER_TYPE:
+                if (pauseRequested) return;
+                state = STATE.DELETING;
+                run();
+                break;
+
+            case STATE.DELETING: {
+                const common = commonPrefixLength(current, next);
+
+                if (charIndex > common) {
+                    charIndex--;
+                    textEl.textContent = current.slice(0, charIndex);
+                    schedule(run, eraseSpeed);
+                } else {
+                    state = STATE.HOLD_AFTER_DELETE;
+                    schedule(run, holdAfterErase);
+                }
+                break;
+            }
+
+            case STATE.HOLD_AFTER_DELETE:
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                current = phrases[phraseIndex];
+                next = phrases[(phraseIndex + 1) % phrases.length];
+                state = STATE.TYPING;
+                run();
+                break;
+        }
+    }
+
+    function setPause(val) {
+        pauseRequested = val;
+        if (!val && state === STATE.HOLD_AFTER_TYPE) {
+            run();
+        }
+    }
+
+    // Interactive Pausing
+    const container = textEl.parentElement;
+    if (container) {
+        container.addEventListener("mouseenter", () => setPause(true));
+        container.addEventListener("mouseleave", () => setPause(false));
+        container.addEventListener("focusin", () => setPause(true));
+        container.addEventListener("focusout", () => setPause(false));
+    }
+
+    document.addEventListener("touchstart", () => setPause(true), { passive: true });
+    document.addEventListener("touchend", () => setPause(false));
+    
+    run();
 }
 
-document.addEventListener('DOMContentLoaded', type);
 
 /* =========================================
    ABOUT IMAGE GLOW EFFECT (Mouse Tracking)
    ========================================= */
 const aboutImage = document.querySelector('.about-image');
 
-// Check if aboutImage exists on the current page before adding listener
 if (aboutImage) {
     let rafId = null;
 
@@ -164,7 +256,6 @@ document.querySelectorAll('a').forEach(link => {
         const href = this.getAttribute('href');
         if (!href) return;
         
-        // If it's a link to another page (like projects/wallpaper.html), let it behave normally
         if (href.includes('/') && !href.startsWith('#') && href !== '/') {
             return; 
         }
@@ -172,15 +263,12 @@ document.querySelectorAll('a').forEach(link => {
         const currentPath = window.location.pathname;
         const isHomePage = currentPath === '/' || currentPath.endsWith('index.html');
 
-        // Navigating to Home '/'
         if (href === '/' && isHomePage) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.pushState(null, null, '/');
+            history.pushState(null, null, currentPath); 
             highlightActiveLink();
         }
-        
-        // Navigating to Top '#'
         else if (href === '#') {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -190,16 +278,19 @@ document.querySelectorAll('a').forEach(link => {
     });
 });
 
+/* =========================================
+   SCROLL ANIMATIONS (Intersection Observer)
+   ========================================= */
 const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('show');
-            obs.unobserve(entry.target);
+            obs.unobserve(entry.target); 
         }
     });
 }, {
     threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px"
+    rootMargin: "0px 0px -50px 0px" 
 });
 
 document.querySelectorAll('[data-animate]').forEach(el => {
@@ -235,7 +326,6 @@ function highlightActiveLink() {
             const linkUrl = new URL(link.href, window.location.origin);
             const linkPath = linkUrl.pathname;
 
-            // Path match logic
             if (currentPath === linkPath || (currentPath === '/' && linkPath.endsWith('index.html'))) {
                 link.classList.add('active');
             }
@@ -243,22 +333,20 @@ function highlightActiveLink() {
     }
 }
 
-
 /* =========================================
    SCROLL SPY (Active Nav on Manual Scroll)
    ========================================= */
 function initScrollSpy() {
     const sections = document.querySelectorAll('section[id]');
     
-    const observer = new IntersectionObserver((entries) => {
+    const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const sectionId = entry.target.getAttribute('id');
-                
                 const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
                 const homeLink = document.querySelector('.nav-links a[href="/"]');
 
-                if (sectionId === 'hero' && window.location.pathname === '/') {
+                if (sectionId === 'hero' && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) {
                     document.querySelectorAll('.nav-links .nav-link').forEach(l => l.classList.remove('active'));
                     if (homeLink) homeLink.classList.add('active');
                 } 
@@ -273,13 +361,32 @@ function initScrollSpy() {
     });
 
     sections.forEach(section => {
-        observer.observe(section);
+        scrollObserver.observe(section);
     });
 }
 
-// Listeners
-document.addEventListener('DOMContentLoaded', highlightActiveLink);
-window.addEventListener('hashchange', highlightActiveLink);
-document.addEventListener('DOMContentLoaded', initScrollSpy);
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Highlight Correct Link
+    highlightActiveLink();
+    
+    // 2. Initialize Scroll Spy
+    initScrollSpy();
 
+    // 3. Initialize Advanced Typewriter
+    initTypewriter({
+        target: '.typing-text',
+        phrases: [
+            "Android apps with Kotlin.",
+            "Android apps with Compose.",
+            "fluid UIs with Native Canvas.",
+            "scalable apps with Firebase.",
+            "clean systems with MVVM."    
+        ],
+        typeSpeed: 55,
+        eraseSpeed: 30,
+        holdAfterType: 1800 
+    });
+});
+
+window.addEventListener('hashchange', highlightActiveLink);
 window.addEventListener('popstate', highlightActiveLink);
