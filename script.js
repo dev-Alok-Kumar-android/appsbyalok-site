@@ -378,9 +378,12 @@ document.addEventListener('DOMContentLoaded', () => {
         phrases: [
             "Android apps with Kotlin.",
             "Android apps with Compose.",
+            "cross-platform apps with KMP.",
+            "cross-platform apps with CMP.",
             "fluid UIs with Native Canvas.",
             "scalable apps with Firebase.",
-            "clean systems with MVVM."    
+            "clean systems with MVVM.",
+            "robust apps with Clean Architecture."   
         ],
         typeSpeed: 55,
         eraseSpeed: 30,
