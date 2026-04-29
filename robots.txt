@@ -1,2 +1,5 @@
 User-agent: *
+Disallow: /privacy/
+Disallow: /license.html
 Allow: /
+Sitemap: https://appsbyalok.netlify.app/sitemap.xml
