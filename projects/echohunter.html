@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Echo Hunter Android Game | AppsByAlok">
   <meta property="og:description"
-    content="A completely custom-built 2D survival arcade game without any external game engine. Size: Under 1MB.">
+    content="A completely custom-built 2D survival arcade game without any external game engine. Ultra-lite size, 120fps performance.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://appsbyalok.netlify.app/projects/echohunter.html">
 
@@ -100,31 +100,29 @@
 
     <!-- ===== HERO SECTION ===== -->
     <section id="hero">
-      <!-- Minimal Tech-Grid Background matching the game's theme -->
       <div class="tech-grid-bg"></div>
 
       <div class="container hero-content">
         <div class="badge"
           style="background-color: #0ea5e9; color: #fff; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 15px; font-weight: bold; font-size: 0.85rem; box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);">
-          Ultra Low Size: < 50 KB</div>
+          Ultra-lite Size &bull; 120FPS</div>
 
-            <h1 style="color: var(--text-primary);">Echo Hunter</h1>
+        <h1 style="color: var(--text-primary);">Echo Hunter</h1>
 
-            <p class="hero-text">
-              A fast-paced, lore-driven 2D arcade survival game. Play as "Probe-7", tasked with surviving a corrupted
-              mainframe. Built entirely from scratch natively, without any external game engines.
-            </p>
+        <p class="hero-text">
+          A fast-paced, lore-driven 2D cyberpunk survival game. Play as Protocol "Probe-7" and purge a corrupted
+          mainframe. Built entirely from scratch natively in Kotlin without any external game engines.
+        </p>
 
-            <div class="btn-group">
-              <a href="#joinbeta" class="btn btn-primary btn-glow" style="background-color: #0ea5e9; color: #fff;">
-                Join Closed Beta
-              </a>
-
-              <a href="../index.html#all-projects" class="btn btn-outline">
-                Back to Projects
-              </a>
-            </div>
+        <div class="btn-group">
+          <a href="#joinbeta" class="btn btn-primary btn-glow" style="background-color: #0ea5e9; color: #fff;">
+            Join Closed Beta
+          </a>
+          <a href="https://github.com/dev-Alok-Kumar-android/EchoHunter" target="_blank" class="btn btn-outline">
+            View on GitHub
+          </a>
         </div>
+      </div>
     </section>
 
     <!-- ===== FEATURES SECTION ===== -->
@@ -132,84 +130,73 @@
       <div class="container">
 
         <div class="section-header">
-          <h2 class="section-title">Core Systems</h2>
+          <h2 class="section-title">Core Systems & Gameplay</h2>
           <p class="section-desc">
-            An engineering challenge: building a 60FPS fluid game under 50KB using purely native APIs.
+            An engineering challenge: building a buttery-smooth cyberpunk experience with an ultra-small footprint using
+            purely native APIs.
           </p>
         </div>
 
         <div class="grid-projects">
 
-          <!-- Feature Card 0 (Highlighted) -->
+          <!-- Feature Card 1: 120FPS Render Engine -->
           <div class="project-card"
             style="padding: 24px; border-color: #0ea5e9; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.15);">
             <div class="feature-icon-wrapper" style="background: rgba(14, 165, 233, 0.2);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                <rect x="9" y="9" width="6" height="6"></rect>
-                <line x1="9" y1="1" x2="9" y2="4"></line>
-                <line x1="15" y1="1" x2="15" y2="4"></line>
-                <line x1="9" y1="20" x2="9" y2="23"></line>
-                <line x1="15" y1="20" x2="15" y2="23"></line>
-                <line x1="20" y1="9" x2="23" y2="9"></line>
-                <line x1="20" y1="14" x2="23" y2="14"></line>
-                <line x1="1" y1="9" x2="4" y2="9"></line>
-                <line x1="1" y1="14" x2="4" y2="14"></line>
-              </svg>
-            </div>
-            <h3 class="project-title" style="margin-top: 10px; color: #0ea5e9;">Micro-Footprint (< 50 KB)</h3>
-                <div class="project-tags">
-                  <span class="tag" style="border-color: #0ea5e9; color: #0ea5e9; font-weight: bold;">Ultra
-                    Lightweight</span>
-                  <span class="tag">Zero Assets</span>
-                </div>
-                <p class="project-text">
-                  Engineered to be incredibly small. By completely eliminating heavy image sprites and MP3 files in
-                  favor of procedural Canvas drawing and native hardware audio synthesis, the entire game is packaged in
-                  under 50 Kilobytes.
-                </p>
-          </div>
-
-          <!-- Feature Card 1 -->
-          <div class="project-card" style="padding: 24px;">
-            <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
               </svg>
             </div>
-            <h3 class="project-title" style="margin-top: 10px;">Custom Render Engine</h3>
+            <h3 class="project-title" style="margin-top: 10px; color: #0ea5e9;">120FPS Custom Engine</h3>
             <div class="project-tags">
-              <span class="tag">Android Canvas</span>
-              <span class="tag">Zero GC</span>
+              <span class="tag" style="border-color: #0ea5e9; color: #0ea5e9; font-weight: bold;">Zero GC</span>
+              <span class="tag">Canvas API</span>
             </div>
             <p class="project-text">
-              Features a fully custom game loop built on Android's native <code>View</code> class. It uses pre-allocated
-              object pools to ensure zero garbage collection stutters and a solid 60FPS frame rate.
+              Engineered for a locked <strong>120FPS</strong> on high-end devices. Uses pre-allocated primitive arrays
+              (Object Pooling) to ensure absolutely zero garbage collection stutters during gameplay.
             </p>
           </div>
 
-          <!-- Feature Card 2 -->
+          <!-- Feature Card 2: Cyberpunk Visuals -->
           <div class="project-card" style="padding: 24px;">
             <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="6" width="20" height="12" rx="2" ry="2"></rect>
-                <path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"></path>
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
               </svg>
             </div>
-            <h3 class="project-title" style="margin-top: 10px;">Three Distinct Modes</h3>
+            <h3 class="project-title" style="margin-top: 10px;">Cyberpunk Visuals</h3>
             <div class="project-tags">
-              <span class="tag">Endless</span>
-              <span class="tag">Story</span>
-              <span class="tag">Escape</span>
+              <span class="tag">CRT Scanlines</span>
+              <span class="tag">RGB Glitch</span>
             </div>
             <p class="project-text">
-              Engineered complex logic for 'Endless Waves', 'Story: Sector Cleanup' (featuring mutating boss guardians),
-              and 'Firewall Breach' (a high-speed treadmill escape mode).
+              Features a 3D Parallax background grid, Overclock lightning trails, and Chromatic Aberration (RGB splits)
+              on damage, delivering an authentic retro-hacker aesthetic without loading a single image sprite.
             </p>
           </div>
 
-          <!-- Feature Card 3 -->
+          <!-- Feature Card 3: Combat Mechanics -->
+          <div class="project-card" style="padding: 24px;">
+            <div class="feature-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="project-title" style="margin-top: 10px;">Hit-Stop Combat</h3>
+            <div class="project-tags">
+              <span class="tag">Slow-Mo</span>
+              <span class="tag">Heavy Impact</span>
+            </div>
+            <p class="project-text">
+              Ram enemies using the 'Overclock' mode. The custom collision system features God-of-War style
+              <strong>Hit-Stop</strong> heavy impacts, shockwaves, and intense Slow-Motion Kill Cams for boss takedowns.
+            </p>
+          </div>
+
+          <!-- Feature Card 4: Dynamic Narrative -->
           <div class="project-card" style="padding: 24px;">
             <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -217,34 +204,56 @@
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
               </svg>
             </div>
-            <h3 class="project-title" style="margin-top: 10px;">Dynamic Story Protocol</h3>
+            <h3 class="project-title" style="margin-top: 10px;">Meta-Narrative System</h3>
             <div class="project-tags">
-              <span class="tag">Narrative</span>
-              <span class="tag">Glitches</span>
+              <span class="tag">VHS Tearing</span>
+              <span class="tag">Corrupted UI</span>
             </div>
             <p class="project-text">
-              An integrated narrative system that handles in-game popups, cinematic boss intros, screen shakes,
-              control-inversion, and UI glitch effects dynamically in real-time.
+              A living game state. If you die during a glitch, the main menu permanently corrupts into a sliced "SYSTEM
+              CORRUPTED" VHS-tearing effect across sessions. Features an epic "Interactive Core Merging" ending.
             </p>
           </div>
 
-          <!-- Feature Card 4 -->
+          <!-- Feature Card 5: Three Distinct Modes -->
           <div class="project-card" style="padding: 24px;">
             <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <line x1="9" y1="1" x2="9" y2="4"></line>
+                <line x1="15" y1="1" x2="15" y2="4"></line>
               </svg>
             </div>
-            <h3 class="project-title" style="margin-top: 10px;">Native Audio Generator</h3>
+            <h3 class="project-title" style="margin-top: 10px;">Three Distinct Modes</h3>
             <div class="project-tags">
-              <span class="tag">ToneGenerator</span>
-              <span class="tag">Ultra Lightweight</span>
+              <span class="tag">Story</span>
+              <span class="tag">Endless</span>
+              <span class="tag">Escape</span>
             </div>
             <p class="project-text">
-              To achieve the strict &lt; 50KB size constraint, heavy MP3 files were discarded. The game utilizes
-              Android's hardware <code>ToneGenerator</code> to synthesize authentic retro 8-bit sound effects on the
-              fly.
+              Built via the Strategy Pattern, play 'Endless Waves', 'Story: Sector Cleanup' (featuring mutating bosses
+              that fade in Hard Mode), and 'Firewall Breach' (a high-speed treadmill escape).
+            </p>
+          </div>
+
+          <!-- Feature Card 6: Native Audio -->
+          <div class="project-card" style="padding: 24px;">
+            <div class="feature-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="project-title" style="margin-top: 10px;">Micro-Footprint Audio</h3>
+            <div class="project-tags">
+              <span class="tag">ToneGenerator</span>
+              <span class="tag">Haptics</span>
+            </div>
+            <p class="project-text">
+              Heavy MP3 files were discarded. The game uses Android's hardware <code>ToneGenerator</code> to synthesize
+              8-bit sounds on the fly, paired with native haptic feedback for a tactile combat experience.
             </p>
           </div>
 
@@ -263,11 +272,18 @@
         </div>
 
         <div class="screenshot-gallery">
-          <img src="https://placehold.co/200x400/0f172a/0ea5e9?text=Main+Menu" alt="Echo Hunter Main Menu">
-          <img src="https://placehold.co/200x400/0f172a/00FFFF?text=Endless+Wave" alt="Endless Wave Gameplay">
-          <img src="https://placehold.co/200x400/0f172a/FF00FF?text=Boss+Fight" alt="Boss Fight Cinematic">
-          <img src="https://placehold.co/200x400/1A0505/FF2A4D?text=Firewall+Breach" alt="Firewall Breach Mode">
-          <img src="https://placehold.co/200x400/0f172a/EEEEEE?text=Story+Lore" alt="Story Lore Screen">
+          <img src="../assets/projects/echohunter/simple-menu.png"
+            onmouseover="this.src='../assets/projects/echohunter/corrupted-menu.gif'"
+            onmouseout="this.src='../assets/projects/echohunter/simple-menu.png'"
+            alt="Echo Hunter Main Menu Interactive">
+
+          <img src="../assets/projects/echohunter/gameplay-1.png" alt="Echo Hunter Gameplay - Overclock">
+
+          <img src="../assets/projects/echohunter/gameplay-2.png" alt="Echo Hunter Gameplay - Boss Fight">
+
+          <img src="../assets/projects/echohunter/firewall-breach.png" alt="Firewall Breach Mode">
+
+          <img src="../assets/projects/echohunter/core-merging.gif" alt="Core Merging Ending">
         </div>
       </div>
     </section>
@@ -278,7 +294,7 @@
       <div class="container">
 
         <div class="section-header">
-          <h2 class="section-title">Core Technologies & Systems</h2>
+          <h2 class="section-title">Core Technologies & Architecture</h2>
           <p class="section-desc">The native Android stack powering this lightweight application's engine.</p>
         </div>
 
@@ -289,10 +305,9 @@
               <path
                 d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L11,7.5L12.42,8.92L9.33,12L12.42,15.08L11,16.5Z" />
             </svg>
-            <strong>Kotlin</strong>
-            <p>Written entirely
-              in Kotlin, leveraging inline functions and zero-allocation techniques to keep the GC completely idle
-              during gameplay.</p>
+            <strong>Kotlin & Strategy Pattern</strong>
+            <p>Written cleanly using the Strategy Pattern to decouple Game Modes, leveraging inline functions to keep
+              performance strict.</p>
           </div>
 
           <div class="skill-card">
@@ -301,7 +316,7 @@
             </svg>
             <strong>Android Canvas API</strong>
             <p>No game engines
-              used. Everything from player movement to glowing UI text is drawn directly on the Android Canvas using
+              used. Everything from the Parallax grid to glowing UI text is drawn directly on the Canvas using
               optimized Paint objects.</p>
           </div>
 
@@ -311,11 +326,9 @@
               <line x1="3" y1="9" x2="21" y2="9"></line>
               <line x1="9" y1="21" x2="9" y2="9"></line>
             </svg>
-            <strong>Custom Views</strong>
-            <p>Game logic is
-              heavily tied to standard Android View lifecycle methods, overriding <code>onDraw()</code> and
-              <code>onTouchEvent()</code>.
-            </p>
+            <strong>Persistent Memory Hub</strong>
+            <p>A deeply integrated <code>SaveManager</code> handles async disk I/O to store unlocked endings, difficulty
+              settings, and persistent UI corruption.</p>
           </div>
 
           <div class="skill-card">
@@ -325,9 +338,8 @@
               <line x1="9" y1="9" x2="15" y2="15"></line>
             </svg>
             <strong>Zero Dependencies</strong>
-            <p>Built without
-              importing external libraries for physics, rendering, or UI. Pure Android native development practice
-              keeping size under 50KB.</p>
+            <p>Built targeting SDK 36 without
+              importing external libraries for physics, rendering, or UI. Pure Android native development practice.</p>
           </div>
 
         </div>

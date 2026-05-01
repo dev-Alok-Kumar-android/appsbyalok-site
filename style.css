@@ -238,7 +238,8 @@ nav {
     padding: 40px;
 }
 
-#hero-canvas, #fluid-canvas {
+#hero-canvas,
+#fluid-canvas {
     position: absolute;
     top: 0;
     left: 0;
@@ -722,8 +723,13 @@ footer {
 }
 
 @keyframes pulseGlow {
-    0% { box-shadow: 0 0 10px color-mix(in srgb, var(--text-accent) 40%, transparent); }
-    100% { box-shadow: 0 0 25px color-mix(in srgb, var(--text-accent) 80%, transparent); }
+    0% {
+        box-shadow: 0 0 10px color-mix(in srgb, var(--text-accent) 40%, transparent);
+    }
+
+    100% {
+        box-shadow: 0 0 25px color-mix(in srgb, var(--text-accent) 80%, transparent);
+    }
 }
 
 .feature-icon-wrapper {
@@ -753,6 +759,15 @@ footer {
     scrollbar-width: thin;
     scrollbar-color: var(--text-accent) var(--bg-card);
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    justify-content: center;
+}
+
+.screenshot-gallery img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
+    border-color: #0ea5e9;
+    transition: all 0.3s ease;
 }
 
 .screenshot-gallery img {
@@ -773,20 +788,24 @@ footer {
     gap: 24px !important;
     margin-top: 30px;
 }
+
 .tech-grid .skill-card {
     padding: 20px;
     align-items: flex-start;
     text-align: left;
     height: 100%;
 }
+
 .tech-grid .skill-icon {
     margin-bottom: 15px;
 }
+
 .tech-grid .skill-card strong {
     font-size: 1.1rem;
     margin-bottom: 8px;
     display: block;
 }
+
 .tech-grid .skill-card p {
     font-size: 0.85rem;
     color: var(--text-secondary);
@@ -807,6 +826,7 @@ footer {
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
 }
+
 .form-input {
     padding: 14px;
     border-radius: 8px;
@@ -816,11 +836,13 @@ footer {
     font-size: 1rem;
     font-family: inherit;
 }
+
 .form-input:focus {
     outline: none;
     border-color: var(--text-accent);
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--text-accent) 20%, transparent);
 }
+
 .contact-alternatives {
     margin-top: 30px;
     display: flex;
@@ -828,6 +850,7 @@ footer {
     gap: 16px;
     flex-wrap: wrap;
 }
+
 .warning-box {
     background: rgba(255, 193, 7, 0.1);
     border-left: 4px solid #ffc107;
@@ -836,13 +859,63 @@ footer {
     margin-bottom: 24px;
     color: var(--text-primary);
 }
-.warning-box strong { color: #e6a800; }
-.step-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; max-width: 700px; margin-left: auto; margin-right: auto; }
-.step-item { display: flex; align-items: flex-start; gap: 16px; background: var(--bg-card); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
-.step-number { background: var(--text-accent); color: #000; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; flex-shrink: 0; }
-.step-content h4 { margin: 0 0 8px 0; color: var(--text-primary); font-size: 1.2rem; }
-.step-content p { margin: 0 0 12px 0; color: var(--text-secondary); line-height: 1.5; }
-.step-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.warning-box strong {
+    color: #e6a800;
+}
+
+.step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.step-number {
+    background: var(--text-accent);
+    color: #000;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+}
+
+.step-content p {
+    margin: 0 0 12px 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.step-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
 
 /* =========================================
    12. MEDIA QUERIES
@@ -937,6 +1010,13 @@ footer {
 }
 
 @keyframes blink {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
+
+    from,
+    to {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
