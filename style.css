@@ -751,23 +751,29 @@ footer {
     fill: currentColor;
 }
 
+/* =========================================
+   REFINED 3D SCREENSHOT GALLERY
+   ========================================= */
 .screenshot-gallery {
     display: flex;
-    gap: 20px;
+    gap: 15px; 
     overflow-x: auto;
-    padding: 20px 0 30px 0;
+    padding: 80px 20px; /* Top/Bottom padding for 3D depth */
     scrollbar-width: thin;
     scrollbar-color: var(--text-accent) var(--bg-card);
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    justify-content: center;
+    perspective: 1200px; 
+    transform-style: preserve-3d;
+    align-items: center;
 }
 
-.screenshot-gallery img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
-    border-color: #0ea5e9;
-    transition: all 0.3s ease;
+/* Edge Gap Fix: Using flex instead of margin auto */
+.screenshot-gallery::before,
+.screenshot-gallery::after {
+    content: '';
+    flex: 1;
+    min-width: 20px;
 }
 
 .screenshot-gallery img {
@@ -780,6 +786,49 @@ footer {
     flex-shrink: 0;
     object-fit: cover;
     background: var(--bg-card);
+    /* Smoother Transition with cubic-bezier */
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+    cursor: pointer;
+    position: relative;
+}
+
+/* Overall Gallery Hover State */
+.screenshot-gallery:hover img {
+    filter: brightness(0.5);
+    transform: scale(0.9);
+}
+
+/* Targeted Image Hover */
+.screenshot-gallery img:hover {
+    filter: brightness(1) !important;
+    /* Balanced Perspective */
+    transform: translateZ(120px) scale(1.1) !important;
+    z-index: 100;
+    margin: 0 20px; /* Reduced margin to fix double gap */
+    border-color: var(--text-accent);
+    box-shadow: 0 20px 40px rgba(14, 165, 233, 0.4);
+}
+
+/* Right Side Neighbors */
+.screenshot-gallery img:hover + img {
+    filter: brightness(0.4) !important;
+    transform: rotateY(35deg) scale(0.95) translateZ(50px) !important;
+}
+
+.screenshot-gallery img:hover + img + img {
+    filter: brightness(0.2) !important;
+    transform: rotateY(20deg) scale(0.9) !important;
+}
+
+/* Left Side Neighbors using :has() */
+.screenshot-gallery img:has(+ img:hover) {
+    filter: brightness(0.4) !important;
+    transform: rotateY(-35deg) scale(0.95) translateZ(50px) !important;
+}
+
+.screenshot-gallery img:has(+ img + img:hover) {
+    filter: brightness(0.2) !important;
+    transform: rotateY(-20deg) scale(0.9) !important;
 }
 
 /* Tech Grid */
