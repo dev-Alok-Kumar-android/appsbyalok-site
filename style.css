@@ -582,6 +582,14 @@ section {
     font-weight: 500;
 }
 
+.tag:hover {
+    border-color: var(--text-accent);
+    color: var(--text-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+    background-color: var(--bg-card);
+}
+
 .app-desc,
 .project-text {
     color: var(--text-secondary);
