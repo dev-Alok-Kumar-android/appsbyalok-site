@@ -493,6 +493,32 @@ section {
     fill: var(--text-accent);
 }
 
+.skills-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+#skills .skill-card {
+    align-items: flex-start;
+    text-align: left;
+    padding: 32px;
+}
+
+#skills .skill-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#skills .project-tags {
+    gap: 10px;
+    margin-bottom: 0;
+}
+
 /* =========================================
    9. APPS & PROJECTS (Restored for older pages)
    ========================================= */
@@ -588,6 +614,12 @@ section {
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
     background-color: var(--bg-card);
+}
+
+#skills .tag {
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    font-weight: 600;
 }
 
 .app-desc,
