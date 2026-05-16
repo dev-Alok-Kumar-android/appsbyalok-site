@@ -1,563 +1,571 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Echo Hunter Android Game | AppsByAlok</title>
-  <meta name="description"
-    content="Echo Hunter is an ultra-low size, high-performance, lore-driven 2D arcade survival game built entirely from scratch using Android's native Canvas API.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Echo Hunter Android Game | AppsByAlok">
-  <meta property="og:description"
-    content="A completely custom-built 2D survival arcade game without any external game engine. Ultra-lite size, 120fps performance.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://appsbyalok.netlify.app/projects/echohunter.html">
+    <meta charset="UTF-8">
+    <title>Echo Hunter Android Game | AppsByAlok</title>
+    <meta name="description"
+        content="Echo Hunter is an ultra-low size, high-performance, lore-driven 2D tactical stealth game built entirely from scratch using Android's native Canvas API.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Echo Hunter Android Game | AppsByAlok">
+    <meta property="og:description"
+        content="A completely custom-built 2D tactical survival game without any external game engine. ~150KB size, Zero-GC loop, Smart AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://appsbyalok.netlify.app/projects/echohunter.html">
 
-  <!-- Global CSS File -->
-  <link rel="stylesheet" href="../style.css">
+    <!-- Global CSS File -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Project Specific CSS File -->
+    <link rel="stylesheet" href="style.css">
 
-  <!-- Page Specific Styles for Closed Beta, Screenshots & Tech Grid -->
-  <style>
-    /* =========================================
-       MINIMAL TECH-GRID BACKGROUND (CSS ONLY)
-       ========================================= */
-    .tech-grid-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      background-size: 40px 40px;
-      background-image:
-        linear-gradient(to right, rgba(14, 165, 233, 0.1) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(14, 165, 233, 0.1) 1px, transparent 1px);
-      /* Niche se smooth fade effect */
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-      animation: gridScroll 10s linear infinite;
-    }
-
-    @keyframes gridScroll {
-      0% {
-        background-position: 0 0;
-      }
-
-      100% {
-        background-position: 0 40px;
-      }
-    }
-
-    /* Overriding primary theme color for this specific page */
-    :root {
-      --text-accent: #0ea5e9;
-    }
-  </style>
+    <style>
+        /* Overriding primary theme color for this specific page */
+        :root {
+            --text-accent: #0ea5e9;
+            --grid-bg-color: rgba(14, 165, 233, 0.1);
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- ===== NAVBAR ===== -->
-  <header>
-    <div class="container">
-      <nav>
-        <a href="../index.html" class="logo">
-          <span class="logo-icon"></span>
-          Apps<span>By</span>Alok
-        </a>
-
-        <ul class="nav-links">
-          <li><a href="/" class="nav-link">Home</a></li>
-          <li><a href="/projects/" class="nav-link">Projects</a></li>
-          <li><a href="/#about" class="nav-link">About</a></li>
-          <li><a href="/#contact" class="nav-link">Contact</a></li>
-          <li><a href="/donate.html" class="nav-link">Support</a></li>
-        </ul>
-
-        <div class="nav-controls">
-          <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme" aria-pressed="false">
-            <svg class="sun-icon" style="width:20px; height:20px; fill:currentColor; display:none;" viewBox="0 0 24 24">
-              <path
-                d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z" />
-            </svg>
-            <svg class="moon-icon" style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24">
-              <path
-                d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z" />
-            </svg>
-          </button>
-
-          <button class="mobile-menu-btn" aria-label="Menu">
-            <svg style="width:28px; height:28px; fill:currentColor;" viewBox="0 0 24 24">
-              <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
-            </svg>
-          </button>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-
-    <!-- ===== HERO SECTION ===== -->
-    <section id="hero">
-      <div class="tech-grid-bg"></div>
-
-      <div class="container hero-content">
-        <div class="badge"
-          style="background-color: #0ea5e9; color: #fff; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 15px; font-weight: bold; font-size: 0.85rem; box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);">
-          Ultra-lite Size &bull; 120FPS</div>
-
-        <h1 style="color: var(--text-primary);">Echo Hunter</h1>
-
-        <p class="hero-text">
-          A fast-paced, lore-driven 2D cyberpunk survival game. Play as Protocol "Probe-7" and purge a corrupted
-          mainframe. Built entirely from scratch natively in Kotlin without any external game engines.
-        </p>
-
-        <div class="btn-group">
-          <a href="#joinbeta" class="btn btn-primary btn-glow" style="background-color: #0ea5e9; color: #fff;">
-            Join Closed Beta
-          </a>
-          <a href="https://github.com/dev-Alok-Kumar-android/EchoHunter" target="_blank" class="btn btn-outline">
-            View on GitHub
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== FEATURES SECTION ===== -->
-    <section id="features">
-      <div class="container">
-
-        <div class="section-header">
-          <h2 class="section-title">Core Systems & Gameplay</h2>
-          <p class="section-desc">
-            An engineering challenge: building a buttery-smooth cyberpunk experience with an ultra-small footprint using
-            purely native APIs.
-          </p>
-        </div>
-
-        <div class="grid-projects">
-
-          <!-- Feature Card 1: 120FPS Render Engine -->
-          <div class="project-card"
-            style="padding: 24px; border-color: #0ea5e9; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.15);">
-            <div class="feature-icon-wrapper" style="background: rgba(14, 165, 233, 0.2);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-            </div>
-            <h3 class="project-title" style="margin-top: 10px; color: #0ea5e9;">120FPS Custom Engine</h3>
-            <div class="project-tags">
-              <span class="tag" style="border-color: #0ea5e9; color: #0ea5e9; font-weight: bold;">Zero GC</span>
-              <span class="tag">Canvas API</span>
-            </div>
-            <p class="project-text">
-              Engineered for a locked <strong>120FPS</strong> on high-end devices. Uses pre-allocated primitive arrays
-              (Object Pooling) to ensure absolutely zero garbage collection stutters during gameplay.
-            </p>
-          </div>
-
-          <!-- Feature Card 2: Cyberpunk Visuals -->
-          <div class="project-card" style="padding: 24px;">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-            </div>
-            <h3 class="project-title" style="margin-top: 10px;">Cyberpunk Visuals</h3>
-            <div class="project-tags">
-              <span class="tag">CRT Scanlines</span>
-              <span class="tag">RGB Glitch</span>
-            </div>
-            <p class="project-text">
-              Features a 3D Parallax background grid, Overclock lightning trails, and Chromatic Aberration (RGB splits)
-              on damage, delivering an authentic retro-hacker aesthetic without loading a single image sprite.
-            </p>
-          </div>
-
-          <!-- Feature Card 3: Combat Mechanics -->
-          <div class="project-card" style="padding: 24px;">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-            </div>
-            <h3 class="project-title" style="margin-top: 10px;">Hit-Stop Combat</h3>
-            <div class="project-tags">
-              <span class="tag">Slow-Mo</span>
-              <span class="tag">Heavy Impact</span>
-            </div>
-            <p class="project-text">
-              Ram enemies using the 'Overclock' mode. The custom collision system features God-of-War style
-              <strong>Hit-Stop</strong> heavy impacts, shockwaves, and intense Slow-Motion Kill Cams for boss takedowns.
-            </p>
-          </div>
-
-          <!-- Feature Card 4: Dynamic Narrative -->
-          <div class="project-card" style="padding: 24px;">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-              </svg>
-            </div>
-            <h3 class="project-title" style="margin-top: 10px;">Meta-Narrative System</h3>
-            <div class="project-tags">
-              <span class="tag">VHS Tearing</span>
-              <span class="tag">Corrupted UI</span>
-            </div>
-            <p class="project-text">
-              A living game state. If you die during a glitch, the main menu permanently corrupts into a sliced "SYSTEM
-              CORRUPTED" VHS-tearing effect across sessions. Features an epic "Interactive Core Merging" ending.
-            </p>
-          </div>
-
-          <!-- Feature Card 5: Three Distinct Modes -->
-          <div class="project-card" style="padding: 24px;">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                <rect x="9" y="9" width="6" height="6"></rect>
-                <line x1="9" y1="1" x2="9" y2="4"></line>
-                <line x1="15" y1="1" x2="15" y2="4"></line>
-              </svg>
-            </div>
-            <h3 class="project-title" style="margin-top: 10px;">Three Distinct Modes</h3>
-            <div class="project-tags">
-              <span class="tag">Story</span>
-              <span class="tag">Endless</span>
-              <span class="tag">Escape</span>
-            </div>
-            <p class="project-text">
-              Built via the Strategy Pattern, play 'Endless Waves', 'Story: Sector Cleanup' (featuring mutating bosses
-              that fade in Hard Mode), and 'Firewall Breach' (a high-speed treadmill escape).
-            </p>
-          </div>
-
-          <!-- Feature Card 6: Native Audio -->
-          <div class="project-card" style="padding: 24px;">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18V5l12-2v13"></path>
-                <circle cx="6" cy="18" r="3"></circle>
-                <circle cx="18" cy="16" r="3"></circle>
-              </svg>
-            </div>
-            <h3 class="project-title" style="margin-top: 10px;">Micro-Footprint Audio</h3>
-            <div class="project-tags">
-              <span class="tag">ToneGenerator</span>
-              <span class="tag">Haptics</span>
-            </div>
-            <p class="project-text">
-              Heavy MP3 files were discarded. The game uses Android's hardware <code>ToneGenerator</code> to synthesize
-              8-bit sounds on the fly, paired with native haptic feedback for a tactile combat experience.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ===== APP SCREENSHOTS ===== -->
-    <section id="screenshots"
-      style="background-color: var(--bg-card-hover); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">In-Game Previews</h2>
-          <p class="section-desc">A look inside the corrupted mainframe of Echo Hunter.</p>
-        </div>
-
-        <div class="screenshot-gallery">
-          <img src="../assets/projects/echohunter/simple-menu.png"
-            onmouseover="this.src='../assets/projects/echohunter/corrupted-menu.gif'"
-            onmouseout="this.src='../assets/projects/echohunter/simple-menu.png'"
-            alt="Echo Hunter Main Menu Interactive">
-
-          <img src="../assets/projects/echohunter/gameplay-1.png" alt="Echo Hunter Gameplay - Overclock">
-
-          <img src="../assets/projects/echohunter/gameplay-2.png" alt="Echo Hunter Gameplay - Boss Fight">
-
-          <img src="../assets/projects/echohunter/firewall-breach.png" alt="Firewall Breach Mode">
-
-          <img src="../assets/projects/echohunter/core-merging.gif" alt="Core Merging Ending">
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===== TECH SECTION ===== -->
-    <section id="code">
-      <div class="container">
-
-        <div class="section-header">
-          <h2 class="section-title">Core Technologies & Architecture</h2>
-          <p class="section-desc">The native Android stack powering this lightweight application's engine.</p>
-        </div>
-
-        <div class="grid-skills tech-grid">
-
-          <div class="skill-card">
-            <svg class="skill-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L11,7.5L12.42,8.92L9.33,12L12.42,15.08L11,16.5Z" />
-            </svg>
-            <strong>Kotlin & Strategy Pattern</strong>
-            <p>Written cleanly using the Strategy Pattern to decouple Game Modes, leveraging inline functions to keep
-              performance strict.</p>
-          </div>
-
-          <div class="skill-card">
-            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <strong>Android Canvas API</strong>
-            <p>No game engines
-              used. Everything from the Parallax grid to glowing UI text is drawn directly on the Canvas using
-              optimized Paint objects.</p>
-          </div>
-
-          <div class="skill-card">
-            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="3" y1="9" x2="21" y2="9"></line>
-              <line x1="9" y1="21" x2="9" y2="9"></line>
-            </svg>
-            <strong>Persistent Memory Hub</strong>
-            <p>A deeply integrated <code>SaveManager</code> handles async disk I/O to store unlocked endings, difficulty
-              settings, and persistent UI corruption.</p>
-          </div>
-
-          <div class="skill-card">
-            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="15" y1="9" x2="9" y2="15"></line>
-              <line x1="9" y1="9" x2="15" y2="15"></line>
-            </svg>
-            <strong>Zero Dependencies</strong>
-            <p>Built targeting SDK 36 without
-              importing external libraries for physics, rendering, or UI. Pure Android native development practice.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ===== JOIN BETA / CLOSED TESTING ===== -->
-    <section id="joinbeta">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Join Closed Beta Test 🚀</h2>
-          <p class="section-desc">
-            We need 20 dedicated testers to help us launch on the Play Store! Follow the steps below to opt-in.
-          </p>
-        </div>
-
-        <!-- 14-Day Warning Box -->
-        <div class="warning-box">
-          <strong>Important Requirement:</strong> To support our release, please keep the app installed and open it
-          occasionally for at least <strong>14 consecutive days</strong>.
-        </div>
-
-        <!-- Step by Step Guide -->
-        <div class="step-list">
-
-          <!-- Step 1 -->
-          <div class="step-item">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h4>Join our Testers Community</h4>
-              <p>Join the official Google Group using the same email address connected to your Google Play Store app.
-              </p>
-              <div class="step-actions">
-                <a href="https://groups.google.com/g/echo-hunter-beta-testers" target="_blank" class="btn btn-outline"
-                  rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.9rem;">
-                  Join Google Group
+    <!-- ===== NAVBAR ===== -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon"></span>
+                    Apps<span>By</span>Alok
                 </a>
-              </div>
-            </div>
-          </div>
 
-          <!-- Step 2 -->
-          <div class="step-item">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h4>Download the App</h4>
-              <p>Once you are in the group, use the links below to install the beta version on your Android device.</p>
-              <div class="step-actions">
-                <a href="https://play.google.com/store/apps/details?id=com.appsbyalok.echohunter" target="_blank"
-                  rel="noopener noreferrer" class="btn btn-primary"
-                  style="background-color: #0ea5e9; color: #fff; border:none; padding: 8px 16px; font-size: 0.9rem;">
-                  Get it on Android
-                </a>
-                <a href="https://play.google.com/apps/testing/com.appsbyalok.echohunter" target="_blank"
-                  rel="noopener noreferrer" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.9rem;">
-                  Opt-in on Web
-                </a>
-              </div>
-            </div>
-          </div>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/#about" class="nav-link">About</a></li>
+                    <li><a href="/#contact" class="nav-link">Contact</a></li>
+                    <li><a href="/donate.html" class="nav-link">Support</a></li>
+                </ul>
 
-          <!-- Step 3 -->
-          <div class="step-item">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h4>Share Your Feedback</h4>
-              <p>Test the game modes for 14 days. Found a bug or have an idea? Use the form below!</p>
-            </div>
-          </div>
+                <div class="nav-controls">
+                    <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme" aria-pressed="false">
+                        <svg class="sun-icon" style="width:20px; height:20px; fill:currentColor; display:none;" viewBox="0 0 24 24">
+                            <path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z" />
+                        </svg>
+                        <svg class="moon-icon" style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24">
+                            <path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z" />
+                        </svg>
+                    </button>
 
+                    <button class="mobile-menu-btn" aria-label="Menu">
+                        <svg style="width:28px; height:28px; fill:currentColor;" viewBox="0 0 24 24">
+                            <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
         </div>
+    </header>
 
-        <!-- Feedback Form -->
-        <div id="feedback" style="padding-top: 20px;">
-          <form id="beta-form" class="beta-form">
-            <h3 style="margin-top: 0; color: var(--text-primary); text-align: center; margin-bottom: 20px;">Beta
-              Feedback
-              Form 🐛</h3>
+    <main>
 
-            <input type="text" id="fb-name" class="form-input" placeholder="Your Name (Optional)">
-            <input type="text" id="fb-device" class="form-input"
-              placeholder="Device & Android Version (e.g., Pixel 7, A14)" required>
+        <!-- ===== HERO SECTION ===== -->
+        <section id="hero">
+            <div class="tech-grid-bg"></div>
 
-            <select id="fb-type" class="form-input" style="appearance: auto;" required>
-              <option value="" disabled selected>Select Feedback Type</option>
-              <option value="Bug Report">Bug Report</option>
-              <option value="Feature Request">Feature Request</option>
-              <option value="General Feedback">General Feedback</option>
-            </select>
+            <div class="container hero-content">
+                <div class="project-badge" style="background: rgba(14, 165, 233, 0.15); color: #0ea5e9; border-color: rgba(14, 165, 233, 0.3);">
+                    ⚡ ~150KB APK • Zero-GC Loop • Smart AI
+                </div>
 
-            <textarea id="fb-message" class="form-input" rows="4"
-              placeholder="Please describe the issue or your suggestion in detail..." required></textarea>
+                <h1 style="color: var(--text-primary);">Echo Hunter</h1>
 
-            <button type="submit" class="btn btn-primary"
-              style="background-color: #0ea5e9; color:#fff; width: 100%; margin-top: 10px;">
-              Send Feedback
-            </button>
+                <p class="hero-text">
+                    A fast-paced, lore-driven 2D tactical cyber-heist game. Play as Autonomous Intrusion Worm "PROBE-7" to infiltrate 
+                    AEGIS GLOBAL. Built entirely from scratch natively in Kotlin without any external game engines.
+                </p>
 
-            <!-- Inline Message Box -->
-            <div id="form-message"
-              style="display: none; margin-top: 12px; padding: 12px; border-radius: 8px; background: rgba(14, 165, 233, 0.1); color: var(--text-accent); border: 1px solid rgba(14, 165, 233, 0.3); text-align: center; font-size: 0.95rem; font-weight: 500;">
+                <div class="btn-group">
+                    <a href="#joinbeta" class="btn btn-primary btn-glow" style="background-color: #0ea5e9; color: #fff;">
+                        Join Closed Beta
+                    </a>
+                    <a href="https://github.com/dev-Alok-Kumar-android/EchoHunter" target="_blank" class="btn btn-outline">
+                        View on GitHub
+                    </a>
+                </div>
             </div>
-          </form>
+        </section>
 
-          <div style="text-align: center; margin-top: 20px; color: var(--text-secondary);">
-            <small>Alternatively, you can share feedback directly via:</small>
-          </div>
+        <!-- ===== STATS SECTION ===== -->
+        <section id="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 style="color: #0ea5e9;">150KB</h3>
+                        <p>Signed APK Size</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: #0ea5e9;">60+ FPS</h3>
+                        <p>Zero-GC Performance</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: #0ea5e9;">Canvas</h3>
+                        <p>Custom Rendered Engine</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: #0ea5e9;">Kotlin</h3>
+                        <p>Native Architecture</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-          <!-- Alternative Links -->
-          <div class="contact-alternatives">
-            <a href="https://t.me/dev_alokkumar_droid" target="_blank" id="telegram-btn" class="btn btn-outline"
-              rel="me noopener noreferrer" style="border-color: #0088cc; color: #0088cc;">
-              <svg style="width:20px; margin-right:8px; fill:currentColor;" viewBox="0 0 24 24">
-                <path
-                  d="M9.78,18.65L10.06,14.42L17.74,7.5C18.08,7.19 17.67,7.04 17.22,7.31L7.74,13.28L3.64,12C2.76,11.74 2.75,11.14 3.84,10.7L19.81,4.54C20.54,4.21 21.24,4.72 20.96,5.84L18.24,18.65C18.05,19.56 17.5,19.78 16.74,19.36L12.6,16.3L10.61,18.23C10.38,18.46 10.19,18.65 9.78,18.65Z" />
-              </svg>
-              Telegram
-            </a>
+        <!-- ===== APP SCREENSHOTS ===== -->
+        <section id="screenshots"
+            style="background-color: var(--bg-card-hover); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">In-Game Previews</h2>
+                    <p class="section-desc">A look inside the upgraded Nano-OS and tactical mainframe of Echo Hunter.</p>
+                </div>
 
-            <a href="mailto:dev.alokkumar.droid@gmail.com" id="email-btn" rel="me" class="btn btn-outline">
-              <svg style="width:20px; margin-right:8px; fill:currentColor;" viewBox="0 0 24 24">
-                <path
-                  d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
-              </svg>
-              Email
-            </a>
-          </div>
+                <div class="screenshot-gallery">
+                    <img src="../assets/projects/echohunter/menu.jpg" 
+                        onmouseover="this.src='../assets/projects/echohunter/menu-to-game.gif'"
+                        onmouseout="this.src='../assets/projects/echohunter/menu.jpg'"
+                        alt="Echo Hunter Main Menu featuring a sleek terminal interface">
+
+                    <img src="../assets/projects/echohunter/nano-os.jpg" 
+                        alt="Echo Hunter Nano-OS Dashboard managing Arsenal and Systems">
+
+                    <img src="../assets/projects/echohunter/archives.jpg" 
+                        alt="Sandbox Archives screen showing past nodes and Auto-Next toggle">
+
+                    <img src="../assets/projects/echohunter/maze.jpg" 
+                        alt="In-game tactical maze navigation showing player and enemies">
+
+                    <img src="../assets/projects/echohunter/override-accepted.jpg" 
+                        alt="Overclock mode triggered with an 'Override Accepted' on-screen alert">
+
+                    <img src="../assets/projects/echohunter/core-merging.gif" 
+                        alt="Animated VHS glitch effect showing 'System Corrupted' core merging">
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FEATURES SECTION ===== -->
+        <section id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Core Systems & Gameplay</h2>
+                    <p class="section-desc">
+                        Building a buttery-smooth cyberpunk experience with an ultra-small footprint using purely native APIs.
+                    </p>
+                </div>
+
+                <div class="grid-projects">
+                    <!-- Feature Card 1 -->
+                    <div class="project-card" style="padding: 24px; border-color: #0ea5e9; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.15);">
+                        <div class="feature-icon-wrapper" style="background: rgba(14, 165, 233, 0.2);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                        </div>
+                        <h3 class="project-title" style="margin-top: 10px; color: #0ea5e9;">120FPS Custom Engine</h3>
+                        <div class="project-tags">
+                            <span class="tag" style="border-color: #0ea5e9; color: #0ea5e9; font-weight: bold;">Zero GC</span>
+                            <span class="tag">Canvas API</span>
+                        </div>
+                        <p class="project-text">
+                            Engineered for locked 120FPS on modern devices. Uses pre-allocated primitive arrays (Object Pooling) 
+                            to ensure absolutely zero garbage collection stutters during gameplay.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 2 -->
+                    <div class="project-card" style="padding: 24px;">
+                        <div class="feature-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </div>
+                        <h3 class="project-title" style="margin-top: 10px;">Smart AI & Pathfinding</h3>
+                        <div class="project-tags">
+                            <span class="tag">BFS Heatmaps</span>
+                            <span class="tag">A* Algorithm</span>
+                            <span class="tag">Line of Sight</span>
+                        </div>
+                        <p class="project-text">
+                            Enemies utilize Flow Field Heatmaps for multi-entity maze navigation, while Bosses use A* tracking. 
+                            Features realistic Line-of-Sight (LoS) raycasting for stealth mechanics.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 3 -->
+                    <div class="project-card" style="padding: 24px;">
+                        <div class="feature-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <h3 class="project-title" style="margin-top: 10px;">Nano-OS Dashboard</h3>
+                        <div class="project-tags">
+                            <span class="tag">Arsenal</span>
+                            <span class="tag">Archives</span>
+                            <span class="tag">Responsive UI</span>
+                        </div>
+                        <p class="project-text">
+                            A simulated terminal operating system handling loadouts (Sniper, Shotgun, EMP Mines), 
+                            Sandbox replay history, and firmware upgrades. Dynamically adapts to Portrait/Landscape modes.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 4 -->
+                    <div class="project-card" style="padding: 24px;">
+                        <div class="feature-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="project-title" style="margin-top: 10px;">Player Autopilot</h3>
+                        <div class="project-tags">
+                            <span class="tag">Self-Playing AI</span>
+                            <span class="tag">Anti-Stuck Logic</span>
+                        </div>
+                        <p class="project-text">
+                            An integrated autonomous mode allowing the game to play itself. The internal drone analyzes the 
+                            maze layout, hunts enemies, and navigates toward the core using dynamic logic.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 5 -->
+                    <div class="project-card" style="padding: 24px;">
+                        <div class="feature-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="project-title" style="margin-top: 10px;">Roguelite Narrative</h3>
+                        <div class="project-tags">
+                            <span class="tag">6-Act Campaign</span>
+                            <span class="tag">VHS Glitches</span>
+                        </div>
+                        <p class="project-text">
+                            Progress through a 6-Act tactical heist to shut down AEGIS GLOBAL. If you die during a critical breach, 
+                            the UI permanently corrupts with a VHS-tearing effect across sessions via the SaveManager.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 6 -->
+                    <div class="project-card" style="padding: 24px;">
+                        <div class="feature-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18V5l12-2v13"></path>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <circle cx="18" cy="16" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="project-title" style="margin-top: 10px;">Micro-Footprint Audio</h3>
+                        <div class="project-tags">
+                            <span class="tag">ToneGenerator</span>
+                            <span class="tag">Haptics</span>
+                        </div>
+                        <p class="project-text">
+                            Heavy MP3 files were completely discarded. The game uses Android's hardware <code>ToneGenerator</code> to synthesize 
+                            8-bit sci-fi sounds on the fly, paired with native haptic feedback.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TECHNICAL DIFFICULTIES ===== -->
+        <section id="difficulties"
+            style="background:var(--bg-card-hover);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Difficulties Solved</h2>
+                    <p class="section-desc">Real engineering challenges encountered while building a native game engine from scratch.</p>
+                </div>
+
+                <div class="grid-projects">
+                    <div class="difficulty-card" style="border-left-color: #0ea5e9;">
+                        <h3 style="color: #0ea5e9;">Garbage Collection Stutters</h3>
+                        <p>
+                            <strong>Problem:</strong> Standard object instantiation inside the Android <code>onDraw()</code> loop triggered constant GC pauses, ruining the 60fps experience.
+                            <br><strong>Solution:</strong> Eliminated all object creation in the game loop. Utilized strictly pre-allocated primitive arrays (<code>FloatArray</code>, <code>IntArray</code>) via an Object Pooling pattern.
+                        </p>
+                    </div>
+
+                    <div class="difficulty-card" style="border-left-color: #0ea5e9;">
+                        <h3 style="color: #0ea5e9;">Screen Rotation State Loss</h3>
+                        <p>
+                            <strong>Problem:</strong> Device rotation recalculates surface dimensions, breaking custom physics coordinates and UI layouts.
+                            <br><strong>Solution:</strong> Implemented a dynamic layout math system that rescales hitboxes on the fly, paired with a strict engine pause state to prevent out-of-bounds deaths during rotation.
+                        </p>
+                    </div>
+
+                    <div class="difficulty-card" style="border-left-color: #0ea5e9;">
+                        <h3 style="color: #0ea5e9;">Complex AI in Pure Logic</h3>
+                        <p>
+                            <strong>Problem:</strong> Handling pathfinding for dozens of enemies in procedural mazes without a pre-built navigation mesh.
+                            <br><strong>Solution:</strong> Hand-coded a Breadth-First Search (BFS) Heatmap generator and Line-of-Sight (LoS) Raycasting algorithms that execute entirely on background thread pools to keep UI rendering smooth.
+                        </p>
+                    </div>
+
+                    <div class="difficulty-card" style="border-left-color: #0ea5e9;">
+                        <h3 style="color: #0ea5e9;">Physics & Tile Collision</h3>
+                        <p>
+                            <strong>Problem:</strong> Without Box2D, player movement against procedural maze walls felt sticky or glitchy.
+                            <br><strong>Solution:</strong> Developed a custom Axis-Aligned Bounding Box (AABB) tile-sliding collision system, calculating vector penetration depth to ensure buttery-smooth corner sliding.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ARCHITECTURE ===== -->
+        <section id="architecture">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Architecture Overview</h2>
+                    <p class="section-desc">A highly decoupled, state-driven custom game engine pipeline.</p>
+                </div>
+
+                <div class="architecture-box" style="border-color: rgba(14, 165, 233, 0.3);">
+                    Input Dispatcher (TouchController)<br>
+                    ↓<br>
+                    GameEngine (Delta-Time Simulation)<br>
+                    ↓<br>
+                    State Container (GameState Singleton)<br>
+                    ↓<br>
+                    Modular Systems (Collision, Arsenal, AI, Effects)<br>
+                    ↓<br>
+                    Rendering Pipeline (WorldRenderer, HUDRenderer, Nano-OS)<br>
+                    ↓<br>
+                    Android Hardware Canvas
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PHILOSOPHY ===== -->
+        <section id="philosophy">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Development Philosophy</h2>
+                </div>
+
+                <div class="philosophy-box" style="border-color: rgba(14, 165, 233, 0.3);">
+                    <p>
+                        <strong>Echo Hunter</strong> was born out of a desire to understand what happens "under the hood" of massive game engines like Unity or Godot. 
+                    </p>
+                    <p>
+                        Instead of relying on drag-and-drop interfaces and heavy binary bloat, the goal was to manually code the physics math, 
+                        the render loops, and the AI pathfinding algorithms using pure, low-level Android APIs. 
+                    </p>
+                    <p>
+                        The result is an experiment in extreme optimization. By strictly controlling memory allocation and leveraging native hardware drawing 
+                        via the Canvas API, the project achieves a fully-featured, tactical gaming experience in under <strong>150 Kilobytes</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== JOIN BETA / CLOSED TESTING ===== -->
+        <section id="joinbeta" style="background-color: var(--bg-card-hover); border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Join Closed Beta Test 🚀</h2>
+                    <p class="section-desc">
+                        We need 20 dedicated testers to help us launch on the Play Store! Follow the steps below to opt-in.
+                    </p>
+                </div>
+
+                <!-- 14-Day Warning Box -->
+                <div class="warning-box">
+                    <strong>Important Requirement:</strong> To support our release, please keep the app installed and open it occasionally for at least <strong>14 consecutive days</strong>.
+                </div>
+
+                <!-- Step by Step Guide -->
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-number" style="background: #0ea5e9; color: #fff;">1</div>
+                        <div class="step-content">
+                            <h4>Join our Testers Community</h4>
+                            <p>Join the official Google Group using the same email address connected to your Google Play Store app.</p>
+                            <div class="step-actions">
+                                <a href="https://groups.google.com/g/echo-hunter-beta-testers" target="_blank" class="btn btn-outline" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.9rem;">
+                                    Join Google Group
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number" style="background: #0ea5e9; color: #fff;">2</div>
+                        <div class="step-content">
+                            <h4>Download the App</h4>
+                            <p>Once you are in the group, use the links below to install the beta version on your Android device.</p>
+                            <div class="step-actions">
+                                <a href="https://play.google.com/store/apps/details?id=com.appsbyalok.echohunter" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: #0ea5e9; color: #fff; border:none; padding: 8px 16px; font-size: 0.9rem;">
+                                    Get it on Android
+                                </a>
+                                <a href="https://play.google.com/apps/testing/com.appsbyalok.echohunter" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.9rem;">
+                                    Opt-in on Web
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number" style="background: #0ea5e9; color: #fff;">3</div>
+                        <div class="step-content">
+                            <h4>Share Your Feedback</h4>
+                            <p>Test the game modes for 14 days. Found a bug or have an idea? Use the form below!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback Form -->
+                <div id="feedback" style="padding-top: 20px;">
+                    <form id="beta-form" class="beta-form">
+                        <h3 style="margin-top: 0; color: var(--text-primary); text-align: center; margin-bottom: 20px;">Beta Feedback Form 🐛</h3>
+
+                        <input type="text" id="fb-name" class="form-input" placeholder="Your Name (Optional)">
+                        <input type="text" id="fb-device" class="form-input" placeholder="Device & Android Version (e.g., Pixel 7, A14)" required>
+
+                        <select id="fb-type" class="form-input" style="appearance: auto;" required>
+                            <option value="" disabled selected>Select Feedback Type</option>
+                            <option value="Bug Report">Bug Report</option>
+                            <option value="Feature Request">Feature Request</option>
+                            <option value="General Feedback">General Feedback</option>
+                        </select>
+
+                        <textarea id="fb-message" class="form-input" rows="4" placeholder="Please describe the issue or your suggestion in detail..." required></textarea>
+
+                        <button type="submit" class="btn btn-primary" style="background-color: #0ea5e9; color:#fff; width: 100%; margin-top: 10px;">
+                            Send Feedback
+                        </button>
+
+                        <div id="form-message" style="display: none; margin-top: 12px; padding: 12px; border-radius: 8px; background: rgba(14, 165, 233, 0.1); color: var(--text-accent); border: 1px solid rgba(14, 165, 233, 0.3); text-align: center; font-size: 0.95rem; font-weight: 500;">
+                        </div>
+                    </form>
+
+                    <div style="text-align: center; margin-top: 20px; color: var(--text-secondary);">
+                        <small>Alternatively, you can share feedback directly via:</small>
+                    </div>
+
+                    <!-- Alternative Links -->
+                    <div class="contact-alternatives">
+                        <a href="https://t.me/dev_alokkumar_droid" target="_blank" id="telegram-btn" class="btn btn-outline" rel="me noopener noreferrer" style="border-color: #0088cc; color: #0088cc;">
+                            <svg style="width:20px; margin-right:8px; fill:currentColor;" viewBox="0 0 24 24">
+                                <path d="M9.78,18.65L10.06,14.42L17.74,7.5C18.08,7.19 17.67,7.04 17.22,7.31L7.74,13.28L3.64,12C2.76,11.74 2.75,11.14 3.84,10.7L19.81,4.54C20.54,4.21 21.24,4.72 20.96,5.84L18.24,18.65C18.05,19.56 17.5,19.78 16.74,19.36L12.6,16.3L10.61,18.23C10.38,18.46 10.19,18.65 9.78,18.65Z" />
+                            </svg>
+                            Telegram
+                        </a>
+
+                        <a href="mailto:dev.alokkumar.droid@gmail.com" id="email-btn" rel="me" class="btn btn-outline">
+                            <svg style="width:20px; margin-right:8px; fill:currentColor;" viewBox="0 0 24 24">
+                                <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+                            </svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Back to Top</a>
+                <a href="/">Home</a>
+                <a href="/projects/">All Projects</a>
+                <a href="/privacy/echohunter.html">Privacy Policy</a>
+            </div>
+            <p>&copy; 2026 Alok Kumar. Built with pure HTML, CSS & JS.</p>
         </div>
+    </footer>
 
-      </div>
-    </section>
+    <!-- ===== MAIN SCRIPTS ===== -->
+    <script src="../script.js"></script>
+    <script src="../animations.js"></script>
 
-  </main>
+    <!-- ===== FORM HANDLING SCRIPT SPECIFIC TO THIS PAGE ===== -->
+    <script>
+        const formMessage = document.getElementById('form-message');
+        const fbName = document.getElementById('fb-name');
+        const fbDevice = document.getElementById('fb-device');
+        const fbType = document.getElementById('fb-type');
+        const fbMessageText = document.getElementById('fb-message');
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="#">Back to Top</a>
-        <a href="/">Home</a>
-        <a href="/projects/">All Projects</a>
-        <a href="/privacy/echohunter.html">Privacy Policy</a>
-      </div>
-      <p>&copy; 2026 Alok Kumar. Built with pure HTML, CSS & JS.</p>
-    </div>
-  </footer>
+        function generateMessage() {
+            const name = fbName.value.trim() || "Beta Tester";
+            const device = fbDevice.value.trim() || "Unknown Device";
+            const type = fbType.value || "Feedback";
+            const msg = fbMessageText.value.trim();
 
-  <!-- ===== MAIN SCRIPTS ===== -->
-  <script src="../script.js"></script>
+            return `Hello Alok,\n\nI am testing the Echo Hunter Beta and wanted to share some feedback.\n\n[Details]\nName: ${name}\nDevice: ${device}\nType: ${type}\n\n[Message]\n${msg}\n\nThank you!`;
+        }
 
-  <!-- ===== FORM HANDLING SCRIPT SPECIFIC TO THIS PAGE ===== -->
-  <script>
-    const formMessage = document.getElementById('form-message');
-    const fbName = document.getElementById('fb-name');
-    const fbDevice = document.getElementById('fb-device');
-    const fbType = document.getElementById('fb-type');
-    const fbMessageText = document.getElementById('fb-message');
+        function showInlineMessage(msg) {
+            formMessage.textContent = msg;
+            formMessage.style.display = 'block';
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
 
-    function generateMessage() {
-      const name = fbName.value.trim() || "Beta Tester";
-      const device = fbDevice.value.trim() || "Unknown Device";
-      const type = fbType.value || "Feedback";
-      const msg = fbMessageText.value.trim();
+        document.getElementById('beta-form').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-      return `Hello Alok,\n\nI am testing the Echo Hunter Beta and wanted to share some feedback.\n\n[Details]\nName: ${name}\nDevice: ${device}\nType: ${type}\n\n[Message]\n${msg}\n\nThank you!`;
-    }
+            const type = fbType.value || "Feedback";
+            const subject = encodeURIComponent(`Echo Hunter Beta - ${type}`);
+            const body = encodeURIComponent(generateMessage());
 
-    function showInlineMessage(msg) {
-      formMessage.textContent = msg;
-      formMessage.style.display = 'block';
-      setTimeout(() => {
-        formMessage.style.display = 'none';
-      }, 5000);
-    }
+            window.location.href = `mailto:dev.alokkumar.droid@gmail.com?subject=${subject}&body=${body}`;
 
-    document.getElementById('beta-form').addEventListener('submit', function (e) {
-      e.preventDefault();
+            showInlineMessage("Opening your email client. Please click 'Send' from there!");
+            this.reset();
+        });
 
-      const type = fbType.value || "Feedback";
-      const subject = encodeURIComponent(`Echo Hunter Beta - ${type}`);
-      const body = encodeURIComponent(generateMessage());
+        function isFormComplete() {
+            return fbDevice.value.trim() !== "" && fbMessageText.value.trim() !== "";
+        }
 
-      window.location.href = `mailto:dev.alokkumar.droid@gmail.com?subject=${subject}&body=${body}`;
+        document.getElementById('telegram-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            let text = "Hi Alok, I want to talk about the Echo Hunter Beta.";
+            if (isFormComplete()) {
+                text = encodeURIComponent(generateMessage());
+            }
 
-      showInlineMessage("Opening your email client. Please click 'Send' from there!");
-      this.reset();
-    });
+            window.open(`https://t.me/dev_alokkumar_droid?text=${text}`, '_blank');
+            showInlineMessage("Redirecting to Telegram...");
+        });
 
-    function isFormComplete() {
-      return fbDevice.value.trim() !== "" && fbMessageText.value.trim() !== "";
-    }
-
-    document.getElementById('telegram-btn').addEventListener('click', function (e) {
-      e.preventDefault();
-      let text = "Hi Alok, I want to talk about the Echo Hunter Beta.";
-      if (isFormComplete()) {
-        text = encodeURIComponent(generateMessage());
-      }
-
-      window.open(`https://t.me/dev_alokkumar_droid?text=${text}`, '_blank');
-      showInlineMessage("Redirecting to Telegram...");
-    });
-
-    document.getElementById('email-btn').addEventListener('click', function (e) {
-      e.preventDefault();
-      let subject = encodeURIComponent("Echo Hunter Beta Contact");
-      let body = "";
-      if (isFormComplete()) {
-        const type = fbType.value || "Feedback";
-        subject = encodeURIComponent(`Echo Hunter Beta - ${type}`);
-        body = encodeURIComponent(generateMessage());
-      }
-      window.location.href = `mailto:dev.alokkumar.droid@gmail.com?subject=${subject}&body=${body}`;
-      showInlineMessage("Opening your email client...");
-    });
-  </script>
+        document.getElementById('email-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            let subject = encodeURIComponent("Echo Hunter Beta Contact");
+            let body = "";
+            if (isFormComplete()) {
+                const type = fbType.value || "Feedback";
+                subject = encodeURIComponent(`Echo Hunter Beta - ${type}`);
+                body = encodeURIComponent(generateMessage());
+            }
+            window.location.href = `mailto:dev.alokkumar.droid@gmail.com?subject=${subject}&body=${body}`;
+            showInlineMessage("Opening your email client...");
+        });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,398 @@
+/* =========================================
+   PROJECT-SPECIFIC SHARED STYLES
+   Shared across project detail pages
+   ========================================= */
+
+/* Basic structural classes */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.project-badge {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 6px 14px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Grid & Cards */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+    transition: transform .3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+}
+
+.stat-card h3 {
+    color: var(--text-accent);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.screenshot-grid img {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    transition: transform .3s ease;
+    background: var(--bg-card);
+}
+
+.screenshot-grid img:hover {
+    transform: translateY(-6px);
+}
+
+.difficulty-card {
+    padding: 24px;
+    border-left: 4px solid var(--text-accent);
+    background: var(--bg-card);
+    border-radius: 14px;
+    transition: transform 0.3s ease;
+}
+
+.difficulty-card:hover {
+    transform: translateY(-4px);
+}
+
+.difficulty-card h3 {
+    margin-bottom: 12px;
+    color: var(--text-accent);
+}
+
+/* Info Boxes */
+.architecture-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 40px;
+    text-align: center;
+    font-family: monospace;
+    line-height: 2;
+    overflow-x: auto;
+}
+
+.philosophy-box {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+    border-radius: 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+.philosophy-box p {
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   SHARED PROJECT COMPONENTS (Features, Screenshots)
+   ========================================= */
+.btn-glow {
+    box-shadow: 0 0 15px var(--text-accent);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 10px color-mix(in srgb, var(--text-accent) 40%, transparent);
+    }
+    100% {
+        box-shadow: 0 0 25px color-mix(in srgb, var(--text-accent) 80%, transparent);
+    }
+}
+
+.feature-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: color-mix(in srgb, var(--text-accent) 10%, transparent);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-accent);
+    margin-bottom: 20px;
+    border: 1px solid color-mix(in srgb, var(--text-accent) 20%, transparent);
+}
+
+.feature-icon-wrapper svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+
+/* =========================================
+   UNIVERSAL 3D SCREENSHOT GALLERY (PORTRAIT & LANDSCAPE SAFE)
+   ========================================= */
+.screenshot-gallery {
+    display: flex;
+    gap: 20px; 
+    overflow-x: auto;
+    padding: 60px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-accent) var(--bg-card);
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    perspective: 1500px; /* Deep perspective for 3D effect */
+    transform-style: preserve-3d;
+    align-items: center;
+}
+
+.screenshot-gallery::before,
+.screenshot-gallery::after {
+    content: '';
+    flex: 1;
+    min-width: 20px;
+}
+
+.screenshot-gallery img {
+    /* Magic Fix: Height fixed, width auto -> maintains natural aspect ratio */
+    height: 400px; 
+    width: auto; 
+    max-width: 85vw; /* Mobile screens par landscape ko fit karne ke liye */
+    max-height: 60vh; /* Chhoti screens par height maintain karne ke liye */
+    
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    object-fit: contain; /* Ya cover use kar sakte ho, contain safe rehta hai */
+    background: var(--bg-card);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    cursor: pointer;
+    position: relative;
+}
+
+/* Base hover: sabko thoda dark aur scale down karo */
+.screenshot-gallery:hover img {
+    filter: brightness(0.4);
+    transform: scale(0.95);
+}
+
+/* Jo image hover ho rahi hai usko aage lao */
+.screenshot-gallery img:hover {
+    filter: brightness(1) !important;
+    transform: translateZ(80px) scale(1.05) !important; 
+    z-index: 100;
+    margin: 0 20px; /* Safe margin for both portrait and landscape */
+    border-color: var(--text-accent);
+    /* Dynamic glow based on accent color */
+    box-shadow: 0 15px 35px color-mix(in srgb, var(--text-accent) 40%, transparent);
+}
+
+/* Right side wali images ko fold karo */
+.screenshot-gallery img:hover + img {
+    filter: brightness(0.6) !important;
+    transform: rotateY(25deg) scale(0.95) translateZ(30px) !important;
+}
+
+.screenshot-gallery img:hover + img + img {
+    filter: brightness(0.3) !important;
+    transform: rotateY(15deg) scale(0.9) !important;
+}
+
+/* Left side wali images ko fold karo */
+.screenshot-gallery img:has(+ img:hover) {
+    filter: brightness(0.6) !important;
+    transform: rotateY(-25deg) scale(0.95) translateZ(30px) !important;
+}
+
+.screenshot-gallery img:has(+ img + img:hover) {
+    filter: brightness(0.3) !important;
+    transform: rotateY(-15deg) scale(0.9) !important;
+}
+
+
+
+/* =========================================
+   MOBILE FIX FOR 3D GALLERY (PORTRAIT & LANDSCAPE)
+   ========================================= */
+@media (max-width: 768px) {
+    .screenshot-gallery {
+        padding: 40px 10px; 
+        perspective: 1000px;
+    }
+
+    .screenshot-gallery img {
+        height: auto; 
+        width: 85vw;
+        max-height: 55vh; 
+        object-fit: contain;
+    }
+
+    .screenshot-gallery img:hover {
+        transform: translateZ(40px) scale(1.02) !important; 
+        margin: 0 10px;
+        box-shadow: 0 10px 25px color-mix(in srgb, var(--text-accent) 40%, transparent);
+    }
+}
+
+
+
+
+
+
+/* Tech Grid */
+.tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 24px !important;
+    margin-top: 30px;
+}
+
+.tech-grid .skill-card {
+    padding: 20px;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+}
+
+.tech-grid .skill-icon {
+    margin-bottom: 15px;
+}
+
+.tech-grid .skill-card strong {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.tech-grid .skill-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* =========================================
+   BETA FORMS & JOIN BETA STYLES
+   ========================================= */
+.beta-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--bg-card);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.form-input {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-body);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--text-accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--text-accent) 20%, transparent);
+}
+
+.contact-alternatives {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.warning-box {
+    background: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+    padding: 16px 20px;
+    border-radius: 4px 8px 8px 4px;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.warning-box strong {
+    color: #e6a800;
+}
+
+.step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.step-number {
+    background: var(--text-accent);
+    color: #000;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+}
+
+.step-content p {
+    margin: 0 0 12px 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.step-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}

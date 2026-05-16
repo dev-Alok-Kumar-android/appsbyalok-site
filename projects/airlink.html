@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>AirLink | AppsByAlok</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Ultra-lightweight native Android communication app built with custom Canvas-rendered UI, modular networking architecture and peer-to-peer Bluetooth messaging.">
+
+    <meta property="og:title" content="AirLink | AppsByAlok">
+
+    <meta property="og:description"
+        content="Tiny-size native Android AirLink app featuring file transfer, Unicode support, custom Canvas UI and Android 13+ compatibility.">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:image" content="https://appsbyalok.netlify.app/icon.png">
+
+    <meta property="og:url" content="https://appsbyalok.netlify.app/projects/airlink.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="AirLink | AppsByAlok">
+
+    <meta name="twitter:description"
+        content="Ultra-lightweight native Android AirLink peer-to-peer communication app with custom Canvas UI.">
+
+    <meta name="theme-color" content="#22c55e">
+
+    <link rel="canonical" href="https://appsbyalok.netlify.app/projects/airlink.html">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --text-accent: #22c55e;
+            /* Override grid color for this page */
+            --grid-bg-color: rgba(34, 197, 94, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">
+                    <span class="logo-icon"></span>
+                    Apps<span>By</span>Alok
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/#about" class="nav-link">About</a></li>
+                    <li><a href="/#contact" class="nav-link">Contact</a></li>
+                    <li><a href="/donate.html" class="nav-link">Support</a></li>
+                </ul>
+
+                <div class="nav-controls">
+                    <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme" aria-pressed="false">
+                        <svg class="sun-icon" style="width:20px; height:20px; fill:currentColor; display:none;"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,5.29C7.24,6.03 7.06,6.79 7,7.59L3.34,7M3.36,17L7,16.41C7.06,17.21 7.24,17.97 7.5,18.71L3.36,17M20.65,7L16.5,5.29C16.76,6.03 16.94,6.79 17,7.59L20.65,7M20.64,17L16.5,18.71C16.76,17.97 16.94,17.21 17,16.41L20.64,17M12,22L9.61,18.58C10.35,18.85 11.16,19 12,19C12.84,19 13.65,18.85 14.39,18.58L12,22Z" />
+                        </svg>
+                        <svg class="moon-icon" style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24">
+                            <path
+                                d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C6.94,10.39 9.79,16.87 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.13,12.1 6.05,8.81 6.5,5.81C4.61,6.65 2.97,8.25 2.12,10.3C1.27,12.35 1.5,14.72 2.76,16.63C4.03,18.55 6.16,19.82 8.5,20.05C10.83,20.28 13.11,19.46 14.77,17.77C15.75,16.78 16.41,15.5 16.69,14.12C16.92,15.5 17.16,16.83 17.33,17.97Z" />
+                        </svg>
+                    </button>
+
+                    <button class="mobile-menu-btn" aria-label="Menu">
+                        <svg style="width:28px; height:28px; fill:currentColor;" viewBox="0 0 24 24">
+                            <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section id="hero">
+
+            <div class="tech-grid-bg"></div>
+
+            <div class="container hero-content">
+
+                <div class="project-badge">
+                    ⚡ ~40KB APK • Native Rendering • Offline P2P
+                </div>
+
+                <h1>
+                    AirLink
+                </h1>
+
+                <p class="hero-text">
+
+                    Ultra-lightweight peer-to-peer Android messaging application built entirely
+                    using native Bluetooth APIs, custom Canvas-rendered UI and modular
+                    communication architecture.
+
+                </p>
+
+                <div class="btn-group">
+
+                    <a href="#" class="btn btn-primary" style="background:#22c55e;border:none;color:white;">
+                        Project In Development
+                    </a>
+
+                    <a href="#" class="btn btn-outline">
+                        View on GitHub
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section id="stats">
+
+            <div class="container">
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <h3>40KB</h3>
+                        <p>Signed APK Size</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>100%</h3>
+                        <p>Offline Communication</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Canvas</h3>
+                        <p>Custom Rendered UI</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Java</h3>
+                        <p>Ultra Lightweight Build</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== APP SCREENSHOTS ===== -->
+        <section id="screenshots"
+            style="background-color: var(--bg-card-hover); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">App Preview</h2>
+                    <p class="section-desc">Lightweight interface rendered using custom Canvas-based UI architecture.
+                    </p>
+                </div>
+
+                <div class="screenshot-gallery">
+                    <img src="../assets/projects/echohunter/simple-menu.png"
+                        onmouseover="this.src='../assets/projects/echohunter/corrupted-menu.gif'"
+                        onmouseout="this.src='../assets/projects/echohunter/simple-menu.png'"
+                        alt="Bluetooth Chat conversation screen">
+
+                    <img src="../assets/projects/echohunter/gameplay-1.png" alt="Bluetooth device pairing screen">
+
+                    <img src="../assets/projects/echohunter/gameplay-2.png" alt="Bluetooth image/video/files transfer">
+
+                    <img src="../assets/projects/echohunter/firewall-breach.png" alt="Home Screen widget small">
+
+                    <img src="../assets/projects/echohunter/core-merging.gif" alt="Home Screen widget expended">
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section id="features">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">Core Features</h2>
+
+                    <p class="section-desc">
+                        Designed around lightweight native Android engineering and modular networking.
+                    </p>
+
+                </div>
+
+                <div class="grid-projects">
+
+                    <div class="project-card" style="padding:24px;">
+                        <h3 class="project-title">Ultra Tiny APK</h3>
+
+                        <div class="project-tags">
+                            <span class="tag">40KB</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">Zero Bloat</span>
+                        </div>
+
+                        <p class="project-desc">
+                            Built intentionally using Java to minimize APK size while avoiding heavy
+                            dependencies and frameworks.
+                        </p>
+                    </div>
+
+                    <div class="project-card" style="padding:24px;">
+                        <h3 class="project-title">Native Bluetooth Messaging</h3>
+
+                        <div class="project-tags">
+                            <span class="tag">P2P</span>
+                            <span class="tag">Offline</span>
+                            <span class="tag">Socket APIs</span>
+                        </div>
+
+                        <p class="project-desc">
+                            Real-time peer-to-peer messaging powered entirely through native Android
+                            Bluetooth socket communication.
+                        </p>
+                    </div>
+
+                    <div class="project-card" style="padding:24px;">
+                        <h3 class="project-title">Canvas Rendered UI</h3>
+
+                        <div class="project-tags">
+                            <span class="tag">Canvas</span>
+                            <span class="tag">Custom UI</span>
+                            <span class="tag">Hybrid Input</span>
+                        </div>
+
+                        <p class="project-desc">
+                            Entire interface manually rendered using Canvas APIs while maintaining
+                            smooth scrolling and Compose-like polish.
+                        </p>
+                    </div>
+
+                    <div class="project-card" style="padding:24px;">
+                        <h3 class="project-title">Unicode & Multiline Support</h3>
+
+                        <div class="project-tags">
+                            <span class="tag">Hindi</span>
+                            <span class="tag">UTF-8</span>
+                            <span class="tag">Parsing</span>
+                        </div>
+
+                        <p class="project-desc">
+                            Supports multilingual messaging including Hindi and handles multiline
+                            packets reliably.
+                        </p>
+                    </div>
+
+                    <div class="project-card" style="padding:24px;">
+                        <h3 class="project-title">Image Transfer</h3>
+
+                        <div class="project-tags">
+                            <span class="tag">Binary Data</span>
+                            <span class="tag">File Share</span>
+                        </div>
+
+                        <p class="project-desc">
+                            Send images directly between connected devices using custom transfer logic.
+                        </p>
+                    </div>
+
+                    <div class="project-card" style="padding:24px;">
+                        <h3 class="project-title">Modular Networking Logic</h3>
+
+                        <div class="project-tags">
+                            <span class="tag">Scalable</span>
+                            <span class="tag">Decoupled</span>
+                            <span class="tag">WiFi Ready</span>
+                        </div>
+
+                        <p class="project-desc">
+                            Transport implementation is separated from communication logic allowing
+                            future WiFi/LAN expansion.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TECHNICAL DIFFICULTIES -->
+        <section id="difficulties"
+            style="background:var(--bg-card-hover);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">Technical Difficulties Solved</h2>
+
+                    <p class="section-desc">
+                        Real Android engineering challenges encountered during development.
+                    </p>
+
+                </div>
+
+                <div class="grid-projects">
+
+                    <div class="difficulty-card">
+                        <h3>Android 13+ Restrictions</h3>
+                        <p>
+                            Redesigned permission handling and Bluetooth runtime logic for compatibility
+                            with newer Android versions.
+                        </p>
+                    </div>
+
+                    <div class="difficulty-card">
+                        <h3>Multiline Packet Integrity</h3>
+                        <p>
+                            Solved message parsing issues where only the first line was received during
+                            transmission.
+                        </p>
+                    </div>
+
+                    <div class="difficulty-card">
+                        <h3>Canvas + EditText Integration</h3>
+                        <p>
+                            Hybrid rendering pipeline built to integrate Android EditText inside a fully
+                            custom Canvas UI.
+                        </p>
+                    </div>
+
+                    <div class="difficulty-card">
+                        <h3>Keyboard & Scroll Sync</h3>
+                        <p>
+                            Custom viewport handling implemented for proper keyboard visibility and chat
+                            scrolling behavior.
+                        </p>
+                    </div>
+
+                    <div class="difficulty-card">
+                        <h3>Unicode Support</h3>
+                        <p>
+                            UTF-8 encoding/decoding improvements added for multilingual communication
+                            support.
+                        </p>
+                    </div>
+
+                    <div class="difficulty-card">
+                        <h3>Future WiFi Expansion</h3>
+                        <p>
+                            Modular communication architecture prepared for future transport layers like
+                            WiFi Direct.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ARCHITECTURE -->
+        <section id="architecture">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">Architecture Overview</h2>
+
+                    <p class="section-desc">
+                        Lightweight modular communication pipeline.
+                    </p>
+
+                </div>
+
+                <div class="architecture-box">
+
+                    UI Layer<br>
+
+                    ↓<br>
+
+                    Chat Engine<br>
+
+                    ↓<br>
+
+                    Transport Interface<br>
+
+                    ↓<br>
+
+                    Bluetooth Layer
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PHILOSOPHY -->
+        <section id="philosophy">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">Development Philosophy</h2>
+
+                </div>
+
+                <div class="philosophy-box">
+
+                    <p>
+                        This project was intentionally designed around lightweight engineering,
+                        native Android APIs and minimal overhead.
+                    </p>
+
+                    <p>
+                        Instead of relying on heavy UI frameworks and networking libraries,
+                        the application focuses on direct rendering, modular communication
+                        architecture and performance-conscious design.
+                    </p>
+
+                    <p>
+                        The goal was to explore how far a modern Android messaging experience
+                        can be pushed while keeping the binary extremely small.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-links">
+                <a href="#">Back to Top</a>
+                <a href="/">Home</a>
+                <a href="/projects/">Projects</a>
+            </div>
+
+            <p>&copy; 2026 Alok Kumar. Built with pure HTML, CSS & JS.</p>
+
+        </div>
+
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../animations.js"></script>
+
+</body>
+
+</html>
