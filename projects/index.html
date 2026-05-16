@@ -78,51 +78,8 @@
       </div>
     </section>
 
-    <!-- ===== PORTFOLIO SOURCE CODE SECTION ===== -->
-    <section id="portfolio-source" style="padding-top: 0;">
-      <div class="container" style="max-width: 800px;">
-        <div class="app-card"
-          style="padding: 40px; cursor: default; transform: none; border-color: var(--text-accent);">
-          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-            <div
-              style="width: 50px; height: 50px; background: rgba(61, 220, 132, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-accent);">
-              <svg style="width: 28px; height: 28px; fill: currentColor;" viewBox="0 0 24 24">
-                <path
-                  d="M12 2A10 10 0 0 0 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z" />
-              </svg>
-            </div>
-            <h2 style="margin: 0; font-size: 1.8rem;">AppsByAlok Website</h2>
-          </div>
-
-          <div class="app-tags" style="margin-bottom: 20px;">
-            <span class="tag">HTML5</span>
-            <span class="tag">Vanilla CSS</span>
-            <span class="tag">Vanilla JS</span>
-            <span class="tag">No Frameworks</span>
-          </div>
-
-          <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 1.05rem;">
-            This entire portfolio is built from scratch without any heavy frontend frameworks. It uses native CSS View
-            Transitions for smooth page routing, custom variables for blink-free dark mode, and optimized raw
-            JavaScript.
-          </p>
-
-          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-            <a href="https://github.com/dev-Alok-Kumar-android/appsbyalok-site" target="_blank"
-              rel="noopener noreferrer" class="btn btn-primary" style="padding: 10px 24px;">
-              View Source on GitHub
-            </a>
-            <a href="../license.html" class="btn btn-outline" style="padding: 10px 24px;">
-              MIT License
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== ALL PROJECTS GRID ===== -->
-    <section id="all-projects"
-      style="background-color: var(--bg-card-hover); border-top: 1px solid var(--border-color);">
+    <section id="all-projects">
       <div class="container">
 
         <div class="section-header">
@@ -133,7 +90,37 @@
         <div class="grid-projects">
 
 
-          <!-- Project 1: AirLink -->
+          <a href="echohunter.html" class="project-card">
+            <div class="project-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 3a9 9 0 0 1 9 9"></path>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="12" cy="12" r="1"></circle>
+                <line x1="12" y1="1" x2="12" y2="4"></line>
+                <line x1="12" y1="20" x2="12" y2="23"></line>
+                <line x1="1" y1="12" x2="4" y2="12"></line>
+                <line x1="20" y1="12" x2="23" y2="12"></line>
+              </svg>
+            </div>
+            <div class="project-body">
+              <h3 class="app-title">Echo Hunter</h3>
+              <div class="app-tags">
+                <span class="tag">Tactical Stealth</span>
+                <span class="tag">Smart AI</span>
+                <span class="tag">Tiny APK</span>
+              </div>
+              <p class="app-desc">
+                A lore-driven tactical cyber-heist game where you infiltrate corporate servers. Navigate procedural
+                mazes, outsmart Hunter AI with A* pathfinding, and deploy traps via the Nano-OS dashboard—all powered by
+                an ultra-lightweight zero-GC native Canvas engine.
+              </p>
+              <span class="project-link">View Project Details &rarr;</span>
+            </div>
+          </a>
+
+
           <a href="airlink.html" class="project-card">
 
             <div class="project-header">
@@ -188,35 +175,9 @@
                 <span class="tag">Native Canvas</span>
                 <span class="tag">Offline</span>
               </div>
-              <p class="app-desc">Experience multiple dynamic environments in one app! Features include interactive touch animations, magical particle clocks, a living village (with day/night cycles, dynamic weather, rivers, and moving characters), and a built-in Studio to generate and share custom wallpapers.</p>
-              <span class="project-link">View Project Details &rarr;</span>
-            </div>
-          </a>
-
-          <a href="echohunter.html" class="project-card">
-            <div class="project-header">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                <rect x="9" y="9" width="6" height="6"></rect>
-                <line x1="9" y1="1" x2="9" y2="4"></line>
-                <line x1="15" y1="1" x2="15" y2="4"></line>
-                <line x1="9" y1="20" x2="9" y2="23"></line>
-                <line x1="15" y1="20" x2="15" y2="23"></line>
-                <line x1="20" y1="9" x2="23" y2="9"></line>
-                <line x1="20" y1="14" x2="23" y2="14"></line>
-                <line x1="1" y1="9" x2="4" y2="9"></line>
-                <line x1="1" y1="14" x2="4" y2="14"></line>
-              </svg>
-            </div>
-            <div class="project-body">
-              <h3 class="app-title">Echo Hunter</h3>
-              <div class="app-tags">
-                <span class="tag">Game</span>
-                <span class="tag">Zero Dependencies</span>
-              </div>
-              <p class="app-desc">Ultra-lightweight 2D arcade survival game built natively with Canvas API.
-              </p>
+              <p class="app-desc">Experience multiple dynamic environments in one app! Features include interactive
+                touch animations, magical particle clocks, a living village (with day/night cycles, dynamic weather,
+                rivers, and moving characters), and a built-in Studio to generate and share custom wallpapers.</p>
               <span class="project-link">View Project Details &rarr;</span>
             </div>
           </a>
@@ -281,6 +242,49 @@
             </div>
           </a>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PORTFOLIO SOURCE CODE SECTION ===== -->
+    <section id="portfolio-source"
+      style="background-color: var(--bg-card-hover); border-top: 1px solid var(--border-color);">
+      <div class="container" style="max-width: 800px;">
+        <div class="app-card"
+          style="padding: 40px; cursor: default; transform: none; border-color: var(--text-accent);">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+            <div
+              style="width: 50px; height: 50px; background: rgba(61, 220, 132, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-accent);">
+              <svg style="width: 28px; height: 28px; fill: currentColor;" viewBox="0 0 24 24">
+                <path
+                  d="M12 2A10 10 0 0 0 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z" />
+              </svg>
+            </div>
+            <h2 style="margin: 0; font-size: 1.8rem;">AppsByAlok Website</h2>
+          </div>
+
+          <div class="app-tags" style="margin-bottom: 20px;">
+            <span class="tag">HTML5</span>
+            <span class="tag">Vanilla CSS</span>
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">No Frameworks</span>
+          </div>
+
+          <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 1.05rem;">
+            This entire portfolio is built from scratch without any heavy frontend frameworks. It uses native CSS View
+            Transitions for smooth page routing, custom variables for blink-free dark mode, and optimized raw
+            JavaScript.
+          </p>
+
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="https://github.com/dev-Alok-Kumar-android/appsbyalok-site" target="_blank"
+              rel="noopener noreferrer" class="btn btn-primary" style="padding: 10px 24px;">
+              View Source on GitHub
+            </a>
+            <a href="../license.html" class="btn btn-outline" style="padding: 10px 24px;">
+              MIT License
+            </a>
+          </div>
         </div>
       </div>
     </section>
