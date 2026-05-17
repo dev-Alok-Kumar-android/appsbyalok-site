@@ -105,8 +105,9 @@ function initTypewriter(options) {
         phrases = [],
         typeSpeed = 65,
         eraseSpeed = 35,
-        holdAfterType = 1500, // Thoda extra time padhne ke liye
-        holdAfterErase = 400
+        holdAfterType = 1500, // Normal typing ke baad ka wait
+        holdAfterErase = 400,
+        initialDelay = 2500 // 🔥 NAYA: Page load hone ke baad kitni der rukk kar delete karna hai (milliseconds me)
     } = options;
 
     const textEl = document.querySelector(target);
@@ -115,7 +116,9 @@ function initTypewriter(options) {
     // Reduced motion accessiblity check
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
-        textEl.textContent = phrases[0];
+        if (!textEl.textContent.trim()) {
+            textEl.textContent = phrases[0];
+        }
         return;
     }
 
@@ -126,16 +129,30 @@ function initTypewriter(options) {
         HOLD_AFTER_DELETE: "hold_after_delete"
     };
 
-    let state = STATE.TYPING;
-    let phraseIndex = 0;
-    let charIndex = 0;
+    let state;
+    let phraseIndex;
+    let charIndex;
+    let current;
+    let next;
+
+    const initialText = textEl.textContent.trim(); // Trim for safety
+
+    if (initialText.length > 0) {
+        current = initialText;
+        next = phrases[0]; 
+        charIndex = initialText.length;
+        state = STATE.HOLD_AFTER_TYPE; 
+        phraseIndex = -1; 
+    } else {
+        current = phrases[0];
+        next = phrases[1 % phrases.length];
+        charIndex = 0;
+        state = STATE.TYPING;
+        textEl.textContent = "";
+    }
+
     let timeoutId = null;
     let pauseRequested = false;
-
-    let current = phrases[phraseIndex];
-    let next = phrases[(phraseIndex + 1) % phrases.length];
-
-    textEl.textContent = "";
 
     function clearTimer() {
         if (timeoutId) {
@@ -220,7 +237,11 @@ function initTypewriter(options) {
     document.addEventListener("touchstart", () => setPause(true), { passive: true });
     document.addEventListener("touchend", () => setPause(false));
     
-    run();
+    if (initialText.length > 0) {
+        schedule(run, initialDelay);
+    } else {
+        run();
+    }
 }
 
 
