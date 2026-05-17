@@ -9,10 +9,10 @@
   </url>
   
   <url>
-    <loc>https://appsbyalok.netlify.app/donate.html</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://appsbyalok.netlify.app/donate</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
 
   <!-- Projects Pages -->
@@ -24,36 +24,36 @@
   </url>
 
   <url>
-    <loc>https://appsbyalok.netlify.app/projects/compose3d.html</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://appsbyalok.netlify.app/projects/compose3d</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
-    <loc>https://appsbyalok.netlify.app/projects/echohunter.html</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://appsbyalok.netlify.app/projects/echohunter</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://appsbyalok.netlify.app/projects/onlinevoting.html</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://appsbyalok.netlify.app/projects/onlinevoting</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://appsbyalok.netlify.app/projects/tictactoe.html</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://appsbyalok.netlify.app/projects/tictactoe</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://appsbyalok.netlify.app/projects/wallpaper.html</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://appsbyalok.netlify.app/projects/wallpaper</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
