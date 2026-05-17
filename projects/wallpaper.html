@@ -14,23 +14,25 @@
   <meta property="og:url" content="https://appsbyalok.netlify.app/projects/wallpaper.html">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="style.css">
-  
+
   <style>
     /* CSS to show it's clickable and give a small hover effect */
     .interactive-card {
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+
     .interactive-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
+
     .preview-hint {
-        display: block;
-        font-size: 0.8rem;
-        color: var(--text-accent);
-        margin-top: 12px;
-        font-weight: bold;
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-accent);
+      margin-top: 12px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -82,6 +84,7 @@
     <section id="hero">
       <!-- NOTE: Default to snow on this page -->
       <canvas id="hero-canvas" data-animation="snow"></canvas>
+      <div id="my-tech-grid" class="tech-grid-bg" style="display: none;"></div>
 
       <div class="container hero-content">
         <div class="badge">Android Live Wallpaper • Android 14+ Optimized</div>
@@ -122,8 +125,9 @@
 
         <div class="grid-projects">
 
-          <!-- Feature Card 1: LineFlow (Triggers 'lines' animation) -->
-          <div class="project-card interactive-card" style="padding: 24px;" onclick="window.changeBg('lines'); window.scrollTo({top: 0, behavior: 'smooth'});">
+          <!-- Feature Card 1: LineFlow -->
+          <div class="project-card interactive-card" style="padding: 24px;"
+            onclick="document.getElementById('my-tech-grid').style.display='none'; window.changeBg('lines'); window.scrollTo({top: 0, behavior: 'smooth'});">
             <div class="feature-icon-wrapper">
               <!-- Wave/Line SVG -->
               <svg viewBox="0 0 24 24">
@@ -146,8 +150,9 @@
             <span class="preview-hint">► Click to Preview LineFlow</span>
           </div>
 
-          <!-- Feature Card 2: ParticleClock (Triggers 'lines' animation for now as it uses particles) -->
-          <div class="project-card interactive-card" style="padding: 24px;" onclick="window.changeBg('lines'); window.scrollTo({top: 0, behavior: 'smooth'});">
+          <!-- Feature Card 2: ParticleClock + Butterflies -->
+          <div class="project-card interactive-card" style="padding: 24px;"
+            onclick="document.getElementById('my-tech-grid').style.display='block'; window.changeBg('snow'); window.scrollTo({top: 0, behavior: 'smooth'});">
             <div class="feature-icon-wrapper">
               <!-- Clock/Particle SVG -->
               <svg viewBox="0 0 24 24">
@@ -166,11 +171,12 @@
               A mesmerizing clock display where glowing particles follow your fingertips, accompanied by beautifully
               animated butterflies.
             </p>
-             <span class="preview-hint">► Click to Preview Particles</span>
+            <span class="preview-hint">► Click to Preview Grid + Snow</span>
           </div>
 
-          <!-- Feature Card 3: MountainVillage (Triggers 'snow' animation) -->
-          <div class="project-card interactive-card" style="padding: 24px;" onclick="window.changeBg('snow'); window.scrollTo({top: 0, behavior: 'smooth'});">
+          <!-- Feature Card 3: MountainVillage -->
+          <div class="project-card interactive-card" style="padding: 24px;"
+            onclick="document.getElementById('my-tech-grid').style.display='none'; window.changeBg('snow'); window.scrollTo({top: 0, behavior: 'smooth'});">
             <div class="feature-icon-wrapper">
               <!-- Mountain/Village SVG -->
               <svg viewBox="0 0 24 24">
@@ -194,7 +200,8 @@
           </div>
 
           <!-- Feature Card 4: Background Studio (Triggers 'clear' animation to show a blank canvas) -->
-          <div class="project-card interactive-card" style="padding: 24px;" onclick="window.changeBg('clear'); window.scrollTo({top: 0, behavior: 'smooth'});">
+          <div class="project-card interactive-card" style="padding: 24px;"
+            onclick="document.getElementById('my-tech-grid').style.display='block'; window.changeBg('clear'); window.scrollTo({top: 0, behavior: 'smooth'});">
             <div class="feature-icon-wrapper">
               <!-- Palette/Settings SVG -->
               <svg viewBox="0 0 24 24">
@@ -213,7 +220,7 @@
               effects. Save to a local gallery, share them, or set them as custom backgrounds for LineFlow and
               ParticleClock!
             </p>
-            <span class="preview-hint">► Click to Clear Canvas</span>
+            <span class="preview-hint">► Click to Stop live and apply static</span>
           </div>
 
         </div>
@@ -222,21 +229,45 @@
     </section>
 
     <!-- ===== APP SCREENSHOTS ===== -->
-    <section id="screenshots"
-      style="background-color: var(--bg-card-hover); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section id="screenshots">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">App Screenshots</h2>
-          <p class="section-desc">A quick glimpse of all 4 modes in the Dynamic Wallpaper app.</p>
+          <h2 class="section-title">Interactive UI Preview</h2>
+          <p class="section-desc">A structural preview of the app's interfaces. Click the cards below to trigger some
+            fun web-based effects.</p>
         </div>
 
+        <!-- LineFlow -->
         <div class="screenshot-gallery">
-          <img src="https://placehold.co/200x400/1E293B/3DDC84?text=LineFlow+Mode" alt="LineFlow Screenshot">
-          <img src="https://placehold.co/200x400/1E293B/3DDC84?text=ParticleClock" alt="ParticleClock Screenshot">
-          <img src="https://placehold.co/200x400/1E293B/3DDC84?text=MountainVillage" alt="MountainVillage Screenshot">
-          <img src="https://placehold.co/200x400/1E293B/3DDC84?text=BackgroundStudio"
-            alt="Background Studio Screenshot">
-          <img src="https://placehold.co/200x400/1E293B/3DDC84?text=Saved+Gallery" alt="Saved Gallery Screenshot">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='400' viewBox='0 0 200 400'><rect width='100%' height='100%' fill='%231E293B'/><g transform='translate(70, 150)'><polyline points='10,10 30,20 10,30 30,40' fill='none' stroke='%233DDC84' stroke-width='3'/><polyline points='20,10 40,20 20,30 40,40' fill='none' stroke='%23F4C430' stroke-width='3'/><polyline points='30,10 50,20 30,30 50,40' fill='none' stroke='%23007BFF' stroke-width='3'/></g><text x='50%' y='230' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='13' font-weight='bold' fill='%233DDC84'>LINEFLOW MODE</text><rect x='50px' y='320' width='100px' height='40px' rx='20' fill='%233DDC84'/><text x='100px' y='340' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' font-weight='bold' fill='white'>APPLY LINES</text></svg>"
+            alt="LineFlow Screenshot" style="cursor: pointer;"
+            onclick="document.getElementById('my-tech-grid').style.display='none'; window.changeBg('lines'); window.scrollTo({top: 0, behavior: 'smooth'});">
+
+
+          <!-- ParticleClock -->
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='400' viewBox='0 0 200 400'><rect width='100%' height='100%' fill='%231E293B'/><text x='50%' y='170' dominant-baseline='middle' text-anchor='middle' font-size='48'>⏱️</text><text x='50%' y='230' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='13' font-weight='bold' fill='%233DDC84'>PARTICLE CLOCK</text><rect x='50px' y='320' width='100px' height='40px' rx='20' fill='%233DDC84'/><text x='100px' y='340' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' font-weight='bold' fill='white'>APPLY GRID</text></svg>"
+            alt="ParticleClock Screenshot" style="cursor: pointer;"
+            onclick="document.getElementById('my-tech-grid').style.display='block'; window.changeBg('clear'); window.scrollTo({top: 0, behavior: 'smooth'});">
+
+
+          <!-- MountainVillage -->
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='400' viewBox='0 0 200 400'><rect width='100%' height='100%' fill='%231E293B'/><text x='50%' y='170' dominant-baseline='middle' text-anchor='middle' font-size='48'>🏔️</text><text x='50%' y='230' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='13' font-weight='bold' fill='%233DDC84'>MOUNTAIN VILLAGE</text><rect x='50px' y='320' width='100px' height='40px' rx='20' fill='%233DDC84'/><text x='100px' y='340' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' font-weight='bold' fill='white'>APPLY SNOW</text></svg>"
+            alt="MountainVillage Screenshot" style="cursor: pointer;"
+            onclick="document.getElementById('my-tech-grid').style.display='none'; window.changeBg('snow'); window.scrollTo({top: 0, behavior: 'smooth'});">
+
+          <!-- Background Studio (Triggers 'clear' animation to show a blank canvas) -->
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='400' viewBox='0 0 200 400'><rect width='100%' height='100%' fill='%231E293B'/><text x='50%' y='170' dominant-baseline='middle' text-anchor='middle' font-size='48'>🎨</text><text x='50%' y='230' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='13' font-weight='bold' fill='%233DDC84'>BG STUDIO</text><rect x='50px' y='320' width='100px' height='40px' rx='20' fill='%233DDC84'/><text x='100px' y='340' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='13' font-weight='bold' fill='white'>GRID + LINES</text></svg>"
+            alt="Background Studio Screenshot" style="cursor: pointer;"
+            onclick="document.getElementById('my-tech-grid').style.display='block'; window.changeBg('lines'); window.scrollTo({top: 0, behavior: 'smooth'});">
+
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='400' viewBox='0 0 200 400'><rect width='100%' height='100%' fill='%231E293B'/><text x='50%' y='170' dominant-baseline='middle' text-anchor='middle' font-size='48'>🖼️</text><text x='50%' y='230' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='13' font-weight='bold' fill='%233DDC84'>SAVED GALLERY</text><rect x='50px' y='320' width='100px' height='40px' rx='20' fill='%233DDC84'/><text x='100px' y='340' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' font-weight='bold' fill='white'>CLEAR ALL</text></svg>"
+            alt="Saved Gallery Screenshot" style="cursor: pointer;"
+            onclick="document.getElementById('my-tech-grid').style.display='none'; window.changeBg('clear'); window.scrollTo({top: 0, behavior: 'smooth'});">
         </div>
       </div>
     </section>
@@ -271,7 +302,8 @@
               <path d="M9 22V18M15 22V18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
             <strong>Real-Time Weather API</strong>
-            <p>Fetches live weather data to dynamically trigger rain, snow, or fog within the MountainVillage environment.</p>
+            <p>Fetches live weather data to dynamically trigger rain, snow, or fog within the MountainVillage
+              environment.</p>
           </div>
 
           <div class="skill-card">
@@ -282,7 +314,8 @@
               <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
             <strong>Time & Celestial Sync</strong>
-            <p>Synchronizes with device time to accurately reflect day/night cycles and calculate real-world moon phases.</p>
+            <p>Synchronizes with device time to accurately reflect day/night cycles and calculate real-world moon
+              phases.</p>
           </div>
 
           <div class="skill-card">
@@ -291,7 +324,8 @@
                 stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
             </svg>
             <strong>Multi-Layer Parallax</strong>
-            <p>Implements a 3-layered depth system calculating gyroscope and touch data for a stunning 3D visual illusion.</p>
+            <p>Implements a 3-layered depth system calculating gyroscope and touch data for a stunning 3D visual
+              illusion.</p>
           </div>
 
           <div class="skill-card">
@@ -300,7 +334,8 @@
                 stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
             </svg>
             <strong>Seasonal Algorithms</strong>
-            <p>Calculates current calendar dates to alter village aesthetics seamlessly across Spring, Summer, Autumn, and Winter.</p>
+            <p>Calculates current calendar dates to alter village aesthetics seamlessly across Spring, Summer, Autumn,
+              and Winter.</p>
           </div>
 
           <div class="skill-card">
@@ -310,7 +345,8 @@
               <path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="2" />
             </svg>
             <strong>Local File I/O & Storage</strong>
-            <p>Utilizes secure local storage to save, retrieve, and manage custom image backgrounds created in the Studio.</p>
+            <p>Utilizes secure local storage to save, retrieve, and manage custom image backgrounds created in the
+              Studio.</p>
           </div>
 
           <div class="skill-card">
@@ -321,7 +357,8 @@
               <path d="M10 2H14M12 9V17M9 13H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
             <strong>Smart Battery Saver</strong>
-            <p>Automatically pauses all rendering loops when the screen is off or app is hidden to ensure zero unnecessary battery drain.</p>
+            <p>Automatically pauses all rendering loops when the screen is off or app is hidden to ensure zero
+              unnecessary battery drain.</p>
           </div>
 
           <div class="skill-card">
@@ -331,7 +368,8 @@
               <path d="M12 7V11L14 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
             <strong>Gesture Physics Engine</strong>
-            <p>Advanced touch tracking for highly responsive fluid lines, interactive glowing particles, and swipe navigation.</p>
+            <p>Advanced touch tracking for highly responsive fluid lines, interactive glowing particles, and swipe
+              navigation.</p>
           </div>
 
         </div>
@@ -367,8 +405,8 @@
               <p>Join the official Google Group using the same email address connected to your Google Play Store app.
               </p>
               <div class="step-actions">
-                <a href="https://groups.google.com/g/dynamic-wallpaper-beta-testers" target="_blank" class="btn btn-outline"
-                  rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.9rem;">
+                <a href="https://groups.google.com/g/dynamic-wallpaper-beta-testers" target="_blank"
+                  class="btn btn-outline" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.9rem;">
                   Join Google Group
                 </a>
               </div>
@@ -382,12 +420,12 @@
               <h4>Download the App</h4>
               <p>Once you are in the group, use the links below to install the beta version on your Android device.</p>
               <div class="step-actions">
-                <a href="https://play.google.com/apps/internaltest/4701722703065411325" target="_blank" class="btn btn-primary"
-                  rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.9rem;">
+                <a href="https://play.google.com/apps/internaltest/4701722703065411325" target="_blank"
+                  class="btn btn-primary" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.9rem;">
                   Get it on Android
                 </a>
-                <a href="https://play.google.com/apps/internaltest/4701722703065411325" target="_blank" class="btn btn-outline"
-                  rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.9rem;">
+                <a href="https://play.google.com/apps/internaltest/4701722703065411325" target="_blank"
+                  class="btn btn-outline" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.9rem;">
                   Opt-in on Web
                 </a>
               </div>

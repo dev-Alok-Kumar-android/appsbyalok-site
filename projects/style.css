@@ -149,7 +149,7 @@
 
 
 /* =========================================
-   UNIVERSAL 3D SCREENSHOT GALLERY (PORTRAIT & LANDSCAPE SAFE)
+   1. UNIVERSAL 3D SCREENSHOT GALLERY (For Portrait/Mobile Apps)
    ========================================= */
 .screenshot-gallery {
     display: flex;
@@ -160,7 +160,7 @@
     scrollbar-color: var(--text-accent) var(--bg-card);
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    perspective: 1500px; /* Deep perspective for 3D effect */
+    perspective: 1500px;
     transform-style: preserve-3d;
     align-items: center;
 }
@@ -168,96 +168,150 @@
 .screenshot-gallery::before,
 .screenshot-gallery::after {
     content: '';
-    flex: 1;
-    min-width: 20px;
+    flex: 0 0 1px;
+    min-width: 10px;
 }
 
 .screenshot-gallery img {
-    /* Magic Fix: Height fixed, width auto -> maintains natural aspect ratio */
-    height: 400px; 
-    width: auto; 
-    max-width: 85vw; /* Mobile screens par landscape ko fit karne ke liye */
-    max-height: 60vh; /* Chhoti screens par height maintain karne ke liye */
-    
+    height: 400px;
+    max-width: 80vw;
+    width: auto;
     border-radius: 12px;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
     scroll-snap-align: center;
     flex-shrink: 0;
-    object-fit: contain; /* Ya cover use kar sakte ho, contain safe rehta hai */
     background: var(--bg-card);
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     cursor: pointer;
     position: relative;
+    transform-origin: center center;
 }
 
-/* Base hover: sabko thoda dark aur scale down karo */
+/* Base hover */
 .screenshot-gallery:hover img {
     filter: brightness(0.4);
     transform: scale(0.95);
 }
 
-/* Jo image hover ho rahi hai usko aage lao */
+/* Main Image Hover: No Margin, strictly Scale & TranslateZ */
 .screenshot-gallery img:hover {
     filter: brightness(1) !important;
-    transform: translateZ(80px) scale(1.05) !important; 
+    transform: translateZ(80px) scale(1.05) !important;
     z-index: 100;
-    margin: 0 20px; /* Safe margin for both portrait and landscape */
     border-color: var(--text-accent);
-    /* Dynamic glow based on accent color */
     box-shadow: 0 15px 35px color-mix(in srgb, var(--text-accent) 40%, transparent);
 }
 
-/* Right side wali images ko fold karo */
+/* Right Neighbors (translateX se dhakka) */
 .screenshot-gallery img:hover + img {
     filter: brightness(0.6) !important;
-    transform: rotateY(25deg) scale(0.95) translateZ(30px) !important;
+    transform: rotateY(25deg) scale(0.95) translateZ(30px) translateX(30px) !important;
 }
-
 .screenshot-gallery img:hover + img + img {
     filter: brightness(0.3) !important;
-    transform: rotateY(15deg) scale(0.9) !important;
+    transform: rotateY(15deg) scale(0.9) translateX(30px) !important;
 }
 
-/* Left side wali images ko fold karo */
+/* Left Neighbors (translateX se dhakka) */
 .screenshot-gallery img:has(+ img:hover) {
     filter: brightness(0.6) !important;
-    transform: rotateY(-25deg) scale(0.95) translateZ(30px) !important;
+    transform: rotateY(-25deg) scale(0.95) translateZ(30px) translateX(-30px) !important;
 }
-
 .screenshot-gallery img:has(+ img + img:hover) {
     filter: brightness(0.3) !important;
-    transform: rotateY(-15deg) scale(0.9) !important;
+    transform: rotateY(-15deg) scale(0.9) translateX(-30px) !important;
 }
 
-
-
-/* =========================================
-   MOBILE FIX FOR 3D GALLERY (PORTRAIT & LANDSCAPE)
-   ========================================= */
+/* Mobile Fixes for 3D Gallery */
 @media (max-width: 768px) {
     .screenshot-gallery {
         padding: 40px 10px; 
+        gap: 15px;
         perspective: 1000px;
     }
-
     .screenshot-gallery img {
-        height: auto; 
-        width: 85vw;
-        max-height: 55vh; 
-        object-fit: contain;
+        max-height: 280px; 
+        max-width: 85vw;   
+        width: auto;
+        height: auto;
     }
-
     .screenshot-gallery img:hover {
         transform: translateZ(40px) scale(1.02) !important; 
-        margin: 0 10px;
         box-shadow: 0 10px 25px color-mix(in srgb, var(--text-accent) 40%, transparent);
+    }
+    .screenshot-gallery img:hover + img {
+        transform: rotateY(20deg) scale(0.95) translateZ(20px) translateX(15px) !important;
+    }
+    .screenshot-gallery img:has(+ img:hover) {
+        transform: rotateY(-20deg) scale(0.95) translateZ(20px) translateX(-15px) !important;
     }
 }
 
 
+/* =========================================
+   2. LANDSCAPE GALLERY (For Games like Echo Hunter)
+   ========================================= */
+.landscape-gallery {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 50px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-accent) var(--bg-card);
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    align-items: center;
+}
 
+.landscape-gallery::before,
+.landscape-gallery::after {
+    content: '';
+    flex: 0 0 1px;
+    min-width: 10px;
+}
 
+.landscape-gallery img {
+    height: auto;
+    width: 75vw; 
+    max-width: 700px; 
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    background: var(--bg-card);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.landscape-gallery:hover img {
+    filter: brightness(0.5); 
+}
+
+.landscape-gallery img:hover {
+    filter: brightness(1) !important;
+    transform: scale(1.05); 
+    box-shadow: 0 15px 35px color-mix(in srgb, var(--text-accent) 40%, transparent);
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .landscape-gallery {
+        padding: 30px 10px;
+        gap: 15px;
+    }
+    .landscape-gallery img {
+        width: 88vw; 
+    }
+    .landscape-gallery:hover img {
+        filter: brightness(1); 
+    }
+    .landscape-gallery img:hover {
+        transform: none; 
+        box-shadow: var(--shadow-md); 
+    }
+}
 
 
 /* Tech Grid */
