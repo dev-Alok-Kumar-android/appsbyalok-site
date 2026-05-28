@@ -5,6 +5,7 @@
 
 // Global variable to keep track of the current animation frame
 let currentAnimFrame;
+let cleanupCurrentAnim = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('hero-canvas');
@@ -27,6 +28,11 @@ window.changeBg = function(type) {
     // 1. Stop the currently running animation
     if (currentAnimFrame) {
         cancelAnimationFrame(currentAnimFrame);
+    }
+    
+    // Clean up event listeners from the previous animation
+    if (cleanupCurrentAnim) {
+        cleanupCurrentAnim();
     }
     
     // 2. Clear the canvas completely
@@ -64,22 +70,27 @@ function initParticles() {
         canvas.height = heroSection ? heroSection.offsetHeight : window.innerHeight;
     }
 
-    // Use named functions for events if you plan to remove them later, 
-    // but for simple switching, keeping them is usually fine.
-    window.addEventListener('mousemove', (event) => {
+    const mouseMoveHandler = (event) => {
         let rect = canvas.getBoundingClientRect();
         mouse.x = event.clientX - rect.left;
         mouse.y = event.clientY - rect.top;
-    });
+    };
 
-    window.addEventListener('touchmove', (event) => {
+    const touchMoveHandler = (event) => {
         let rect = canvas.getBoundingClientRect();
         mouse.x = event.touches[0].clientX - rect.left;
         mouse.y = event.touches[0].clientY - rect.top;
-    });
+    };
 
-    window.addEventListener('mouseout', () => { mouse.x = undefined; mouse.y = undefined; });
-    window.addEventListener('touchend', () => { mouse.x = undefined; mouse.y = undefined; });
+    const mouseOutHandler = () => { mouse.x = undefined; mouse.y = undefined; };
+    
+    const resizeHandler = () => { resizeCanvas(); init(); };
+
+    window.addEventListener('mousemove', mouseMoveHandler);
+    window.addEventListener('touchmove', touchMoveHandler);
+    window.addEventListener('mouseout', mouseOutHandler);
+    window.addEventListener('touchend', mouseOutHandler);
+    window.addEventListener('resize', resizeHandler);
 
     class Particle {
         constructor(x, y, directionX, directionY, size, color) {
@@ -149,7 +160,14 @@ function initParticles() {
         currentAnimFrame = requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', () => { resizeCanvas(); init(); });
+    cleanupCurrentAnim = () => {
+        window.removeEventListener('mousemove', mouseMoveHandler);
+        window.removeEventListener('touchmove', touchMoveHandler);
+        window.removeEventListener('mouseout', mouseOutHandler);
+        window.removeEventListener('touchend', mouseOutHandler);
+        window.removeEventListener('resize', resizeHandler);
+    };
+
     resizeCanvas(); init(); animate();
 }
 
@@ -168,6 +186,9 @@ function initSnowfall() {
         const heroSection = canvas.parentElement;
         canvas.height = heroSection ? heroSection.offsetHeight : window.innerHeight;
     }
+    
+    const resizeHandler = () => { resizeCanvas(); init(); };
+    window.addEventListener('resize', resizeHandler);
 
     class Snowflake {
         constructor() {
@@ -197,12 +218,11 @@ function initSnowfall() {
             }
         }
 
-        draw() {
+        draw(isLightMode) {
             ctx.save();
             ctx.beginPath();
             ctx.translate(this.x, this.y);
             
-            const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
             const r = isLightMode ? 14 : 255;
             const g = isLightMode ? 165 : 255;
             const b = isLightMode ? 233 : 255;
@@ -239,14 +259,18 @@ function initSnowfall() {
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
         snowflakes.forEach(flake => {
             flake.update();
-            flake.draw();
+            flake.draw(isLightMode);
         });
         // IMPORTANT: Save the frame ID so we can cancel it later
         currentAnimFrame = requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', () => { resizeCanvas(); init(); });
+    cleanupCurrentAnim = () => {
+        window.removeEventListener('resize', resizeHandler);
+    };
+
     resizeCanvas(); init(); animate();
 }
